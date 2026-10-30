@@ -2472,7 +2472,7 @@ var qrcode = function() {
 const API_URL = 'https://script.google.com/macros/s/AKfycby3USSiWgvvo4aS6pMbx-Sm_i_YNXMJlaY_37x8_nHShn5Xtqcgqqp2SME_YDLq9oQ/exec';
 /* ===================================================================== */
 
-const APP_VERSI = '1.1';
+const APP_VERSI = '1.2';
 const KOP_IMG = 'kop.png'; // gambar kop resmi madrasah (kosongkan '' untuk kop teks)
 const SERVER = (localStorage.getItem('eizin_api') || API_URL).trim();
 const DEMO = !SERVER;
@@ -2644,11 +2644,36 @@ async function refreshConfig() {
 function pendingTtd() { ops.filter(o => o.type === 'ttd').forEach(o => { cfg.ttd = o.dataUrl; }); }
 
 async function loadSiswa(force) {
-  if (!force && siswaList.length && Date.now() - store.get('siswa_t', 0) < 6 * 3600e3) return;
+  if (!force && siswaList.length && Date.now() - store.get('siswa_t', 0) < 6 * 3600e3) return { ok: true };
   try {
-    const r = await api('siswa', cfg.perluKode ? { kodeAkses: store.get('kodeAkses', '') } : {});
-    if (r.ok) { siswaList = r.siswa; store.set('siswa', siswaList); store.set('siswa_t', Date.now()); }
-  } catch (e) { }
+    const kode = store.get('kodeAkses', '');
+    const r = await api('siswa', kode ? { kodeAkses: kode } : {});
+    if (r.ok) {
+      const kosong = !siswaList.length;
+      siswaList = r.siswa; store.set('siswa', siswaList); store.set('siswa_t', Date.now());
+      if (kosong && siswaList.length) onSiswaSiap();
+      return { ok: true };
+    }
+    return { ok: false, error: r.error || 'Gagal memuat data siswa' };
+  } catch (e) { return { ok: false, net: true, error: 'Tidak ada koneksi internet' }; }
+}
+// pencarian: abaikan huruf besar/kecil & tanda baca ("aidah" menemukan "A'IDAH")
+const norm = s => String(s || '').toLowerCase().replace(/[^a-z0-9 ]+/g, '').replace(/\s+/g, ' ').trim();
+function cariSiswa(q, kecuali) {
+  const nq = norm(q); if (nq.length < 2) return [];
+  const terms = nq.split(' ');
+  const hasil = [];
+  siswaList.forEach((s, i) => {
+    if (kecuali(s)) return;
+    const nama = norm(s.nama), nis = String(s.nis || '');
+    let skor = -1;
+    if (/^\d{3,}$/.test(nq)) { if (nis.includes(nq)) skor = nis.startsWith(nq) ? 0 : 1; }
+    else if (terms.every(w => nama.includes(w) || norm(s.kelas) === w || nis.includes(w))) {
+      skor = nama.startsWith(nq) ? 0 : (nama.split(' ').some(k => k.startsWith(terms[0])) ? 1 : 2);
+    }
+    if (skor >= 0) hasil.push({ s, i, skor });
+  });
+  return hasil.sort((a, b) => a.skor - b.skor || a.s.nama.localeCompare(b.s.nama)).slice(0, 10);
 }
 
 // ---------------------------------------------------------------- antrean pemohon (offline)
@@ -2819,7 +2844,14 @@ function mountForm(el, f, mode, onSubmit) {
     const namaLabel = f.jenisPemohon === 'Siswa' ? 'Nama siswa yang mengajukan' : (f.jenisPemohon === 'Pembina' ? 'Nama pembina' : 'Nama koordinator kelas program');
     const showKembali = ji === 'Keluar Sekolah Sementara' || ji === 'Lainnya';
     const opt = ji === 'Lainnya' ? ' <span class="mut">(opsional)</span>' : '';
+    const perluKodeKartu = !isAdmin && cfg.perluKode;
     el.innerHTML = `
+      ${perluKodeKartu ? (siswaList.length
+        ? `<div class="card ok small" id="kode-ok">✓ Data ${siswaList.length.toLocaleString('id-ID')} siswa siap. Ketik nama atau NISN siswa di bawah. <a href="#" id="kode-ganti" style="float:right">Ganti kode</a></div>`
+        : `<div class="card note" id="kode-card"><label for="f-kode">Kode akses madrasah</label>
+            <p class="small" style="margin-top:0">Isi dulu agar nama siswa beserta kelas & NISN muncul otomatis. Kode diberikan oleh madrasah (grup WA). Cukup sekali — HP ini akan mengingatnya.</p>
+            <div style="display:flex;gap:8px"><input id="f-kode" value="${h(store.get('kodeAkses', ''))}" autocomplete="off" autocapitalize="characters" placeholder="Contoh: ABCD123" style="flex:1"><button type="button" class="btn" id="kode-go">Buka</button></div>
+            <p class="small" id="kode-msg" style="margin-bottom:0"></p></div>`) : ''}
       <div class="card">
         <label>${isAdmin ? 'Yang mengajukan' : 'Saya mengajukan sebagai'}</label>
         <div class="seg" data-seg="jenisPemohon">${JENIS_PEMOHON.map(j => `<button type="button" class="${f.jenisPemohon === j ? 'on' : ''}" data-v="${h(j)}">${h(j)}</button>`).join('')}</div>
@@ -2835,7 +2867,7 @@ function mountForm(el, f, mode, onSubmit) {
         <div id="chips">${f.siswa.map((s, i) => `<span class="chip">${h(s.nama)}${s.kelas ? ' · ' + h(s.kelas) : ''}<button type="button" data-rm="${i}" aria-label="Hapus ${h(s.nama)}">×</button></span>`).join('')}</div>
         <input id="cari" placeholder="Ketik nama, NISN, atau kelas…" autocomplete="off">
         <div id="sugg" class="sugg"></div>
-        ${siswaList.length ? '' : '<p class="small mut" id="f-nosiswa">Daftar siswa belum termuat. Tulis manual dengan format: <b>Nama / Kelas</b>, lalu pilih "Tambah".</p>'}
+        ${siswaList.length || perluKodeKartu ? '' : '<p class="small mut" id="f-nosiswa">Daftar siswa belum termuat. Tulis manual dengan format: <b>Nama / Kelas</b>, lalu pilih "Tambah".</p>'}
         <div class="row2">
           <div><label for="f-t1">${lomba ? 'Tanggal mulai' : 'Tanggal'}</label><input type="date" id="f-t1" data-k="tglMulai" value="${h(f.tglMulai)}"></div>
           ${lomba ? `<div><label for="f-t2">Tanggal selesai</label><input type="date" id="f-t2" data-k="tglSelesai" value="${h(f.tglSelesai)}"></div>` : ''}
@@ -2856,7 +2888,6 @@ function mountForm(el, f, mode, onSubmit) {
           ${f.lampiranData ? `<img class="thumb" src="${f.lampiranData}" alt="Pratinjau lampiran"><button type="button" class="btn ghost sm" id="f-lamp-x" style="margin-top:6px">Hapus foto</button>` : ''}`}` : ''}
         <label for="f-kep">Keperluan / alasan</label>
         <textarea id="f-kep" data-k="keperluan" rows="3" placeholder="${lomba ? 'Contoh: Mewakili madrasah dalam lomba…' : 'Contoh: Mengambil berkas yang tertinggal di rumah'}">${h(f.keperluan)}</textarea>
-        ${!isAdmin && cfg.perluKode ? `<label for="f-kode">Kode akses madrasah</label><input id="f-kode" value="${h(store.get('kodeAkses', ''))}" autocomplete="off">` : ''}
       </div>
       <p class="small" id="f-err" style="color:var(--red)"></p>
       <button class="btn block" id="f-submit" type="button">${isAdmin ? '✓ Setujui & buat surat' : 'Kirim pengajuan'}</button>`;
@@ -2877,18 +2908,21 @@ function mountForm(el, f, mode, onSubmit) {
     cari.oninput = () => {
       const q = cari.value.trim().toLowerCase();
       if (q.length < 2) { sugg.innerHTML = ''; return; }
-      const terms = q.split(/\s+/);
-      const m = siswaList.filter(s => { const t = `${s.nama} ${s.nis} ${s.kelas}`.toLowerCase(); return terms.every(w => t.includes(w)); })
-        .filter(s => !f.siswa.some(x => x.nis && x.nis === s.nis)).slice(0, 8);
+      if (!siswaList.length && !isAdmin && cfg.perluKode) {
+        sugg.innerHTML = '<button type="button" data-kodefokus="1">🔑 Isi <b>kode akses madrasah</b> di bagian atas dulu agar nama, kelas & NISN siswa muncul otomatis</button>';
+        $('[data-kodefokus]', sugg).onclick = () => { const k = $('#f-kode', el); if (k) { k.scrollIntoView({ block: 'center' }); k.focus(); } };
+        return;
+      }
+      const m = cariSiswa(q, s => f.siswa.some(x => x.nama === s.nama && x.kelas === s.kelas && x.nis === s.nis));
       const kelas = siswaList.filter(s => s.kelas.toLowerCase() === q);
-      let html = m.map(s => `<button type="button" data-add="${h(s.nis)}"><b>${h(s.nama)}</b> <span class="mut small">· ${h(s.kelas)} · NISN ${h(s.nis || '-')}</span></button>`).join('');
+      let html = m.map(({ s, i }) => `<button type="button" data-add="${i}"><b>${h(s.nama)}</b><br><span class="small mut">Kelas ${h(s.kelas || '-')} · NISN ${h(s.nis || '-')}</span></button>`).join('');
       if (kelas.length) html += `<button type="button" data-kelas="${h(kelas[0].kelas)}">➕ Tambah semua siswa kelas <b>${h(kelas[0].kelas)}</b> (${kelas.length} siswa)</button>`;
       if (!m.length && q.length >= 3) {
         const [nm, kl] = cari.value.split('/').map(x => x.trim());
         html += `<button type="button" data-manual="1">➕ Tambah manual: <b>${h(nm)}</b>${kl ? ' · ' + h(kl) : ' <span class="mut small">(tulis "Nama / Kelas" agar kelas tercatat)</span>'}</button>`;
       }
       sugg.innerHTML = html;
-      $$('[data-add]', sugg).forEach(b => b.onclick = () => { addSiswa(siswaList.find(s => s.nis === b.dataset.add)); render(); $('#cari', el).focus(); });
+      $$('[data-add]', sugg).forEach(b => b.onclick = () => { addSiswa(siswaList[Number(b.dataset.add)]); render(); $('#cari', el).focus(); });
       $$('[data-kelas]', sugg).forEach(b => b.onclick = () => { siswaList.filter(s => s.kelas === b.dataset.kelas).forEach(addSiswa); render(); });
       $$('[data-manual]', sugg).forEach(b => b.onclick = () => {
         const [nm, kl] = cari.value.split('/').map(x => x.trim());
@@ -2904,9 +2938,24 @@ function mountForm(el, f, mode, onSubmit) {
     };
     const lx = $('#f-lamp-x', el); if (lx) lx.onclick = () => { f.lampiranData = ''; render(); };
     const kd = $('#f-kode', el);
-    if (kd) kd.onchange = () => { store.set('kodeAkses', kd.value.trim()); loadSiswa(true).then(() => { const n = $('#f-nosiswa', el); if (n && siswaList.length) n.remove(); }); };
+    if (kd) {
+      let tm;
+      const coba = async (manual) => {
+        const v = kd.value.trim(); if (!v) { if (manual) $('#kode-msg', el).textContent = 'Kode belum diisi.'; return; }
+        store.set('kodeAkses', v);
+        $('#kode-msg', el).textContent = 'Memeriksa kode…';
+        const r = await loadSiswa(true);
+        if (r.ok && siswaList.length) { render(); const c = $('#cari', el); if (c) c.focus(); }
+        else if ($('#kode-msg', el)) { $('#kode-msg', el).innerHTML = `<span style="color:var(--red)">${h(r.net ? 'Tidak ada koneksi internet. Coba lagi saat online.' : (r.error || 'Kode salah'))}</span>`; }
+      };
+      kd.oninput = () => { clearTimeout(tm); if (kd.value.trim().length >= 4) tm = setTimeout(() => coba(false), 700); };
+      kd.onkeydown = e => { if (e.key === 'Enter') { clearTimeout(tm); coba(true); } };
+      $('#kode-go', el).onclick = () => { clearTimeout(tm); coba(true); };
+    }
+    const kg = $('#kode-ganti', el);
+    if (kg) kg.onclick = e => { e.preventDefault(); siswaList = []; store.del('siswa'); store.del('siswa_t'); store.del('kodeAkses'); render(); };
     $('#f-submit', el).onclick = async () => {
-      const kodeInp = $('#f-kode', el); if (kodeInp) store.set('kodeAkses', kodeInp.value.trim());
+      const kodeInp = $('#f-kode', el); if (kodeInp && kodeInp.value.trim()) store.set('kodeAkses', kodeInp.value.trim());
       const err = validate(f, mode);
       $('#f-err', el).textContent = err || '';
       if (err) { $('#f-err', el).scrollIntoView({ block: 'center', behavior: 'smooth' }); return; }
@@ -2972,15 +3021,19 @@ function viewAjukan() {
   if (!formDraft) formDraft = blankForm('pemohon');
   app().innerHTML = `<h1>Ajukan Izin</h1><p class="mut small">Isi dengan benar. Pengajuan akan diteruskan ke Waka Kurikulum untuk disetujui.</p><div id="frm"></div>`;
   mountForm($('#frm'), formDraft, 'pemohon', submitPemohon);
-  const kosong = !siswaList.length;
-  loadSiswa().then(() => {
-    // daftar siswa baru termuat → pasang ulang form (isian tetap tersimpan di formDraft)
-    const frm = $('#frm');
-    if (!(kosong && siswaList.length && curRoute() === 'ajukan' && frm)) return;
+  loadSiswa();
+}
+
+// daftar siswa baru termuat → perbarui form pengajuan yang sedang terbuka (isian tetap tersimpan di formDraft)
+function onSiswaSiap() {
+  const frm = $('#frm');
+  if (!(curRoute() === 'ajukan' && frm && formDraft)) return;
+  {
     if (!frm.contains(document.activeElement)) return mountForm(frm, formDraft, 'pemohon', submitPemohon);
     const n = $('#f-nosiswa', frm); if (n) n.remove();
+    const kc = $('#kode-card', frm); if (kc) kc.outerHTML = `<div class="card ok small">✓ Data ${siswaList.length.toLocaleString('id-ID')} siswa siap. Ketik nama atau NISN siswa di bawah.</div>`;
     const c = $('#cari', frm); if (c && c.value) c.oninput();
-  });
+  }
 }
 
 async function submitPemohon(f) {
@@ -2991,7 +3044,17 @@ async function submitPemohon(f) {
   try {
     if (!DEMO && !navigator.onLine) throw new NetErr();
     const r = await api('ajukan', { izin, kodeAkses });
-    if (!r.ok) { $('#f-err').textContent = 'Gagal: ' + (r.error || 'server menolak pengajuan'); return; }
+    if (!r.ok) {
+      if (/kode akses/i.test(r.error || '')) {
+        // kode di HP ini sudah tidak berlaku (mis. diganti madrasah) → minta kode baru, isian tetap tersimpan
+        store.del('kodeAkses'); store.del('siswa'); store.del('siswa_t'); siswaList = [];
+        mountForm($('#frm'), f, 'pemohon', submitPemohon);
+        $('#f-err').textContent = 'Kode akses madrasah salah atau sudah diganti. Isi kode yang baru di bagian atas, lalu kirim lagi.';
+        window.scrollTo(0, 0);
+        return;
+      }
+      $('#f-err').textContent = 'Gagal: ' + (r.error || 'server menolak pengajuan'); return;
+    }
   } catch (e) {
     if (!(e instanceof NetErr)) throw e;
     const ob = store.get('outbox', []); ob.push({ izin, kodeAkses }); store.set('outbox', ob); queued = true;
@@ -3532,6 +3595,15 @@ setInterval(() => { if (admin && document.visibilityState === 'visible' && (loca
 if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
   navigator.serviceWorker.register('sw.js').catch(() => { });
 }
+// link berisi ?kode=XXXX → simpan kode akses lalu bersihkan alamat
+(() => {
+  const q = new URLSearchParams(location.search), k = q.get('kode');
+  if (!k) return;
+  if (k.trim() !== store.get('kodeAkses', '')) { store.set('kodeAkses', k.trim()); store.del('siswa_t'); }
+  q.delete('kode');
+  const rest = q.toString();
+  history.replaceState(null, '', location.pathname + (rest ? '?' + rest : '') + location.hash);
+})();
 route();
 if (DEMO || navigator.onLine) { refreshConfig().then(() => { renderHeader(); loadSiswa(); }); flushOutbox(); }
 </script>
