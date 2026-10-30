@@ -123,6 +123,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--g2);outline-offs
 .kop .k3{font-size:16.5px;font-weight:700}
 .kop .al{font-size:12px}
 .kopline{border:0;border-top:3px double #000;margin:8px 0 14px}
+.kopimg{display:block;width:100%;height:auto;margin:0 0 14px}
 .judul{text-align:center;font-weight:700;text-decoration:underline;font-size:16px;margin-top:4px}
 .nomor{text-align:center;margin-bottom:12px}
 .tbl{width:100%;border-collapse:collapse;margin:8px 0 10px;font-size:14px}
@@ -2471,7 +2472,8 @@ var qrcode = function() {
 const API_URL = 'https://script.google.com/macros/s/AKfycby3USSiWgvvo4aS6pMbx-Sm_i_YNXMJlaY_37x8_nHShn5Xtqcgqqp2SME_YDLq9oQ/exec';
 /* ===================================================================== */
 
-const APP_VERSI = '1.0';
+const APP_VERSI = '1.1';
+const KOP_IMG = 'kop.png'; // gambar kop resmi madrasah (kosongkan '' untuk kop teks)
 const SERVER = (localStorage.getItem('eizin_api') || API_URL).trim();
 const DEMO = !SERVER;
 const JENIS_PEMOHON = ['Siswa', 'Pembina', 'Koordinator Kelas Program'];
@@ -2831,7 +2833,7 @@ function mountForm(el, f, mode, onSubmit) {
         <div class="seg" data-seg="jenisIzin">${JENIS_IZIN.map(j => `<button type="button" class="${ji === j ? 'on' : ''}" data-v="${h(j)}">${IKON_IZIN[j]} ${h(j)}</button>`).join('')}</div>
         <label for="cari">Siswa yang izin <span class="mut">(bisa lebih dari satu)</span></label>
         <div id="chips">${f.siswa.map((s, i) => `<span class="chip">${h(s.nama)}${s.kelas ? ' · ' + h(s.kelas) : ''}<button type="button" data-rm="${i}" aria-label="Hapus ${h(s.nama)}">×</button></span>`).join('')}</div>
-        <input id="cari" placeholder="Ketik nama, NIS, atau kelas…" autocomplete="off">
+        <input id="cari" placeholder="Ketik nama, NISN, atau kelas…" autocomplete="off">
         <div id="sugg" class="sugg"></div>
         ${siswaList.length ? '' : '<p class="small mut" id="f-nosiswa">Daftar siswa belum termuat. Tulis manual dengan format: <b>Nama / Kelas</b>, lalu pilih "Tambah".</p>'}
         <div class="row2">
@@ -2879,7 +2881,7 @@ function mountForm(el, f, mode, onSubmit) {
       const m = siswaList.filter(s => { const t = `${s.nama} ${s.nis} ${s.kelas}`.toLowerCase(); return terms.every(w => t.includes(w)); })
         .filter(s => !f.siswa.some(x => x.nis && x.nis === s.nis)).slice(0, 8);
       const kelas = siswaList.filter(s => s.kelas.toLowerCase() === q);
-      let html = m.map(s => `<button type="button" data-add="${h(s.nis)}"><b>${h(s.nama)}</b> <span class="mut small">· ${h(s.kelas)} · NIS ${h(s.nis)}</span></button>`).join('');
+      let html = m.map(s => `<button type="button" data-add="${h(s.nis)}"><b>${h(s.nama)}</b> <span class="mut small">· ${h(s.kelas)} · NISN ${h(s.nis || '-')}</span></button>`).join('');
       if (kelas.length) html += `<button type="button" data-kelas="${h(kelas[0].kelas)}">➕ Tambah semua siswa kelas <b>${h(kelas[0].kelas)}</b> (${kelas.length} siswa)</button>`;
       if (!m.length && q.length >= 3) {
         const [nm, kl] = cari.value.split('/').map(x => x.trim());
@@ -3138,12 +3140,13 @@ function suratHTML(z, c) {
   }[z.jenisIzin] || 'Demikian surat izin ini diberikan untuk dipergunakan sebagaimana mestinya.';
   const tglTtd = (z.diputuskan || z.dibuat || today()).slice(0, 10);
   return `<article class="paper" id="surat">
-    <div class="kop"><div class="k1">${h(c.kop1)}</div><div class="k2">${h(c.kop2)}</div><div class="k3">${h(c.kop3)}</div>${c.alamat ? `<div class="al">${h(c.alamat)}</div>` : ''}</div>
-    <hr class="kopline">
+    ${KOP_IMG ? `<img class="kopimg" src="${KOP_IMG}" alt="Kop surat ${h(c.namaMadrasah)}" onerror="this.hidden=true;this.nextElementSibling.hidden=false">` : ''}
+    <div class="kopteks" ${KOP_IMG ? 'hidden' : ''}><div class="kop"><div class="k1">${h(c.kop1)}</div><div class="k2">${h(c.kop2)}</div><div class="k3">${h(c.kop3)}</div>${c.alamat ? `<div class="al">${h(c.alamat)}</div>` : ''}</div>
+    <hr class="kopline"></div>
     <div class="judul">${judulSurat(z.jenisIzin)}</div>
     <div class="nomor">Nomor: ${h(z.id)}</div>
     <p>Yang bertanda tangan di bawah ini, ${h(c.jabatan)} ${h(c.namaMadrasah)}, memberikan ${lomba ? 'dispensasi' : 'izin'} kepada:</p>
-    <table class="tbl"><thead><tr><th style="width:34px">No</th><th>Nama</th><th style="width:22%">NIS</th><th style="width:16%">Kelas</th></tr></thead>
+    <table class="tbl"><thead><tr><th style="width:34px">No</th><th>Nama</th><th style="width:22%">NISN</th><th style="width:16%">Kelas</th></tr></thead>
     <tbody>${(z.siswa || []).map((s, i) => `<tr><td>${i + 1}</td><td>${h(s.nama)}</td><td>${h(s.nis || '-')}</td><td>${h(s.kelas || '-')}</td></tr>`).join('')}</tbody></table>
     <table class="det">${rows.map(([a, b]) => `<tr><td>${h(a)}</td><td>:</td><td>${h(b)}</td></tr>`).join('')}</table>
     <p style="text-align:justify">${penutup}</p>
@@ -3425,9 +3428,9 @@ function exportExcel(D, label) {
   const recs = D.recs.slice().sort((a, b) => String(a.tglMulai).localeCompare(String(b.tglMulai)));
   const data = [['ID', 'Status', 'Jenis Izin', 'Tanggal Mulai', 'Tanggal Selesai', 'Jam Keluar', 'Jam Kembali', 'Daftar Siswa', 'Jumlah Siswa', 'Jenis Pemohon', 'Nama Pemohon', 'HP Pemohon', 'Keperluan', 'Kegiatan/Lomba', 'Tempat', 'Penyelenggara', 'Pendamping', 'Sumber', 'Diajukan', 'Diputuskan', 'Catatan Waka', 'Kembali Aktual']];
   recs.forEach(r => data.push([r.id, r.status, r.jenisIzin, r.tglMulai, r.tglSelesai, r.jamKeluar, r.jamKembali, (r.siswa || []).map(s => `${s.nama} (${s.kelas || '-'})`).join('; '), (r.siswa || []).length, r.jenisPemohon, r.namaPemohon, r.hpPemohon, r.keperluan, r.namaKegiatan, r.tempat, r.penyelenggara, r.pembina, r.sumber, String(r.dibuat || '').replace('T', ' '), String(r.diputuskan || '').replace('T', ' '), r.catatan, String(r.kembaliAktual || '').replace('T', ' ')]));
-  const per = [['ID', 'Tanggal', 'NIS', 'Nama', 'Kelas', 'Jenis Izin', 'Jenis Pemohon', 'Status']];
+  const per = [['ID', 'Tanggal', 'NISN', 'Nama', 'Kelas', 'Jenis Izin', 'Jenis Pemohon', 'Status']];
   recs.forEach(r => (r.siswa || []).forEach(s => per.push([r.id, r.tglMulai, s.nis, s.nama, s.kelas, r.jenisIzin, r.jenisPemohon, r.status])));
-  const rek = [['Nama', 'NIS', 'Kelas', 'Total Disetujui', 'Keluar/Pulang', 'Lomba/Kegiatan', 'Lainnya']];
+  const rek = [['Nama', 'NISN', 'Kelas', 'Total Disetujui', 'Keluar/Pulang', 'Lomba/Kegiatan', 'Lainnya']];
   D.siswa.forEach(s => rek.push([s.nama, s.nis, s.kelas, s.total, s.keluar, s.lomba, s.lain]));
   const blob = makeXlsx([
     { name: 'Data Izin', rows: data, widths: [18, 11, 24, 12, 12, 9, 9, 40, 8, 22, 24, 15, 40, 26, 20, 20, 22, 10, 18, 18, 24, 18] },
