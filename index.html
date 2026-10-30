@@ -1,0 +1,3536 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>e-Izin MAN 2 Kota Pekanbaru</title>
+<meta name="theme-color" content="#0b6b3a">
+<meta name="description" content="Pengajuan dan persetujuan izin siswa MAN 2 Kota Pekanbaru">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{--g:#0b6b3a;--g2:#0e8a4b;--gl:#e8f4ec;--ink:#17201b;--mut:#5b6a62;--line:#dde5e0;--bg:#f3f6f4;
+--red:#b42318;--redl:#fdecea;--amb:#8a5300;--ambl:#fff3dc;--card:#fff;--r:14px}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif;background:var(--bg);color:var(--ink)}
+a{color:var(--g)}
+.top{position:sticky;top:0;z-index:20;background:var(--g);color:#fff;padding:10px 14px;padding-top:max(10px,env(safe-area-inset-top))}
+.top-in{max-width:760px;margin:0 auto;display:flex;align-items:center;gap:10px}
+.brand{display:flex;align-items:center;gap:9px;color:#fff;text-decoration:none;min-width:0;flex:1 1 auto}
+.brand>span:last-child{min-width:0;overflow:hidden}
+.pill .w{display:inline}
+@media (max-width:430px){.pill .w{display:none}}
+.brand b{font-size:17px;letter-spacing:.2px}
+.brand small{display:block;font-size:11.5px;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.logo{width:32px;height:32px;border-radius:9px;background:#fff;color:var(--g);display:grid;place-items:center;font-weight:800;font-size:15px;flex:none}
+.sp{flex:1}
+.pill{font-size:12px;line-height:1;padding:6px 10px;border-radius:99px;background:rgba(255,255,255,.18);color:#fff;border:0;font-weight:600;white-space:nowrap;cursor:pointer}
+.pill.off{background:#fbd38d;color:#5a3500}
+.pill.demo{background:#fff;color:var(--g)}
+main{max-width:760px;margin:0 auto;padding:14px 14px 96px}
+h1{font-size:21px;margin:4px 0 6px}
+h2{font-size:17px;margin:0 0 8px}
+h3{font-size:15px;margin:0 0 6px}
+p{margin:6px 0}
+.mut{color:var(--mut);font-weight:400}
+.small{font-size:13px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:12px}
+.card.note{background:var(--ambl);border-color:#f3d9a4}
+.card.ok{background:var(--gl);border-color:#bfe0cb}
+label{display:block;font-weight:600;font-size:13.5px;margin:14px 0 6px}
+label:first-child{margin-top:0}
+input,select,textarea{width:100%;padding:11px 12px;border:1px solid #c9d4ce;border-radius:10px;font:inherit;background:#fff;color:inherit;min-height:44px}
+textarea{resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--g2);outline-offset:0;border-color:var(--g2)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.row2>div>label{margin-top:14px}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{flex:1 1 auto;padding:10px 12px;border:1px solid #c9d4ce;background:#fff;border-radius:10px;font:inherit;font-size:14px;cursor:pointer;color:inherit;min-height:44px}
+.seg button.on{background:var(--g);border-color:var(--g);color:#fff;font-weight:600}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 16px;min-height:44px;border-radius:10px;border:1px solid var(--g);background:var(--g);color:#fff;font:inherit;font-weight:600;cursor:pointer;text-decoration:none;text-align:center}
+.btn:disabled{opacity:.55;cursor:default}
+.btn.ghost{background:#fff;color:var(--g)}
+.btn.red{background:var(--red);border-color:var(--red)}
+.btn.red.ghost{background:#fff;color:var(--red)}
+.btn.block{width:100%}
+.btn.sm{padding:7px 12px;min-height:36px;font-size:13.5px}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+.btns>.btn{flex:1 1 140px}
+.big{display:flex;gap:14px;align-items:center;text-align:left;padding:16px;font-size:16px}
+.big .ic{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:22px;flex:none}
+.btn.ghost.big .ic{background:var(--gl)}
+.big small{display:block;font-weight:400;font-size:13px;opacity:.85}
+.chip{display:inline-flex;gap:4px;align-items:center;background:var(--gl);color:#0a4f2b;border-radius:99px;padding:4px 4px 4px 11px;font-size:13.5px;margin:6px 6px 0 0}
+.chip button{border:0;background:transparent;color:inherit;font-size:17px;line-height:1;width:26px;height:26px;border-radius:99px;cursor:pointer}
+.chip.ro{padding-right:11px}
+#chips:empty::before{content:"Belum ada siswa dipilih";color:var(--mut);font-size:13px}
+#chips{margin-bottom:8px}
+.sugg{border:1px solid var(--line);border-radius:10px;margin-top:6px;overflow:hidden}
+.sugg:empty{display:none}
+.sugg button{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid var(--line);background:#fff;padding:10px 12px;font:inherit;cursor:pointer;color:inherit}
+.sugg button:last-child{border-bottom:0}
+.sugg button:hover,.sugg button:focus{background:var(--gl)}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:3px 9px;border-radius:99px;background:#eef1ef;color:var(--mut)}
+.st-Menunggu{background:var(--ambl);color:var(--amb)}
+.st-Disetujui{background:var(--gl);color:var(--g)}
+.st-Ditolak{background:var(--redl);color:var(--red)}
+.meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.kv{display:grid;grid-template-columns:110px 1fr;gap:3px 10px;font-size:14px;margin:8px 0}
+.kv dt{color:var(--mut)}
+.kv dd{margin:0;word-break:break-word}
+.item{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:8px;color:inherit;text-decoration:none}
+.item .t{font-weight:600}
+.empty{text-align:center;color:var(--mut);padding:30px 10px}
+.nav{position:fixed;bottom:0;left:0;right:0;z-index:20;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom)}
+.nav a{flex:1;max-width:140px;text-align:center;padding:8px 2px 9px;font-size:11.5px;color:var(--mut);text-decoration:none;position:relative}
+.nav a span{display:block;font-size:19px;line-height:1.2}
+.nav a.on{color:var(--g);font-weight:700}
+.nav .cnt{position:absolute;top:3px;left:50%;margin-left:6px;background:var(--red);color:#fff;font-size:10.5px;font-weight:700;border-radius:99px;padding:1px 6px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-bottom:12px}
+.tile{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 12px}
+.tile b{display:block;font-size:24px;line-height:1.15}
+.tile span{font-size:12.5px;color:var(--mut)}
+.bars{display:grid;gap:9px}
+.brow{display:grid;grid-template-columns:minmax(96px,40%) 1fr 30px;gap:8px;align-items:center;font-size:13.5px}
+.brow .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.btrack{height:14px;border-radius:0 4px 4px 0}
+.bfill{height:100%;background:var(--g);border-radius:0 4px 4px 0;min-width:3px}
+.bfill.z{min-width:0}
+.brow .v{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.filters>*{flex:1 1 140px;width:auto}
+#toast{position:fixed;left:50%;bottom:88px;transform:translateX(-50%) translateY(20px);background:#1d2a23;color:#fff;padding:11px 16px;border-radius:12px;font-size:14px;max-width:min(92vw,520px);opacity:0;pointer-events:none;transition:.25s;z-index:50;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+#toast.show{opacity:1;transform:translateX(-50%);pointer-events:auto}
+#toast a{color:#9ee6b8;font-weight:700}
+.idbox{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:18px;font-weight:700;background:#fff;border:1px dashed #9cc9ad;border-radius:10px;padding:10px 12px;margin:8px 0;letter-spacing:.5px;word-break:break-all}
+.verify{border-radius:var(--r);padding:20px 16px;text-align:center;margin-bottom:12px;border:2px solid}
+.verify .ic{font-size:40px;line-height:1}
+.verify .vt{display:block;font-size:22px;font-weight:800;margin-top:6px}
+.v-ok{background:var(--gl);border-color:var(--g);color:var(--g)}
+.v-warn{background:var(--ambl);border-color:#e0a743;color:var(--amb)}
+.v-bad{background:var(--redl);border-color:var(--red);color:var(--red)}
+.sig{width:100%;height:200px;border:1px dashed #9aaba1;border-radius:10px;background:#fff;touch-action:none;display:block}
+.sigprev{max-width:220px;max-height:90px;display:block;margin:6px 0;background:#fff}
+.thumb{max-width:100%;max-height:220px;border-radius:10px;border:1px solid var(--line);display:block;margin-top:8px}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.toolbar .btn{flex:1 1 120px}
+/* ---------- surat ---------- */
+.paper{background:#fff;color:#000;border:1px solid var(--line);border-radius:6px;padding:26px 26px 20px;font-family:"Times New Roman",Times,serif;font-size:14.5px;line-height:1.45;box-shadow:0 2px 10px rgba(0,0,0,.05);overflow:hidden}
+.kop{text-align:center;line-height:1.25}
+.kop .k1,.kop .k2{font-size:13.5px;font-weight:700}
+.kop .k3{font-size:16.5px;font-weight:700}
+.kop .al{font-size:12px}
+.kopline{border:0;border-top:3px double #000;margin:8px 0 14px}
+.judul{text-align:center;font-weight:700;text-decoration:underline;font-size:16px;margin-top:4px}
+.nomor{text-align:center;margin-bottom:12px}
+.tbl{width:100%;border-collapse:collapse;margin:8px 0 10px;font-size:14px}
+.tbl th,.tbl td{border:1px solid #000;padding:4px 6px;text-align:left;vertical-align:top}
+.tbl th{background:#f1f1f1}
+.det{border-collapse:collapse;margin:4px 0 8px;font-size:14px}
+.det td{padding:2px 4px;vertical-align:top}
+.det td:first-child{white-space:nowrap;padding-left:0;width:1%}
+.foot{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-top:16px}
+.qr{width:120px;text-align:center;font-size:10.5px;line-height:1.3;font-family:system-ui,sans-serif}
+.qr svg{width:110px;height:110px;display:block;margin:0 auto 3px}
+.ttd{text-align:left;min-width:220px}
+.ttd img{height:70px;max-width:220px;display:block;margin:2px 0}
+.ttd .blank{height:70px}
+.ket{margin-top:14px;padding-top:6px;border-top:1px solid #ccc;font-size:10.5px;color:#444;font-family:system-ui,sans-serif}
+@media (max-width:480px){
+ .paper{padding:16px 12px;font-size:13px}
+ .kop .k3{font-size:14.5px}.kop .k1,.kop .k2{font-size:12px}
+ .tbl,.det{font-size:12.5px}
+ .qr{width:96px}.qr svg{width:90px;height:90px}
+ .ttd{min-width:0}
+ .kv{grid-template-columns:96px 1fr}
+}
+@media print{
+ @page{size:A4;margin:16mm 18mm}
+ .no-print,.top,.nav,#toast{display:none!important}
+ body{background:#fff}
+ main{padding:0;max-width:none}
+ .paper{border:0;box-shadow:none;padding:0;font-size:12pt}
+}
+</style>
+</head>
+<body>
+<header class="top no-print"><div class="top-in" id="hdr"></div></header>
+<main id="app"></main>
+<nav class="nav no-print" id="nav" hidden></nav>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+//---------------------------------------------------------------------
+//
+// QR Code Generator for JavaScript
+//
+// Copyright (c) 2009 Kazuhiko Arase
+//
+// URL: http://www.d-project.com/
+//
+// Licensed under the MIT license:
+//  http://www.opensource.org/licenses/mit-license.php
+//
+// The word 'QR Code' is registered trademark of
+// DENSO WAVE INCORPORATED
+//  http://www.denso-wave.com/qrcode/faqpatent-e.html
+//
+//---------------------------------------------------------------------
+
+var qrcode = function() {
+
+  //---------------------------------------------------------------------
+  // qrcode
+  //---------------------------------------------------------------------
+
+  /**
+   * qrcode
+   * @param typeNumber 1 to 40
+   * @param errorCorrectionLevel 'L','M','Q','H'
+   */
+  var qrcode = function(typeNumber, errorCorrectionLevel) {
+
+    var PAD0 = 0xEC;
+    var PAD1 = 0x11;
+
+    var _typeNumber = typeNumber;
+    var _errorCorrectionLevel = QRErrorCorrectionLevel[errorCorrectionLevel];
+    var _modules = null;
+    var _moduleCount = 0;
+    var _dataCache = null;
+    var _dataList = [];
+
+    var _this = {};
+
+    var makeImpl = function(test, maskPattern) {
+
+      _moduleCount = _typeNumber * 4 + 17;
+      _modules = function(moduleCount) {
+        var modules = new Array(moduleCount);
+        for (var row = 0; row < moduleCount; row += 1) {
+          modules[row] = new Array(moduleCount);
+          for (var col = 0; col < moduleCount; col += 1) {
+            modules[row][col] = null;
+          }
+        }
+        return modules;
+      }(_moduleCount);
+
+      setupPositionProbePattern(0, 0);
+      setupPositionProbePattern(_moduleCount - 7, 0);
+      setupPositionProbePattern(0, _moduleCount - 7);
+      setupPositionAdjustPattern();
+      setupTimingPattern();
+      setupTypeInfo(test, maskPattern);
+
+      if (_typeNumber >= 7) {
+        setupTypeNumber(test);
+      }
+
+      if (_dataCache == null) {
+        _dataCache = createData(_typeNumber, _errorCorrectionLevel, _dataList);
+      }
+
+      mapData(_dataCache, maskPattern);
+    };
+
+    var setupPositionProbePattern = function(row, col) {
+
+      for (var r = -1; r <= 7; r += 1) {
+
+        if (row + r <= -1 || _moduleCount <= row + r) continue;
+
+        for (var c = -1; c <= 7; c += 1) {
+
+          if (col + c <= -1 || _moduleCount <= col + c) continue;
+
+          if ( (0 <= r && r <= 6 && (c == 0 || c == 6) )
+              || (0 <= c && c <= 6 && (r == 0 || r == 6) )
+              || (2 <= r && r <= 4 && 2 <= c && c <= 4) ) {
+            _modules[row + r][col + c] = true;
+          } else {
+            _modules[row + r][col + c] = false;
+          }
+        }
+      }
+    };
+
+    var getBestMaskPattern = function() {
+
+      var minLostPoint = 0;
+      var pattern = 0;
+
+      for (var i = 0; i < 8; i += 1) {
+
+        makeImpl(true, i);
+
+        var lostPoint = QRUtil.getLostPoint(_this);
+
+        if (i == 0 || minLostPoint > lostPoint) {
+          minLostPoint = lostPoint;
+          pattern = i;
+        }
+      }
+
+      return pattern;
+    };
+
+    var setupTimingPattern = function() {
+
+      for (var r = 8; r < _moduleCount - 8; r += 1) {
+        if (_modules[r][6] != null) {
+          continue;
+        }
+        _modules[r][6] = (r % 2 == 0);
+      }
+
+      for (var c = 8; c < _moduleCount - 8; c += 1) {
+        if (_modules[6][c] != null) {
+          continue;
+        }
+        _modules[6][c] = (c % 2 == 0);
+      }
+    };
+
+    var setupPositionAdjustPattern = function() {
+
+      var pos = QRUtil.getPatternPosition(_typeNumber);
+
+      for (var i = 0; i < pos.length; i += 1) {
+
+        for (var j = 0; j < pos.length; j += 1) {
+
+          var row = pos[i];
+          var col = pos[j];
+
+          if (_modules[row][col] != null) {
+            continue;
+          }
+
+          for (var r = -2; r <= 2; r += 1) {
+
+            for (var c = -2; c <= 2; c += 1) {
+
+              if (r == -2 || r == 2 || c == -2 || c == 2
+                  || (r == 0 && c == 0) ) {
+                _modules[row + r][col + c] = true;
+              } else {
+                _modules[row + r][col + c] = false;
+              }
+            }
+          }
+        }
+      }
+    };
+
+    var setupTypeNumber = function(test) {
+
+      var bits = QRUtil.getBCHTypeNumber(_typeNumber);
+
+      for (var i = 0; i < 18; i += 1) {
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+        _modules[Math.floor(i / 3)][i % 3 + _moduleCount - 8 - 3] = mod;
+      }
+
+      for (var i = 0; i < 18; i += 1) {
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+        _modules[i % 3 + _moduleCount - 8 - 3][Math.floor(i / 3)] = mod;
+      }
+    };
+
+    var setupTypeInfo = function(test, maskPattern) {
+
+      var data = (_errorCorrectionLevel << 3) | maskPattern;
+      var bits = QRUtil.getBCHTypeInfo(data);
+
+      // vertical
+      for (var i = 0; i < 15; i += 1) {
+
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+
+        if (i < 6) {
+          _modules[i][8] = mod;
+        } else if (i < 8) {
+          _modules[i + 1][8] = mod;
+        } else {
+          _modules[_moduleCount - 15 + i][8] = mod;
+        }
+      }
+
+      // horizontal
+      for (var i = 0; i < 15; i += 1) {
+
+        var mod = (!test && ( (bits >> i) & 1) == 1);
+
+        if (i < 8) {
+          _modules[8][_moduleCount - i - 1] = mod;
+        } else if (i < 9) {
+          _modules[8][15 - i - 1 + 1] = mod;
+        } else {
+          _modules[8][15 - i - 1] = mod;
+        }
+      }
+
+      // fixed module
+      _modules[_moduleCount - 8][8] = (!test);
+    };
+
+    var mapData = function(data, maskPattern) {
+
+      var inc = -1;
+      var row = _moduleCount - 1;
+      var bitIndex = 7;
+      var byteIndex = 0;
+      var maskFunc = QRUtil.getMaskFunction(maskPattern);
+
+      for (var col = _moduleCount - 1; col > 0; col -= 2) {
+
+        if (col == 6) col -= 1;
+
+        while (true) {
+
+          for (var c = 0; c < 2; c += 1) {
+
+            if (_modules[row][col - c] == null) {
+
+              var dark = false;
+
+              if (byteIndex < data.length) {
+                dark = ( ( (data[byteIndex] >>> bitIndex) & 1) == 1);
+              }
+
+              var mask = maskFunc(row, col - c);
+
+              if (mask) {
+                dark = !dark;
+              }
+
+              _modules[row][col - c] = dark;
+              bitIndex -= 1;
+
+              if (bitIndex == -1) {
+                byteIndex += 1;
+                bitIndex = 7;
+              }
+            }
+          }
+
+          row += inc;
+
+          if (row < 0 || _moduleCount <= row) {
+            row -= inc;
+            inc = -inc;
+            break;
+          }
+        }
+      }
+    };
+
+    var createBytes = function(buffer, rsBlocks) {
+
+      var offset = 0;
+
+      var maxDcCount = 0;
+      var maxEcCount = 0;
+
+      var dcdata = new Array(rsBlocks.length);
+      var ecdata = new Array(rsBlocks.length);
+
+      for (var r = 0; r < rsBlocks.length; r += 1) {
+
+        var dcCount = rsBlocks[r].dataCount;
+        var ecCount = rsBlocks[r].totalCount - dcCount;
+
+        maxDcCount = Math.max(maxDcCount, dcCount);
+        maxEcCount = Math.max(maxEcCount, ecCount);
+
+        dcdata[r] = new Array(dcCount);
+
+        for (var i = 0; i < dcdata[r].length; i += 1) {
+          dcdata[r][i] = 0xff & buffer.getBuffer()[i + offset];
+        }
+        offset += dcCount;
+
+        var rsPoly = QRUtil.getErrorCorrectPolynomial(ecCount);
+        var rawPoly = qrPolynomial(dcdata[r], rsPoly.getLength() - 1);
+
+        var modPoly = rawPoly.mod(rsPoly);
+        ecdata[r] = new Array(rsPoly.getLength() - 1);
+        for (var i = 0; i < ecdata[r].length; i += 1) {
+          var modIndex = i + modPoly.getLength() - ecdata[r].length;
+          ecdata[r][i] = (modIndex >= 0)? modPoly.getAt(modIndex) : 0;
+        }
+      }
+
+      var totalCodeCount = 0;
+      for (var i = 0; i < rsBlocks.length; i += 1) {
+        totalCodeCount += rsBlocks[i].totalCount;
+      }
+
+      var data = new Array(totalCodeCount);
+      var index = 0;
+
+      for (var i = 0; i < maxDcCount; i += 1) {
+        for (var r = 0; r < rsBlocks.length; r += 1) {
+          if (i < dcdata[r].length) {
+            data[index] = dcdata[r][i];
+            index += 1;
+          }
+        }
+      }
+
+      for (var i = 0; i < maxEcCount; i += 1) {
+        for (var r = 0; r < rsBlocks.length; r += 1) {
+          if (i < ecdata[r].length) {
+            data[index] = ecdata[r][i];
+            index += 1;
+          }
+        }
+      }
+
+      return data;
+    };
+
+    var createData = function(typeNumber, errorCorrectionLevel, dataList) {
+
+      var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, errorCorrectionLevel);
+
+      var buffer = qrBitBuffer();
+
+      for (var i = 0; i < dataList.length; i += 1) {
+        var data = dataList[i];
+        buffer.put(data.getMode(), 4);
+        buffer.put(data.getLength(), QRUtil.getLengthInBits(data.getMode(), typeNumber) );
+        data.write(buffer);
+      }
+
+      // calc num max data.
+      var totalDataCount = 0;
+      for (var i = 0; i < rsBlocks.length; i += 1) {
+        totalDataCount += rsBlocks[i].dataCount;
+      }
+
+      if (buffer.getLengthInBits() > totalDataCount * 8) {
+        throw 'code length overflow. ('
+          + buffer.getLengthInBits()
+          + '>'
+          + totalDataCount * 8
+          + ')';
+      }
+
+      // end code
+      if (buffer.getLengthInBits() + 4 <= totalDataCount * 8) {
+        buffer.put(0, 4);
+      }
+
+      // padding
+      while (buffer.getLengthInBits() % 8 != 0) {
+        buffer.putBit(false);
+      }
+
+      // padding
+      while (true) {
+
+        if (buffer.getLengthInBits() >= totalDataCount * 8) {
+          break;
+        }
+        buffer.put(PAD0, 8);
+
+        if (buffer.getLengthInBits() >= totalDataCount * 8) {
+          break;
+        }
+        buffer.put(PAD1, 8);
+      }
+
+      return createBytes(buffer, rsBlocks);
+    };
+
+    _this.addData = function(data, mode) {
+
+      mode = mode || 'Byte';
+
+      var newData = null;
+
+      switch(mode) {
+      case 'Numeric' :
+        newData = qrNumber(data);
+        break;
+      case 'Alphanumeric' :
+        newData = qrAlphaNum(data);
+        break;
+      case 'Byte' :
+        newData = qr8BitByte(data);
+        break;
+      case 'Kanji' :
+        newData = qrKanji(data);
+        break;
+      default :
+        throw 'mode:' + mode;
+      }
+
+      _dataList.push(newData);
+      _dataCache = null;
+    };
+
+    _this.isDark = function(row, col) {
+      if (row < 0 || _moduleCount <= row || col < 0 || _moduleCount <= col) {
+        throw row + ',' + col;
+      }
+      return _modules[row][col];
+    };
+
+    _this.getModuleCount = function() {
+      return _moduleCount;
+    };
+
+    _this.make = function() {
+      if (_typeNumber < 1) {
+        var typeNumber = 1;
+
+        for (; typeNumber < 40; typeNumber++) {
+          var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, _errorCorrectionLevel);
+          var buffer = qrBitBuffer();
+
+          for (var i = 0; i < _dataList.length; i++) {
+            var data = _dataList[i];
+            buffer.put(data.getMode(), 4);
+            buffer.put(data.getLength(), QRUtil.getLengthInBits(data.getMode(), typeNumber) );
+            data.write(buffer);
+          }
+
+          var totalDataCount = 0;
+          for (var i = 0; i < rsBlocks.length; i++) {
+            totalDataCount += rsBlocks[i].dataCount;
+          }
+
+          if (buffer.getLengthInBits() <= totalDataCount * 8) {
+            break;
+          }
+        }
+
+        _typeNumber = typeNumber;
+      }
+
+      makeImpl(false, getBestMaskPattern() );
+    };
+
+    _this.createTableTag = function(cellSize, margin) {
+
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+
+      var qrHtml = '';
+
+      qrHtml += '<table style="';
+      qrHtml += ' border-width: 0px; border-style: none;';
+      qrHtml += ' border-collapse: collapse;';
+      qrHtml += ' padding: 0px; margin: ' + margin + 'px;';
+      qrHtml += '">';
+      qrHtml += '<tbody>';
+
+      for (var r = 0; r < _this.getModuleCount(); r += 1) {
+
+        qrHtml += '<tr>';
+
+        for (var c = 0; c < _this.getModuleCount(); c += 1) {
+          qrHtml += '<td style="';
+          qrHtml += ' border-width: 0px; border-style: none;';
+          qrHtml += ' border-collapse: collapse;';
+          qrHtml += ' padding: 0px; margin: 0px;';
+          qrHtml += ' width: ' + cellSize + 'px;';
+          qrHtml += ' height: ' + cellSize + 'px;';
+          qrHtml += ' background-color: ';
+          qrHtml += _this.isDark(r, c)? '#000000' : '#ffffff';
+          qrHtml += ';';
+          qrHtml += '"/>';
+        }
+
+        qrHtml += '</tr>';
+      }
+
+      qrHtml += '</tbody>';
+      qrHtml += '</table>';
+
+      return qrHtml;
+    };
+
+    _this.createSvgTag = function(cellSize, margin, alt, title) {
+
+      var opts = {};
+      if (typeof arguments[0] == 'object') {
+        // Called by options.
+        opts = arguments[0];
+        // overwrite cellSize and margin.
+        cellSize = opts.cellSize;
+        margin = opts.margin;
+        alt = opts.alt;
+        title = opts.title;
+      }
+
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+
+      // Compose alt property surrogate
+      alt = (typeof alt === 'string') ? {text: alt} : alt || {};
+      alt.text = alt.text || null;
+      alt.id = (alt.text) ? alt.id || 'qrcode-description' : null;
+
+      // Compose title property surrogate
+      title = (typeof title === 'string') ? {text: title} : title || {};
+      title.text = title.text || null;
+      title.id = (title.text) ? title.id || 'qrcode-title' : null;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var c, mc, r, mr, qrSvg='', rect;
+
+      rect = 'l' + cellSize + ',0 0,' + cellSize +
+        ' -' + cellSize + ',0 0,-' + cellSize + 'z ';
+
+      qrSvg += '<svg version="1.1" xmlns="http://www.w3.org/2000/svg"';
+      qrSvg += !opts.scalable ? ' width="' + size + 'px" height="' + size + 'px"' : '';
+      qrSvg += ' viewBox="0 0 ' + size + ' ' + size + '" ';
+      qrSvg += ' preserveAspectRatio="xMinYMin meet"';
+      qrSvg += (title.text || alt.text) ? ' role="img" aria-labelledby="' +
+          escapeXml([title.id, alt.id].join(' ').trim() ) + '"' : '';
+      qrSvg += '>';
+      qrSvg += (title.text) ? '<title id="' + escapeXml(title.id) + '">' +
+          escapeXml(title.text) + '</title>' : '';
+      qrSvg += (alt.text) ? '<description id="' + escapeXml(alt.id) + '">' +
+          escapeXml(alt.text) + '</description>' : '';
+      qrSvg += '<rect width="100%" height="100%" fill="white" cx="0" cy="0"/>';
+      qrSvg += '<path d="';
+
+      for (r = 0; r < _this.getModuleCount(); r += 1) {
+        mr = r * cellSize + margin;
+        for (c = 0; c < _this.getModuleCount(); c += 1) {
+          if (_this.isDark(r, c) ) {
+            mc = c*cellSize+margin;
+            qrSvg += 'M' + mc + ',' + mr + rect;
+          }
+        }
+      }
+
+      qrSvg += '" stroke="transparent" fill="black"/>';
+      qrSvg += '</svg>';
+
+      return qrSvg;
+    };
+
+    _this.createDataURL = function(cellSize, margin) {
+
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var min = margin;
+      var max = size - margin;
+
+      return createDataURL(size, size, function(x, y) {
+        if (min <= x && x < max && min <= y && y < max) {
+          var c = Math.floor( (x - min) / cellSize);
+          var r = Math.floor( (y - min) / cellSize);
+          return _this.isDark(r, c)? 0 : 1;
+        } else {
+          return 1;
+        }
+      } );
+    };
+
+    _this.createImgTag = function(cellSize, margin, alt) {
+
+      cellSize = cellSize || 2;
+      margin = (typeof margin == 'undefined')? cellSize * 4 : margin;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+
+      var img = '';
+      img += '<img';
+      img += '\u0020src="';
+      img += _this.createDataURL(cellSize, margin);
+      img += '"';
+      img += '\u0020width="';
+      img += size;
+      img += '"';
+      img += '\u0020height="';
+      img += size;
+      img += '"';
+      if (alt) {
+        img += '\u0020alt="';
+        img += escapeXml(alt);
+        img += '"';
+      }
+      img += '/>';
+
+      return img;
+    };
+
+    var escapeXml = function(s) {
+      var escaped = '';
+      for (var i = 0; i < s.length; i += 1) {
+        var c = s.charAt(i);
+        switch(c) {
+        case '<': escaped += '&lt;'; break;
+        case '>': escaped += '&gt;'; break;
+        case '&': escaped += '&amp;'; break;
+        case '"': escaped += '&quot;'; break;
+        default : escaped += c; break;
+        }
+      }
+      return escaped;
+    };
+
+    var _createHalfASCII = function(margin) {
+      var cellSize = 1;
+      margin = (typeof margin == 'undefined')? cellSize * 2 : margin;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var min = margin;
+      var max = size - margin;
+
+      var y, x, r1, r2, p;
+
+      var blocks = {
+        '██': '█',
+        '█ ': '▀',
+        ' █': '▄',
+        '  ': ' '
+      };
+
+      var blocksLastLineNoMargin = {
+        '██': '▀',
+        '█ ': '▀',
+        ' █': ' ',
+        '  ': ' '
+      };
+
+      var ascii = '';
+      for (y = 0; y < size; y += 2) {
+        r1 = Math.floor((y - min) / cellSize);
+        r2 = Math.floor((y + 1 - min) / cellSize);
+        for (x = 0; x < size; x += 1) {
+          p = '█';
+
+          if (min <= x && x < max && min <= y && y < max && _this.isDark(r1, Math.floor((x - min) / cellSize))) {
+            p = ' ';
+          }
+
+          if (min <= x && x < max && min <= y+1 && y+1 < max && _this.isDark(r2, Math.floor((x - min) / cellSize))) {
+            p += ' ';
+          }
+          else {
+            p += '█';
+          }
+
+          // Output 2 characters per pixel, to create full square. 1 character per pixels gives only half width of square.
+          ascii += (margin < 1 && y+1 >= max) ? blocksLastLineNoMargin[p] : blocks[p];
+        }
+
+        ascii += '\n';
+      }
+
+      if (size % 2 && margin > 0) {
+        return ascii.substring(0, ascii.length - size - 1) + Array(size+1).join('▀');
+      }
+
+      return ascii.substring(0, ascii.length-1);
+    };
+
+    _this.createASCII = function(cellSize, margin) {
+      cellSize = cellSize || 1;
+
+      if (cellSize < 2) {
+        return _createHalfASCII(margin);
+      }
+
+      cellSize -= 1;
+      margin = (typeof margin == 'undefined')? cellSize * 2 : margin;
+
+      var size = _this.getModuleCount() * cellSize + margin * 2;
+      var min = margin;
+      var max = size - margin;
+
+      var y, x, r, p;
+
+      var white = Array(cellSize+1).join('██');
+      var black = Array(cellSize+1).join('  ');
+
+      var ascii = '';
+      var line = '';
+      for (y = 0; y < size; y += 1) {
+        r = Math.floor( (y - min) / cellSize);
+        line = '';
+        for (x = 0; x < size; x += 1) {
+          p = 1;
+
+          if (min <= x && x < max && min <= y && y < max && _this.isDark(r, Math.floor((x - min) / cellSize))) {
+            p = 0;
+          }
+
+          // Output 2 characters per pixel, to create full square. 1 character per pixels gives only half width of square.
+          line += p ? white : black;
+        }
+
+        for (r = 0; r < cellSize; r += 1) {
+          ascii += line + '\n';
+        }
+      }
+
+      return ascii.substring(0, ascii.length-1);
+    };
+
+    _this.renderTo2dContext = function(context, cellSize) {
+      cellSize = cellSize || 2;
+      var length = _this.getModuleCount();
+      for (var row = 0; row < length; row++) {
+        for (var col = 0; col < length; col++) {
+          context.fillStyle = _this.isDark(row, col) ? 'black' : 'white';
+          context.fillRect(row * cellSize, col * cellSize, cellSize, cellSize);
+        }
+      }
+    }
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qrcode.stringToBytes
+  //---------------------------------------------------------------------
+
+  qrcode.stringToBytesFuncs = {
+    'default' : function(s) {
+      var bytes = [];
+      for (var i = 0; i < s.length; i += 1) {
+        var c = s.charCodeAt(i);
+        bytes.push(c & 0xff);
+      }
+      return bytes;
+    }
+  };
+
+  qrcode.stringToBytes = qrcode.stringToBytesFuncs['default'];
+
+  //---------------------------------------------------------------------
+  // qrcode.createStringToBytes
+  //---------------------------------------------------------------------
+
+  /**
+   * @param unicodeData base64 string of byte array.
+   * [16bit Unicode],[16bit Bytes], ...
+   * @param numChars
+   */
+  qrcode.createStringToBytes = function(unicodeData, numChars) {
+
+    // create conversion map.
+
+    var unicodeMap = function() {
+
+      var bin = base64DecodeInputStream(unicodeData);
+      var read = function() {
+        var b = bin.read();
+        if (b == -1) throw 'eof';
+        return b;
+      };
+
+      var count = 0;
+      var unicodeMap = {};
+      while (true) {
+        var b0 = bin.read();
+        if (b0 == -1) break;
+        var b1 = read();
+        var b2 = read();
+        var b3 = read();
+        var k = String.fromCharCode( (b0 << 8) | b1);
+        var v = (b2 << 8) | b3;
+        unicodeMap[k] = v;
+        count += 1;
+      }
+      if (count != numChars) {
+        throw count + ' != ' + numChars;
+      }
+
+      return unicodeMap;
+    }();
+
+    var unknownChar = '?'.charCodeAt(0);
+
+    return function(s) {
+      var bytes = [];
+      for (var i = 0; i < s.length; i += 1) {
+        var c = s.charCodeAt(i);
+        if (c < 128) {
+          bytes.push(c);
+        } else {
+          var b = unicodeMap[s.charAt(i)];
+          if (typeof b == 'number') {
+            if ( (b & 0xff) == b) {
+              // 1byte
+              bytes.push(b);
+            } else {
+              // 2bytes
+              bytes.push(b >>> 8);
+              bytes.push(b & 0xff);
+            }
+          } else {
+            bytes.push(unknownChar);
+          }
+        }
+      }
+      return bytes;
+    };
+  };
+
+  //---------------------------------------------------------------------
+  // QRMode
+  //---------------------------------------------------------------------
+
+  var QRMode = {
+    MODE_NUMBER :    1 << 0,
+    MODE_ALPHA_NUM : 1 << 1,
+    MODE_8BIT_BYTE : 1 << 2,
+    MODE_KANJI :     1 << 3
+  };
+
+  //---------------------------------------------------------------------
+  // QRErrorCorrectionLevel
+  //---------------------------------------------------------------------
+
+  var QRErrorCorrectionLevel = {
+    L : 1,
+    M : 0,
+    Q : 3,
+    H : 2
+  };
+
+  //---------------------------------------------------------------------
+  // QRMaskPattern
+  //---------------------------------------------------------------------
+
+  var QRMaskPattern = {
+    PATTERN000 : 0,
+    PATTERN001 : 1,
+    PATTERN010 : 2,
+    PATTERN011 : 3,
+    PATTERN100 : 4,
+    PATTERN101 : 5,
+    PATTERN110 : 6,
+    PATTERN111 : 7
+  };
+
+  //---------------------------------------------------------------------
+  // QRUtil
+  //---------------------------------------------------------------------
+
+  var QRUtil = function() {
+
+    var PATTERN_POSITION_TABLE = [
+      [],
+      [6, 18],
+      [6, 22],
+      [6, 26],
+      [6, 30],
+      [6, 34],
+      [6, 22, 38],
+      [6, 24, 42],
+      [6, 26, 46],
+      [6, 28, 50],
+      [6, 30, 54],
+      [6, 32, 58],
+      [6, 34, 62],
+      [6, 26, 46, 66],
+      [6, 26, 48, 70],
+      [6, 26, 50, 74],
+      [6, 30, 54, 78],
+      [6, 30, 56, 82],
+      [6, 30, 58, 86],
+      [6, 34, 62, 90],
+      [6, 28, 50, 72, 94],
+      [6, 26, 50, 74, 98],
+      [6, 30, 54, 78, 102],
+      [6, 28, 54, 80, 106],
+      [6, 32, 58, 84, 110],
+      [6, 30, 58, 86, 114],
+      [6, 34, 62, 90, 118],
+      [6, 26, 50, 74, 98, 122],
+      [6, 30, 54, 78, 102, 126],
+      [6, 26, 52, 78, 104, 130],
+      [6, 30, 56, 82, 108, 134],
+      [6, 34, 60, 86, 112, 138],
+      [6, 30, 58, 86, 114, 142],
+      [6, 34, 62, 90, 118, 146],
+      [6, 30, 54, 78, 102, 126, 150],
+      [6, 24, 50, 76, 102, 128, 154],
+      [6, 28, 54, 80, 106, 132, 158],
+      [6, 32, 58, 84, 110, 136, 162],
+      [6, 26, 54, 82, 110, 138, 166],
+      [6, 30, 58, 86, 114, 142, 170]
+    ];
+    var G15 = (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0);
+    var G18 = (1 << 12) | (1 << 11) | (1 << 10) | (1 << 9) | (1 << 8) | (1 << 5) | (1 << 2) | (1 << 0);
+    var G15_MASK = (1 << 14) | (1 << 12) | (1 << 10) | (1 << 4) | (1 << 1);
+
+    var _this = {};
+
+    var getBCHDigit = function(data) {
+      var digit = 0;
+      while (data != 0) {
+        digit += 1;
+        data >>>= 1;
+      }
+      return digit;
+    };
+
+    _this.getBCHTypeInfo = function(data) {
+      var d = data << 10;
+      while (getBCHDigit(d) - getBCHDigit(G15) >= 0) {
+        d ^= (G15 << (getBCHDigit(d) - getBCHDigit(G15) ) );
+      }
+      return ( (data << 10) | d) ^ G15_MASK;
+    };
+
+    _this.getBCHTypeNumber = function(data) {
+      var d = data << 12;
+      while (getBCHDigit(d) - getBCHDigit(G18) >= 0) {
+        d ^= (G18 << (getBCHDigit(d) - getBCHDigit(G18) ) );
+      }
+      return (data << 12) | d;
+    };
+
+    _this.getPatternPosition = function(typeNumber) {
+      return PATTERN_POSITION_TABLE[typeNumber - 1];
+    };
+
+    _this.getMaskFunction = function(maskPattern) {
+
+      switch (maskPattern) {
+
+      case QRMaskPattern.PATTERN000 :
+        return function(i, j) { return (i + j) % 2 == 0; };
+      case QRMaskPattern.PATTERN001 :
+        return function(i, j) { return i % 2 == 0; };
+      case QRMaskPattern.PATTERN010 :
+        return function(i, j) { return j % 3 == 0; };
+      case QRMaskPattern.PATTERN011 :
+        return function(i, j) { return (i + j) % 3 == 0; };
+      case QRMaskPattern.PATTERN100 :
+        return function(i, j) { return (Math.floor(i / 2) + Math.floor(j / 3) ) % 2 == 0; };
+      case QRMaskPattern.PATTERN101 :
+        return function(i, j) { return (i * j) % 2 + (i * j) % 3 == 0; };
+      case QRMaskPattern.PATTERN110 :
+        return function(i, j) { return ( (i * j) % 2 + (i * j) % 3) % 2 == 0; };
+      case QRMaskPattern.PATTERN111 :
+        return function(i, j) { return ( (i * j) % 3 + (i + j) % 2) % 2 == 0; };
+
+      default :
+        throw 'bad maskPattern:' + maskPattern;
+      }
+    };
+
+    _this.getErrorCorrectPolynomial = function(errorCorrectLength) {
+      var a = qrPolynomial([1], 0);
+      for (var i = 0; i < errorCorrectLength; i += 1) {
+        a = a.multiply(qrPolynomial([1, QRMath.gexp(i)], 0) );
+      }
+      return a;
+    };
+
+    _this.getLengthInBits = function(mode, type) {
+
+      if (1 <= type && type < 10) {
+
+        // 1 - 9
+
+        switch(mode) {
+        case QRMode.MODE_NUMBER    : return 10;
+        case QRMode.MODE_ALPHA_NUM : return 9;
+        case QRMode.MODE_8BIT_BYTE : return 8;
+        case QRMode.MODE_KANJI     : return 8;
+        default :
+          throw 'mode:' + mode;
+        }
+
+      } else if (type < 27) {
+
+        // 10 - 26
+
+        switch(mode) {
+        case QRMode.MODE_NUMBER    : return 12;
+        case QRMode.MODE_ALPHA_NUM : return 11;
+        case QRMode.MODE_8BIT_BYTE : return 16;
+        case QRMode.MODE_KANJI     : return 10;
+        default :
+          throw 'mode:' + mode;
+        }
+
+      } else if (type < 41) {
+
+        // 27 - 40
+
+        switch(mode) {
+        case QRMode.MODE_NUMBER    : return 14;
+        case QRMode.MODE_ALPHA_NUM : return 13;
+        case QRMode.MODE_8BIT_BYTE : return 16;
+        case QRMode.MODE_KANJI     : return 12;
+        default :
+          throw 'mode:' + mode;
+        }
+
+      } else {
+        throw 'type:' + type;
+      }
+    };
+
+    _this.getLostPoint = function(qrcode) {
+
+      var moduleCount = qrcode.getModuleCount();
+
+      var lostPoint = 0;
+
+      // LEVEL1
+
+      for (var row = 0; row < moduleCount; row += 1) {
+        for (var col = 0; col < moduleCount; col += 1) {
+
+          var sameCount = 0;
+          var dark = qrcode.isDark(row, col);
+
+          for (var r = -1; r <= 1; r += 1) {
+
+            if (row + r < 0 || moduleCount <= row + r) {
+              continue;
+            }
+
+            for (var c = -1; c <= 1; c += 1) {
+
+              if (col + c < 0 || moduleCount <= col + c) {
+                continue;
+              }
+
+              if (r == 0 && c == 0) {
+                continue;
+              }
+
+              if (dark == qrcode.isDark(row + r, col + c) ) {
+                sameCount += 1;
+              }
+            }
+          }
+
+          if (sameCount > 5) {
+            lostPoint += (3 + sameCount - 5);
+          }
+        }
+      };
+
+      // LEVEL2
+
+      for (var row = 0; row < moduleCount - 1; row += 1) {
+        for (var col = 0; col < moduleCount - 1; col += 1) {
+          var count = 0;
+          if (qrcode.isDark(row, col) ) count += 1;
+          if (qrcode.isDark(row + 1, col) ) count += 1;
+          if (qrcode.isDark(row, col + 1) ) count += 1;
+          if (qrcode.isDark(row + 1, col + 1) ) count += 1;
+          if (count == 0 || count == 4) {
+            lostPoint += 3;
+          }
+        }
+      }
+
+      // LEVEL3
+
+      for (var row = 0; row < moduleCount; row += 1) {
+        for (var col = 0; col < moduleCount - 6; col += 1) {
+          if (qrcode.isDark(row, col)
+              && !qrcode.isDark(row, col + 1)
+              &&  qrcode.isDark(row, col + 2)
+              &&  qrcode.isDark(row, col + 3)
+              &&  qrcode.isDark(row, col + 4)
+              && !qrcode.isDark(row, col + 5)
+              &&  qrcode.isDark(row, col + 6) ) {
+            lostPoint += 40;
+          }
+        }
+      }
+
+      for (var col = 0; col < moduleCount; col += 1) {
+        for (var row = 0; row < moduleCount - 6; row += 1) {
+          if (qrcode.isDark(row, col)
+              && !qrcode.isDark(row + 1, col)
+              &&  qrcode.isDark(row + 2, col)
+              &&  qrcode.isDark(row + 3, col)
+              &&  qrcode.isDark(row + 4, col)
+              && !qrcode.isDark(row + 5, col)
+              &&  qrcode.isDark(row + 6, col) ) {
+            lostPoint += 40;
+          }
+        }
+      }
+
+      // LEVEL4
+
+      var darkCount = 0;
+
+      for (var col = 0; col < moduleCount; col += 1) {
+        for (var row = 0; row < moduleCount; row += 1) {
+          if (qrcode.isDark(row, col) ) {
+            darkCount += 1;
+          }
+        }
+      }
+
+      var ratio = Math.abs(100 * darkCount / moduleCount / moduleCount - 50) / 5;
+      lostPoint += ratio * 10;
+
+      return lostPoint;
+    };
+
+    return _this;
+  }();
+
+  //---------------------------------------------------------------------
+  // QRMath
+  //---------------------------------------------------------------------
+
+  var QRMath = function() {
+
+    var EXP_TABLE = new Array(256);
+    var LOG_TABLE = new Array(256);
+
+    // initialize tables
+    for (var i = 0; i < 8; i += 1) {
+      EXP_TABLE[i] = 1 << i;
+    }
+    for (var i = 8; i < 256; i += 1) {
+      EXP_TABLE[i] = EXP_TABLE[i - 4]
+        ^ EXP_TABLE[i - 5]
+        ^ EXP_TABLE[i - 6]
+        ^ EXP_TABLE[i - 8];
+    }
+    for (var i = 0; i < 255; i += 1) {
+      LOG_TABLE[EXP_TABLE[i] ] = i;
+    }
+
+    var _this = {};
+
+    _this.glog = function(n) {
+
+      if (n < 1) {
+        throw 'glog(' + n + ')';
+      }
+
+      return LOG_TABLE[n];
+    };
+
+    _this.gexp = function(n) {
+
+      while (n < 0) {
+        n += 255;
+      }
+
+      while (n >= 256) {
+        n -= 255;
+      }
+
+      return EXP_TABLE[n];
+    };
+
+    return _this;
+  }();
+
+  //---------------------------------------------------------------------
+  // qrPolynomial
+  //---------------------------------------------------------------------
+
+  function qrPolynomial(num, shift) {
+
+    if (typeof num.length == 'undefined') {
+      throw num.length + '/' + shift;
+    }
+
+    var _num = function() {
+      var offset = 0;
+      while (offset < num.length && num[offset] == 0) {
+        offset += 1;
+      }
+      var _num = new Array(num.length - offset + shift);
+      for (var i = 0; i < num.length - offset; i += 1) {
+        _num[i] = num[i + offset];
+      }
+      return _num;
+    }();
+
+    var _this = {};
+
+    _this.getAt = function(index) {
+      return _num[index];
+    };
+
+    _this.getLength = function() {
+      return _num.length;
+    };
+
+    _this.multiply = function(e) {
+
+      var num = new Array(_this.getLength() + e.getLength() - 1);
+
+      for (var i = 0; i < _this.getLength(); i += 1) {
+        for (var j = 0; j < e.getLength(); j += 1) {
+          num[i + j] ^= QRMath.gexp(QRMath.glog(_this.getAt(i) ) + QRMath.glog(e.getAt(j) ) );
+        }
+      }
+
+      return qrPolynomial(num, 0);
+    };
+
+    _this.mod = function(e) {
+
+      if (_this.getLength() - e.getLength() < 0) {
+        return _this;
+      }
+
+      var ratio = QRMath.glog(_this.getAt(0) ) - QRMath.glog(e.getAt(0) );
+
+      var num = new Array(_this.getLength() );
+      for (var i = 0; i < _this.getLength(); i += 1) {
+        num[i] = _this.getAt(i);
+      }
+
+      for (var i = 0; i < e.getLength(); i += 1) {
+        num[i] ^= QRMath.gexp(QRMath.glog(e.getAt(i) ) + ratio);
+      }
+
+      // recursive call
+      return qrPolynomial(num, 0).mod(e);
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // QRRSBlock
+  //---------------------------------------------------------------------
+
+  var QRRSBlock = function() {
+
+    var RS_BLOCK_TABLE = [
+
+      // L
+      // M
+      // Q
+      // H
+
+      // 1
+      [1, 26, 19],
+      [1, 26, 16],
+      [1, 26, 13],
+      [1, 26, 9],
+
+      // 2
+      [1, 44, 34],
+      [1, 44, 28],
+      [1, 44, 22],
+      [1, 44, 16],
+
+      // 3
+      [1, 70, 55],
+      [1, 70, 44],
+      [2, 35, 17],
+      [2, 35, 13],
+
+      // 4
+      [1, 100, 80],
+      [2, 50, 32],
+      [2, 50, 24],
+      [4, 25, 9],
+
+      // 5
+      [1, 134, 108],
+      [2, 67, 43],
+      [2, 33, 15, 2, 34, 16],
+      [2, 33, 11, 2, 34, 12],
+
+      // 6
+      [2, 86, 68],
+      [4, 43, 27],
+      [4, 43, 19],
+      [4, 43, 15],
+
+      // 7
+      [2, 98, 78],
+      [4, 49, 31],
+      [2, 32, 14, 4, 33, 15],
+      [4, 39, 13, 1, 40, 14],
+
+      // 8
+      [2, 121, 97],
+      [2, 60, 38, 2, 61, 39],
+      [4, 40, 18, 2, 41, 19],
+      [4, 40, 14, 2, 41, 15],
+
+      // 9
+      [2, 146, 116],
+      [3, 58, 36, 2, 59, 37],
+      [4, 36, 16, 4, 37, 17],
+      [4, 36, 12, 4, 37, 13],
+
+      // 10
+      [2, 86, 68, 2, 87, 69],
+      [4, 69, 43, 1, 70, 44],
+      [6, 43, 19, 2, 44, 20],
+      [6, 43, 15, 2, 44, 16],
+
+      // 11
+      [4, 101, 81],
+      [1, 80, 50, 4, 81, 51],
+      [4, 50, 22, 4, 51, 23],
+      [3, 36, 12, 8, 37, 13],
+
+      // 12
+      [2, 116, 92, 2, 117, 93],
+      [6, 58, 36, 2, 59, 37],
+      [4, 46, 20, 6, 47, 21],
+      [7, 42, 14, 4, 43, 15],
+
+      // 13
+      [4, 133, 107],
+      [8, 59, 37, 1, 60, 38],
+      [8, 44, 20, 4, 45, 21],
+      [12, 33, 11, 4, 34, 12],
+
+      // 14
+      [3, 145, 115, 1, 146, 116],
+      [4, 64, 40, 5, 65, 41],
+      [11, 36, 16, 5, 37, 17],
+      [11, 36, 12, 5, 37, 13],
+
+      // 15
+      [5, 109, 87, 1, 110, 88],
+      [5, 65, 41, 5, 66, 42],
+      [5, 54, 24, 7, 55, 25],
+      [11, 36, 12, 7, 37, 13],
+
+      // 16
+      [5, 122, 98, 1, 123, 99],
+      [7, 73, 45, 3, 74, 46],
+      [15, 43, 19, 2, 44, 20],
+      [3, 45, 15, 13, 46, 16],
+
+      // 17
+      [1, 135, 107, 5, 136, 108],
+      [10, 74, 46, 1, 75, 47],
+      [1, 50, 22, 15, 51, 23],
+      [2, 42, 14, 17, 43, 15],
+
+      // 18
+      [5, 150, 120, 1, 151, 121],
+      [9, 69, 43, 4, 70, 44],
+      [17, 50, 22, 1, 51, 23],
+      [2, 42, 14, 19, 43, 15],
+
+      // 19
+      [3, 141, 113, 4, 142, 114],
+      [3, 70, 44, 11, 71, 45],
+      [17, 47, 21, 4, 48, 22],
+      [9, 39, 13, 16, 40, 14],
+
+      // 20
+      [3, 135, 107, 5, 136, 108],
+      [3, 67, 41, 13, 68, 42],
+      [15, 54, 24, 5, 55, 25],
+      [15, 43, 15, 10, 44, 16],
+
+      // 21
+      [4, 144, 116, 4, 145, 117],
+      [17, 68, 42],
+      [17, 50, 22, 6, 51, 23],
+      [19, 46, 16, 6, 47, 17],
+
+      // 22
+      [2, 139, 111, 7, 140, 112],
+      [17, 74, 46],
+      [7, 54, 24, 16, 55, 25],
+      [34, 37, 13],
+
+      // 23
+      [4, 151, 121, 5, 152, 122],
+      [4, 75, 47, 14, 76, 48],
+      [11, 54, 24, 14, 55, 25],
+      [16, 45, 15, 14, 46, 16],
+
+      // 24
+      [6, 147, 117, 4, 148, 118],
+      [6, 73, 45, 14, 74, 46],
+      [11, 54, 24, 16, 55, 25],
+      [30, 46, 16, 2, 47, 17],
+
+      // 25
+      [8, 132, 106, 4, 133, 107],
+      [8, 75, 47, 13, 76, 48],
+      [7, 54, 24, 22, 55, 25],
+      [22, 45, 15, 13, 46, 16],
+
+      // 26
+      [10, 142, 114, 2, 143, 115],
+      [19, 74, 46, 4, 75, 47],
+      [28, 50, 22, 6, 51, 23],
+      [33, 46, 16, 4, 47, 17],
+
+      // 27
+      [8, 152, 122, 4, 153, 123],
+      [22, 73, 45, 3, 74, 46],
+      [8, 53, 23, 26, 54, 24],
+      [12, 45, 15, 28, 46, 16],
+
+      // 28
+      [3, 147, 117, 10, 148, 118],
+      [3, 73, 45, 23, 74, 46],
+      [4, 54, 24, 31, 55, 25],
+      [11, 45, 15, 31, 46, 16],
+
+      // 29
+      [7, 146, 116, 7, 147, 117],
+      [21, 73, 45, 7, 74, 46],
+      [1, 53, 23, 37, 54, 24],
+      [19, 45, 15, 26, 46, 16],
+
+      // 30
+      [5, 145, 115, 10, 146, 116],
+      [19, 75, 47, 10, 76, 48],
+      [15, 54, 24, 25, 55, 25],
+      [23, 45, 15, 25, 46, 16],
+
+      // 31
+      [13, 145, 115, 3, 146, 116],
+      [2, 74, 46, 29, 75, 47],
+      [42, 54, 24, 1, 55, 25],
+      [23, 45, 15, 28, 46, 16],
+
+      // 32
+      [17, 145, 115],
+      [10, 74, 46, 23, 75, 47],
+      [10, 54, 24, 35, 55, 25],
+      [19, 45, 15, 35, 46, 16],
+
+      // 33
+      [17, 145, 115, 1, 146, 116],
+      [14, 74, 46, 21, 75, 47],
+      [29, 54, 24, 19, 55, 25],
+      [11, 45, 15, 46, 46, 16],
+
+      // 34
+      [13, 145, 115, 6, 146, 116],
+      [14, 74, 46, 23, 75, 47],
+      [44, 54, 24, 7, 55, 25],
+      [59, 46, 16, 1, 47, 17],
+
+      // 35
+      [12, 151, 121, 7, 152, 122],
+      [12, 75, 47, 26, 76, 48],
+      [39, 54, 24, 14, 55, 25],
+      [22, 45, 15, 41, 46, 16],
+
+      // 36
+      [6, 151, 121, 14, 152, 122],
+      [6, 75, 47, 34, 76, 48],
+      [46, 54, 24, 10, 55, 25],
+      [2, 45, 15, 64, 46, 16],
+
+      // 37
+      [17, 152, 122, 4, 153, 123],
+      [29, 74, 46, 14, 75, 47],
+      [49, 54, 24, 10, 55, 25],
+      [24, 45, 15, 46, 46, 16],
+
+      // 38
+      [4, 152, 122, 18, 153, 123],
+      [13, 74, 46, 32, 75, 47],
+      [48, 54, 24, 14, 55, 25],
+      [42, 45, 15, 32, 46, 16],
+
+      // 39
+      [20, 147, 117, 4, 148, 118],
+      [40, 75, 47, 7, 76, 48],
+      [43, 54, 24, 22, 55, 25],
+      [10, 45, 15, 67, 46, 16],
+
+      // 40
+      [19, 148, 118, 6, 149, 119],
+      [18, 75, 47, 31, 76, 48],
+      [34, 54, 24, 34, 55, 25],
+      [20, 45, 15, 61, 46, 16]
+    ];
+
+    var qrRSBlock = function(totalCount, dataCount) {
+      var _this = {};
+      _this.totalCount = totalCount;
+      _this.dataCount = dataCount;
+      return _this;
+    };
+
+    var _this = {};
+
+    var getRsBlockTable = function(typeNumber, errorCorrectionLevel) {
+
+      switch(errorCorrectionLevel) {
+      case QRErrorCorrectionLevel.L :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 0];
+      case QRErrorCorrectionLevel.M :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 1];
+      case QRErrorCorrectionLevel.Q :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 2];
+      case QRErrorCorrectionLevel.H :
+        return RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 3];
+      default :
+        return undefined;
+      }
+    };
+
+    _this.getRSBlocks = function(typeNumber, errorCorrectionLevel) {
+
+      var rsBlock = getRsBlockTable(typeNumber, errorCorrectionLevel);
+
+      if (typeof rsBlock == 'undefined') {
+        throw 'bad rs block @ typeNumber:' + typeNumber +
+            '/errorCorrectionLevel:' + errorCorrectionLevel;
+      }
+
+      var length = rsBlock.length / 3;
+
+      var list = [];
+
+      for (var i = 0; i < length; i += 1) {
+
+        var count = rsBlock[i * 3 + 0];
+        var totalCount = rsBlock[i * 3 + 1];
+        var dataCount = rsBlock[i * 3 + 2];
+
+        for (var j = 0; j < count; j += 1) {
+          list.push(qrRSBlock(totalCount, dataCount) );
+        }
+      }
+
+      return list;
+    };
+
+    return _this;
+  }();
+
+  //---------------------------------------------------------------------
+  // qrBitBuffer
+  //---------------------------------------------------------------------
+
+  var qrBitBuffer = function() {
+
+    var _buffer = [];
+    var _length = 0;
+
+    var _this = {};
+
+    _this.getBuffer = function() {
+      return _buffer;
+    };
+
+    _this.getAt = function(index) {
+      var bufIndex = Math.floor(index / 8);
+      return ( (_buffer[bufIndex] >>> (7 - index % 8) ) & 1) == 1;
+    };
+
+    _this.put = function(num, length) {
+      for (var i = 0; i < length; i += 1) {
+        _this.putBit( ( (num >>> (length - i - 1) ) & 1) == 1);
+      }
+    };
+
+    _this.getLengthInBits = function() {
+      return _length;
+    };
+
+    _this.putBit = function(bit) {
+
+      var bufIndex = Math.floor(_length / 8);
+      if (_buffer.length <= bufIndex) {
+        _buffer.push(0);
+      }
+
+      if (bit) {
+        _buffer[bufIndex] |= (0x80 >>> (_length % 8) );
+      }
+
+      _length += 1;
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qrNumber
+  //---------------------------------------------------------------------
+
+  var qrNumber = function(data) {
+
+    var _mode = QRMode.MODE_NUMBER;
+    var _data = data;
+
+    var _this = {};
+
+    _this.getMode = function() {
+      return _mode;
+    };
+
+    _this.getLength = function(buffer) {
+      return _data.length;
+    };
+
+    _this.write = function(buffer) {
+
+      var data = _data;
+
+      var i = 0;
+
+      while (i + 2 < data.length) {
+        buffer.put(strToNum(data.substring(i, i + 3) ), 10);
+        i += 3;
+      }
+
+      if (i < data.length) {
+        if (data.length - i == 1) {
+          buffer.put(strToNum(data.substring(i, i + 1) ), 4);
+        } else if (data.length - i == 2) {
+          buffer.put(strToNum(data.substring(i, i + 2) ), 7);
+        }
+      }
+    };
+
+    var strToNum = function(s) {
+      var num = 0;
+      for (var i = 0; i < s.length; i += 1) {
+        num = num * 10 + chatToNum(s.charAt(i) );
+      }
+      return num;
+    };
+
+    var chatToNum = function(c) {
+      if ('0' <= c && c <= '9') {
+        return c.charCodeAt(0) - '0'.charCodeAt(0);
+      }
+      throw 'illegal char :' + c;
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qrAlphaNum
+  //---------------------------------------------------------------------
+
+  var qrAlphaNum = function(data) {
+
+    var _mode = QRMode.MODE_ALPHA_NUM;
+    var _data = data;
+
+    var _this = {};
+
+    _this.getMode = function() {
+      return _mode;
+    };
+
+    _this.getLength = function(buffer) {
+      return _data.length;
+    };
+
+    _this.write = function(buffer) {
+
+      var s = _data;
+
+      var i = 0;
+
+      while (i + 1 < s.length) {
+        buffer.put(
+          getCode(s.charAt(i) ) * 45 +
+          getCode(s.charAt(i + 1) ), 11);
+        i += 2;
+      }
+
+      if (i < s.length) {
+        buffer.put(getCode(s.charAt(i) ), 6);
+      }
+    };
+
+    var getCode = function(c) {
+
+      if ('0' <= c && c <= '9') {
+        return c.charCodeAt(0) - '0'.charCodeAt(0);
+      } else if ('A' <= c && c <= 'Z') {
+        return c.charCodeAt(0) - 'A'.charCodeAt(0) + 10;
+      } else {
+        switch (c) {
+        case ' ' : return 36;
+        case '$' : return 37;
+        case '%' : return 38;
+        case '*' : return 39;
+        case '+' : return 40;
+        case '-' : return 41;
+        case '.' : return 42;
+        case '/' : return 43;
+        case ':' : return 44;
+        default :
+          throw 'illegal char :' + c;
+        }
+      }
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qr8BitByte
+  //---------------------------------------------------------------------
+
+  var qr8BitByte = function(data) {
+
+    var _mode = QRMode.MODE_8BIT_BYTE;
+    var _data = data;
+    var _bytes = qrcode.stringToBytes(data);
+
+    var _this = {};
+
+    _this.getMode = function() {
+      return _mode;
+    };
+
+    _this.getLength = function(buffer) {
+      return _bytes.length;
+    };
+
+    _this.write = function(buffer) {
+      for (var i = 0; i < _bytes.length; i += 1) {
+        buffer.put(_bytes[i], 8);
+      }
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // qrKanji
+  //---------------------------------------------------------------------
+
+  var qrKanji = function(data) {
+
+    var _mode = QRMode.MODE_KANJI;
+    var _data = data;
+
+    var stringToBytes = qrcode.stringToBytesFuncs['SJIS'];
+    if (!stringToBytes) {
+      throw 'sjis not supported.';
+    }
+    !function(c, code) {
+      // self test for sjis support.
+      var test = stringToBytes(c);
+      if (test.length != 2 || ( (test[0] << 8) | test[1]) != code) {
+        throw 'sjis not supported.';
+      }
+    }('\u53cb', 0x9746);
+
+    var _bytes = stringToBytes(data);
+
+    var _this = {};
+
+    _this.getMode = function() {
+      return _mode;
+    };
+
+    _this.getLength = function(buffer) {
+      return ~~(_bytes.length / 2);
+    };
+
+    _this.write = function(buffer) {
+
+      var data = _bytes;
+
+      var i = 0;
+
+      while (i + 1 < data.length) {
+
+        var c = ( (0xff & data[i]) << 8) | (0xff & data[i + 1]);
+
+        if (0x8140 <= c && c <= 0x9FFC) {
+          c -= 0x8140;
+        } else if (0xE040 <= c && c <= 0xEBBF) {
+          c -= 0xC140;
+        } else {
+          throw 'illegal char at ' + (i + 1) + '/' + c;
+        }
+
+        c = ( (c >>> 8) & 0xff) * 0xC0 + (c & 0xff);
+
+        buffer.put(c, 13);
+
+        i += 2;
+      }
+
+      if (i < data.length) {
+        throw 'illegal char at ' + (i + 1);
+      }
+    };
+
+    return _this;
+  };
+
+  //=====================================================================
+  // GIF Support etc.
+  //
+
+  //---------------------------------------------------------------------
+  // byteArrayOutputStream
+  //---------------------------------------------------------------------
+
+  var byteArrayOutputStream = function() {
+
+    var _bytes = [];
+
+    var _this = {};
+
+    _this.writeByte = function(b) {
+      _bytes.push(b & 0xff);
+    };
+
+    _this.writeShort = function(i) {
+      _this.writeByte(i);
+      _this.writeByte(i >>> 8);
+    };
+
+    _this.writeBytes = function(b, off, len) {
+      off = off || 0;
+      len = len || b.length;
+      for (var i = 0; i < len; i += 1) {
+        _this.writeByte(b[i + off]);
+      }
+    };
+
+    _this.writeString = function(s) {
+      for (var i = 0; i < s.length; i += 1) {
+        _this.writeByte(s.charCodeAt(i) );
+      }
+    };
+
+    _this.toByteArray = function() {
+      return _bytes;
+    };
+
+    _this.toString = function() {
+      var s = '';
+      s += '[';
+      for (var i = 0; i < _bytes.length; i += 1) {
+        if (i > 0) {
+          s += ',';
+        }
+        s += _bytes[i];
+      }
+      s += ']';
+      return s;
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // base64EncodeOutputStream
+  //---------------------------------------------------------------------
+
+  var base64EncodeOutputStream = function() {
+
+    var _buffer = 0;
+    var _buflen = 0;
+    var _length = 0;
+    var _base64 = '';
+
+    var _this = {};
+
+    var writeEncoded = function(b) {
+      _base64 += String.fromCharCode(encode(b & 0x3f) );
+    };
+
+    var encode = function(n) {
+      if (n < 0) {
+        // error.
+      } else if (n < 26) {
+        return 0x41 + n;
+      } else if (n < 52) {
+        return 0x61 + (n - 26);
+      } else if (n < 62) {
+        return 0x30 + (n - 52);
+      } else if (n == 62) {
+        return 0x2b;
+      } else if (n == 63) {
+        return 0x2f;
+      }
+      throw 'n:' + n;
+    };
+
+    _this.writeByte = function(n) {
+
+      _buffer = (_buffer << 8) | (n & 0xff);
+      _buflen += 8;
+      _length += 1;
+
+      while (_buflen >= 6) {
+        writeEncoded(_buffer >>> (_buflen - 6) );
+        _buflen -= 6;
+      }
+    };
+
+    _this.flush = function() {
+
+      if (_buflen > 0) {
+        writeEncoded(_buffer << (6 - _buflen) );
+        _buffer = 0;
+        _buflen = 0;
+      }
+
+      if (_length % 3 != 0) {
+        // padding
+        var padlen = 3 - _length % 3;
+        for (var i = 0; i < padlen; i += 1) {
+          _base64 += '=';
+        }
+      }
+    };
+
+    _this.toString = function() {
+      return _base64;
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // base64DecodeInputStream
+  //---------------------------------------------------------------------
+
+  var base64DecodeInputStream = function(str) {
+
+    var _str = str;
+    var _pos = 0;
+    var _buffer = 0;
+    var _buflen = 0;
+
+    var _this = {};
+
+    _this.read = function() {
+
+      while (_buflen < 8) {
+
+        if (_pos >= _str.length) {
+          if (_buflen == 0) {
+            return -1;
+          }
+          throw 'unexpected end of file./' + _buflen;
+        }
+
+        var c = _str.charAt(_pos);
+        _pos += 1;
+
+        if (c == '=') {
+          _buflen = 0;
+          return -1;
+        } else if (c.match(/^\s$/) ) {
+          // ignore if whitespace.
+          continue;
+        }
+
+        _buffer = (_buffer << 6) | decode(c.charCodeAt(0) );
+        _buflen += 6;
+      }
+
+      var n = (_buffer >>> (_buflen - 8) ) & 0xff;
+      _buflen -= 8;
+      return n;
+    };
+
+    var decode = function(c) {
+      if (0x41 <= c && c <= 0x5a) {
+        return c - 0x41;
+      } else if (0x61 <= c && c <= 0x7a) {
+        return c - 0x61 + 26;
+      } else if (0x30 <= c && c <= 0x39) {
+        return c - 0x30 + 52;
+      } else if (c == 0x2b) {
+        return 62;
+      } else if (c == 0x2f) {
+        return 63;
+      } else {
+        throw 'c:' + c;
+      }
+    };
+
+    return _this;
+  };
+
+  //---------------------------------------------------------------------
+  // gifImage (B/W)
+  //---------------------------------------------------------------------
+
+  var gifImage = function(width, height) {
+
+    var _width = width;
+    var _height = height;
+    var _data = new Array(width * height);
+
+    var _this = {};
+
+    _this.setPixel = function(x, y, pixel) {
+      _data[y * _width + x] = pixel;
+    };
+
+    _this.write = function(out) {
+
+      //---------------------------------
+      // GIF Signature
+
+      out.writeString('GIF87a');
+
+      //---------------------------------
+      // Screen Descriptor
+
+      out.writeShort(_width);
+      out.writeShort(_height);
+
+      out.writeByte(0x80); // 2bit
+      out.writeByte(0);
+      out.writeByte(0);
+
+      //---------------------------------
+      // Global Color Map
+
+      // black
+      out.writeByte(0x00);
+      out.writeByte(0x00);
+      out.writeByte(0x00);
+
+      // white
+      out.writeByte(0xff);
+      out.writeByte(0xff);
+      out.writeByte(0xff);
+
+      //---------------------------------
+      // Image Descriptor
+
+      out.writeString(',');
+      out.writeShort(0);
+      out.writeShort(0);
+      out.writeShort(_width);
+      out.writeShort(_height);
+      out.writeByte(0);
+
+      //---------------------------------
+      // Local Color Map
+
+      //---------------------------------
+      // Raster Data
+
+      var lzwMinCodeSize = 2;
+      var raster = getLZWRaster(lzwMinCodeSize);
+
+      out.writeByte(lzwMinCodeSize);
+
+      var offset = 0;
+
+      while (raster.length - offset > 255) {
+        out.writeByte(255);
+        out.writeBytes(raster, offset, 255);
+        offset += 255;
+      }
+
+      out.writeByte(raster.length - offset);
+      out.writeBytes(raster, offset, raster.length - offset);
+      out.writeByte(0x00);
+
+      //---------------------------------
+      // GIF Terminator
+      out.writeString(';');
+    };
+
+    var bitOutputStream = function(out) {
+
+      var _out = out;
+      var _bitLength = 0;
+      var _bitBuffer = 0;
+
+      var _this = {};
+
+      _this.write = function(data, length) {
+
+        if ( (data >>> length) != 0) {
+          throw 'length over';
+        }
+
+        while (_bitLength + length >= 8) {
+          _out.writeByte(0xff & ( (data << _bitLength) | _bitBuffer) );
+          length -= (8 - _bitLength);
+          data >>>= (8 - _bitLength);
+          _bitBuffer = 0;
+          _bitLength = 0;
+        }
+
+        _bitBuffer = (data << _bitLength) | _bitBuffer;
+        _bitLength = _bitLength + length;
+      };
+
+      _this.flush = function() {
+        if (_bitLength > 0) {
+          _out.writeByte(_bitBuffer);
+        }
+      };
+
+      return _this;
+    };
+
+    var getLZWRaster = function(lzwMinCodeSize) {
+
+      var clearCode = 1 << lzwMinCodeSize;
+      var endCode = (1 << lzwMinCodeSize) + 1;
+      var bitLength = lzwMinCodeSize + 1;
+
+      // Setup LZWTable
+      var table = lzwTable();
+
+      for (var i = 0; i < clearCode; i += 1) {
+        table.add(String.fromCharCode(i) );
+      }
+      table.add(String.fromCharCode(clearCode) );
+      table.add(String.fromCharCode(endCode) );
+
+      var byteOut = byteArrayOutputStream();
+      var bitOut = bitOutputStream(byteOut);
+
+      // clear code
+      bitOut.write(clearCode, bitLength);
+
+      var dataIndex = 0;
+
+      var s = String.fromCharCode(_data[dataIndex]);
+      dataIndex += 1;
+
+      while (dataIndex < _data.length) {
+
+        var c = String.fromCharCode(_data[dataIndex]);
+        dataIndex += 1;
+
+        if (table.contains(s + c) ) {
+
+          s = s + c;
+
+        } else {
+
+          bitOut.write(table.indexOf(s), bitLength);
+
+          if (table.size() < 0xfff) {
+
+            if (table.size() == (1 << bitLength) ) {
+              bitLength += 1;
+            }
+
+            table.add(s + c);
+          }
+
+          s = c;
+        }
+      }
+
+      bitOut.write(table.indexOf(s), bitLength);
+
+      // end code
+      bitOut.write(endCode, bitLength);
+
+      bitOut.flush();
+
+      return byteOut.toByteArray();
+    };
+
+    var lzwTable = function() {
+
+      var _map = {};
+      var _size = 0;
+
+      var _this = {};
+
+      _this.add = function(key) {
+        if (_this.contains(key) ) {
+          throw 'dup key:' + key;
+        }
+        _map[key] = _size;
+        _size += 1;
+      };
+
+      _this.size = function() {
+        return _size;
+      };
+
+      _this.indexOf = function(key) {
+        return _map[key];
+      };
+
+      _this.contains = function(key) {
+        return typeof _map[key] != 'undefined';
+      };
+
+      return _this;
+    };
+
+    return _this;
+  };
+
+  var createDataURL = function(width, height, getPixel) {
+    var gif = gifImage(width, height);
+    for (var y = 0; y < height; y += 1) {
+      for (var x = 0; x < width; x += 1) {
+        gif.setPixel(x, y, getPixel(x, y) );
+      }
+    }
+
+    var b = byteArrayOutputStream();
+    gif.write(b);
+
+    var base64 = base64EncodeOutputStream();
+    var bytes = b.toByteArray();
+    for (var i = 0; i < bytes.length; i += 1) {
+      base64.writeByte(bytes[i]);
+    }
+    base64.flush();
+
+    return 'data:image/gif;base64,' + base64;
+  };
+
+  //---------------------------------------------------------------------
+  // returns qrcode function.
+
+  return qrcode;
+}();
+
+// multibyte support
+!function() {
+
+  qrcode.stringToBytesFuncs['UTF-8'] = function(s) {
+    // http://stackoverflow.com/questions/18729405/how-to-convert-utf8-string-to-byte-array
+    function toUTF8Array(str) {
+      var utf8 = [];
+      for (var i=0; i < str.length; i++) {
+        var charcode = str.charCodeAt(i);
+        if (charcode < 0x80) utf8.push(charcode);
+        else if (charcode < 0x800) {
+          utf8.push(0xc0 | (charcode >> 6),
+              0x80 | (charcode & 0x3f));
+        }
+        else if (charcode < 0xd800 || charcode >= 0xe000) {
+          utf8.push(0xe0 | (charcode >> 12),
+              0x80 | ((charcode>>6) & 0x3f),
+              0x80 | (charcode & 0x3f));
+        }
+        // surrogate pair
+        else {
+          i++;
+          // UTF-16 encodes 0x10000-0x10FFFF by
+          // subtracting 0x10000 and splitting the
+          // 20 bits of 0x0-0xFFFFF into two halves
+          charcode = 0x10000 + (((charcode & 0x3ff)<<10)
+            | (str.charCodeAt(i) & 0x3ff));
+          utf8.push(0xf0 | (charcode >>18),
+              0x80 | ((charcode>>12) & 0x3f),
+              0x80 | ((charcode>>6) & 0x3f),
+              0x80 | (charcode & 0x3f));
+        }
+      }
+      return utf8;
+    }
+    return toUTF8Array(s);
+  };
+
+}();
+
+(function (factory) {
+  if (typeof define === 'function' && define.amd) {
+      define([], factory);
+  } else if (typeof exports === 'object') {
+      module.exports = factory();
+  }
+}(function () {
+    return qrcode;
+}));
+
+</script>
+<script>
+'use strict';
+/* =====================================================================
+   KONFIGURASI — satu-satunya bagian yang perlu Bapak ubah.
+   Tempel URL Web App Apps Script (yang berakhiran /exec) di antara tanda kutip.
+   Jika dibiarkan kosong, aplikasi berjalan dalam MODE DEMO (data hanya di HP ini).
+   ===================================================================== */
+const API_URL = 'https://script.google.com/macros/s/AKfycby3USSiWgvvo4aS6pMbx-Sm_i_YNXMJlaY_37x8_nHShn5Xtqcgqqp2SME_YDLq9oQ/exec';
+/* ===================================================================== */
+
+const APP_VERSI = '1.0';
+const SERVER = (localStorage.getItem('eizin_api') || API_URL).trim();
+const DEMO = !SERVER;
+const JENIS_PEMOHON = ['Siswa', 'Pembina', 'Koordinator Kelas Program'];
+const JENIS_IZIN = ['Keluar Sekolah Sementara', 'Pulang Lebih Awal', 'Mengikuti Lomba/Kegiatan', 'Lainnya'];
+const IKON_IZIN = { 'Keluar Sekolah Sementara': '🚶', 'Pulang Lebih Awal': '🏠', 'Mengikuti Lomba/Kegiatan': '🏆', 'Lainnya': '📄' };
+const ALPHA = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+const BULAN = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+const HARI = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+const DEFAULT_CFG = {
+  namaMadrasah: 'MAN 2 Kota Pekanbaru', kop1: 'KEMENTERIAN AGAMA REPUBLIK INDONESIA',
+  kop2: 'KANTOR KEMENTERIAN AGAMA KOTA PEKANBARU', kop3: 'MADRASAH ALIYAH NEGERI 2 KOTA PEKANBARU',
+  alamat: '', penandatangan: 'Suryadi, S.E., M.M.', nip: '', jabatan: 'Wakil Kepala Madrasah Bidang Kurikulum',
+  kota: 'Pekanbaru', waAdmin: '', perluKode: false, ttd: ''
+};
+
+// ---------------------------------------------------------------- penyimpanan lokal
+const store = {
+  get(k, d) { try { const v = localStorage.getItem('eizin_' + k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem('eizin_' + k, JSON.stringify(v)); } catch (e) { toast('Memori penyimpanan HP penuh. Hapus data demo atau lampiran besar.'); } },
+  del(k) { try { localStorage.removeItem('eizin_' + k); } catch (e) { } }
+};
+let cfg = Object.assign({}, DEFAULT_CFG, store.get('cfg', {}));
+let siswaList = store.get('siswa', []);
+let admin = store.get('admin', null);           // {pin}
+let records = store.get('records', []);         // cache izin (admin)
+let ops = store.get('ops', []);                 // antrean perubahan admin yang belum terkirim
+let online = navigator.onLine;
+let syncing = false;
+let installPrompt = null;
+
+// ---------------------------------------------------------------- utilitas
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
+const h = s => String(s === undefined || s === null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const pad = n => String(n).padStart(2, '0');
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+function rand(n) { const a = new Uint32Array(n); (window.crypto || window.msCrypto).getRandomValues(a); return Array.from(a, x => ALPHA[x % ALPHA.length]).join(''); }
+function localISO(d = new Date()) { return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`; }
+const today = () => localISO().slice(0, 10);
+function newId() { const d = new Date(); return `IZN-${String(d.getFullYear()).slice(2)}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${rand(4)}`; }
+function parseD(s) { const [y, m, d] = String(s).slice(0, 10).split('-').map(Number); return new Date(y, m - 1, d); }
+function fmtTgl(s, hari = true) { if (!s || !/^\d{4}-\d{2}-\d{2}/.test(s)) return '-'; const d = parseD(s); return (hari ? HARI[d.getDay()] + ', ' : '') + d.getDate() + ' ' + BULAN[d.getMonth()] + ' ' + d.getFullYear(); }
+function fmtWaktu(iso) { if (!iso) return '-'; const t = String(iso).slice(11, 16); return fmtTgl(iso, false) + (t ? ', ' + t.replace(':', '.') : ''); }
+function fmtJam(j) { return j ? j.replace(':', '.') + ' WIB' : ''; }
+function rentang(r) { return fmtTgl(r.tglMulai) + (r.tglSelesai && r.tglSelesai !== r.tglMulai ? ' s.d. ' + fmtTgl(r.tglSelesai) : ''); }
+function waNum(n) { n = String(n || '').replace(/\D/g, ''); if (n.startsWith('0')) n = '62' + n.slice(1); return n; }
+function namaSiswa(r, max = 3) { const s = r.siswa || []; const t = s.slice(0, max).map(x => x.nama).join(', '); return s.length > max ? `${t} +${s.length - max} lainnya` : t; }
+function baseUrl() { return location.origin + location.pathname; }
+function verifyUrl(r) { return `${baseUrl()}?cek=${encodeURIComponent(r.id)}&k=${encodeURIComponent(r.kode)}`; }
+function homeHref(hash) { return location.search ? baseUrl() + hash : hash; }
+class NetErr extends Error { }
+
+function toast(msg, ms = 2800) {
+  const t = $('#toast'); t.innerHTML = msg; t.classList.add('show');
+  clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove('show'), ms);
+}
+
+// ---------------------------------------------------------------- server (Apps Script / demo)
+function applyOp(list, op) {
+  if (op.type === 'upsert') {
+    const i = list.findIndex(r => r.id === op.izin.id);
+    if (i >= 0) list[i] = Object.assign({}, op.izin); else list.push(Object.assign({}, op.izin));
+  } else if (op.type === 'putus') {
+    const r = list.find(r => r.id === op.id);
+    if (r) { r.status = op.status; r.catatan = op.catatan || ''; r.diputuskan = op.waktu; }
+  } else if (op.type === 'kembali') {
+    const r = list.find(r => r.id === op.id);
+    if (r) r.kembaliAktual = op.waktu;
+  } else if (op.type === 'ttd') {
+    cfg.ttd = op.dataUrl;
+  }
+}
+
+const Demo = {
+  PIN: '123456',
+  db() {
+    let d = store.get('demo_db', null);
+    if (!d) { d = seedDemo(); store.set('demo_db', d); }
+    return d;
+  },
+  handle(action, p) {
+    const d = this.db();
+    const pub = () => Object.assign({}, DEFAULT_CFG, d.cfg, { perluKode: false });
+    const save = () => store.set('demo_db', d);
+    switch (action) {
+      case 'config': return { ok: true, config: pub() };
+      case 'siswa': return { ok: true, siswa: d.siswa };
+      case 'cek': {
+        const r = d.izin.find(x => x.id === p.id);
+        if (!r) return { ok: false, error: 'Izin tidak ditemukan' };
+        if (r.kode !== String(p.k || '').trim().toUpperCase()) return { ok: false, error: 'Kode verifikasi tidak cocok' };
+        return { ok: true, izin: r, config: pub() };
+      }
+      case 'ajukan': {
+        const i = p.izin;
+        if (d.izin.some(x => x.id === i.id)) return { ok: true, id: i.id, kode: i.kode, duplikat: true };
+        const r = Object.assign({}, i, { status: 'Menunggu', sumber: 'Online', diputuskan: '', catatan: '', lampiran: i.lampiranData || '' });
+        delete r.lampiranData;
+        d.izin.push(r); save();
+        return { ok: true, id: r.id, kode: r.kode };
+      }
+      case 'login': return p.pin === this.PIN ? { ok: true, config: pub() } : { ok: false, error: 'PIN salah' };
+      case 'list': case 'sync': {
+        if (p.pin !== this.PIN) return { ok: false, error: 'PIN salah' };
+        (p.ops || []).forEach(op => {
+          if (op.type === 'ttd') d.cfg.ttd = op.dataUrl; else applyOp(d.izin, op);
+        });
+        save();
+        return { ok: true, izin: d.izin, siswa: d.siswa, config: pub(), hasil: (p.ops || []).map((_, i) => ({ i, ok: true })) };
+      }
+    }
+    return { ok: false, error: 'Aksi tidak dikenal' };
+  }
+};
+
+function seedDemo() {
+  const nama = [['2401', 'Ahmad Fauzan', 'X-1'], ['2402', 'Nabila Putri', 'X-1'], ['2403', 'Rizky Ramadhan', 'X-2'], ['2404', 'Aisyah Zahra', 'X-2'],
+  ['2301', 'Muhammad Iqbal', 'XI-1'], ['2302', 'Salsabila Azzahra', 'XI-1'], ['2303', 'Dimas Saputra', 'XI-2'], ['2304', 'Khairunnisa', 'XI-2'],
+  ['2305', 'Fikri Hidayat', 'XI-3'], ['2201', 'Alya Rahmadani', 'XII-1'], ['2202', 'Hafiz Maulana', 'XII-1'], ['2203', 'Tiara Anggraini', 'XII-2']];
+  const siswa = nama.map(([nis, n, kelas]) => ({ nis, nama: n, kelas }));
+  const t = today(); const y = localISO(new Date(Date.now() - 86400e3)).slice(0, 10);
+  const mk = (o) => Object.assign({ id: newId(), kode: rand(6), dibuat: localISO(), sumber: 'Online', hpPemohon: '', tglSelesai: '', jamKeluar: '', jamKembali: '', namaKegiatan: '', tempat: '', penyelenggara: '', pembina: '', lampiran: '', diputuskan: '', catatan: '', kembaliAktual: '' }, o);
+  return {
+    cfg: {}, siswa,
+    izin: [
+      mk({ jenisPemohon: 'Pembina', namaPemohon: 'Bpk. Pembina Debat (contoh)', jenisIzin: 'Mengikuti Lomba/Kegiatan', siswa: [siswa[5], siswa[7], siswa[9]], tglMulai: t, tglSelesai: t, keperluan: 'Mengikuti Lomba Debat Ekonomi tingkat Kota', namaKegiatan: 'Lomba Debat Ekonomi', tempat: 'Aula Kampus (contoh)', penyelenggara: 'Panitia (contoh)', pembina: 'Bpk. Pembina Debat (contoh)', status: 'Menunggu' }),
+      mk({ jenisPemohon: 'Siswa', namaPemohon: 'Rizky Ramadhan', jenisIzin: 'Keluar Sekolah Sementara', siswa: [siswa[2]], tglMulai: y, jamKeluar: '10:00', jamKembali: '11:00', keperluan: 'Mengambil berkas di rumah (contoh)', status: 'Disetujui', diputuskan: y + 'T09:50:00', kembaliAktual: y + 'T10:55:00' }),
+      mk({ jenisPemohon: 'Koordinator Kelas Program', namaPemohon: 'Ibu Koordinator (contoh)', jenisIzin: 'Pulang Lebih Awal', siswa: [siswa[4]], tglMulai: y, jamKeluar: '13:00', keperluan: 'Sakit, dijemput orang tua (contoh)', status: 'Disetujui', diputuskan: y + 'T12:40:00' })
+    ]
+  };
+}
+
+async function api(action, payload = {}) {
+  if (DEMO) { await sleep(120); return JSON.parse(JSON.stringify(Demo.handle(action, payload))); }
+  const isGet = ['config', 'siswa', 'cek'].includes(action);
+  const ctl = new AbortController(); const timer = setTimeout(() => ctl.abort(), 30000);
+  try {
+    let res;
+    if (isGet) {
+      const q = new URLSearchParams(Object.assign({ action }, payload));
+      res = await fetch(SERVER + (SERVER.includes('?') ? '&' : '?') + q.toString(), { signal: ctl.signal });
+    } else {
+      // body teks biasa → tidak memicu preflight CORS (Apps Script tidak mendukung OPTIONS)
+      res = await fetch(SERVER, { method: 'POST', body: JSON.stringify(Object.assign({ action }, payload)), signal: ctl.signal });
+    }
+    const j = await res.json();
+    setOnline(true);
+    return j;
+  } catch (e) {
+    setOnline(false);
+    throw new NetErr('Tidak terhubung ke server');
+  } finally { clearTimeout(timer); }
+}
+
+function setOnline(v) { if (online !== v) { online = v; renderHeader(); if (v) onReconnect(); } }
+
+async function refreshConfig() {
+  try {
+    const r = await api('config');
+    if (!r.ok) return;
+    const before = cfg.perluKode;
+    cfg = Object.assign({}, DEFAULT_CFG, r.config); pendingTtd(); store.set('cfg', cfg);
+    // pengaturan "kode akses" berubah → tampilkan ulang form pengajuan (isian tetap tersimpan)
+    const frm = $('#frm');
+    if (before !== cfg.perluKode && curRoute() === 'ajukan' && frm && !frm.contains(document.activeElement)) viewAjukan();
+  } catch (e) { }
+}
+function pendingTtd() { ops.filter(o => o.type === 'ttd').forEach(o => { cfg.ttd = o.dataUrl; }); }
+
+async function loadSiswa(force) {
+  if (!force && siswaList.length && Date.now() - store.get('siswa_t', 0) < 6 * 3600e3) return;
+  try {
+    const r = await api('siswa', cfg.perluKode ? { kodeAkses: store.get('kodeAkses', '') } : {});
+    if (r.ok) { siswaList = r.siswa; store.set('siswa', siswaList); store.set('siswa_t', Date.now()); }
+  } catch (e) { }
+}
+
+// ---------------------------------------------------------------- antrean pemohon (offline)
+async function flushOutbox() {
+  const ob = store.get('outbox', []);
+  if (!ob.length) return;
+  const left = [];
+  let net = false;
+  for (const it of ob) {
+    if (net) { left.push(it); continue; }
+    try {
+      const r = await api('ajukan', { izin: it.izin, kodeAkses: it.kodeAkses });
+      if (!r.ok) left.push(Object.assign(it, { error: r.error }));
+    } catch (e) { net = true; left.push(it); }
+  }
+  store.set('outbox', left);
+  if (left.length < ob.length) toast(`${ob.length - left.length} pengajuan tertunda berhasil terkirim`);
+  renderHeader();
+  if (curRoute() === 'status') route();
+}
+
+// ---------------------------------------------------------------- sinkron admin
+async function syncAdmin(silent) {
+  if (!admin || syncing) return;
+  if (!DEMO && !navigator.onLine) { setOnline(false); if (!silent) toast('Sedang offline — perubahan tersimpan di HP dan akan dikirim otomatis'); return; }
+  syncing = true; renderHeader();
+  const sending = ops.slice();
+  try {
+    const r = await api(sending.length ? 'sync' : 'list', { pin: admin.pin, ops: sending });
+    if (!r.ok) {
+      if (/PIN/i.test(r.error || '')) { toast('PIN tidak cocok dengan server. Silakan masuk lagi.', 4000); logout(true); }
+      else toast('Gagal sinkron: ' + h(r.error));
+      return;
+    }
+    const gagal = (r.hasil || []).filter(x => !x.ok);
+    if (gagal.length) toast(`${gagal.length} perubahan ditolak server: ${h(gagal[0].error)}`, 5000);
+    ops = ops.slice(sending.length); store.set('ops', ops);
+    records = r.izin || [];
+    if (r.config) cfg = Object.assign({}, DEFAULT_CFG, r.config);
+    ops.forEach(op => applyOp(records, op));
+    store.set('records', records); store.set('cfg', cfg);
+    if (r.siswa) { siswaList = r.siswa; store.set('siswa', siswaList); store.set('siswa_t', Date.now()); }
+    store.set('lastsync', Date.now());
+    if (!silent) toast('Data sudah tersinkron ✓');
+  } catch (e) {
+    if (!silent) toast('Tidak ada koneksi — perubahan tersimpan di HP dan akan dikirim otomatis');
+  } finally {
+    syncing = false; renderHeader(); refreshAdminView();
+  }
+}
+
+function pushOp(op) {
+  ops.push(op); store.set('ops', ops);
+  applyOp(records, op); store.set('records', records);
+  renderHeader();
+  syncAdmin(true);
+}
+
+function onReconnect() { flushOutbox(); if (admin) syncAdmin(true); }
+
+function logout(keepMsg) {
+  admin = null; store.del('admin');
+  if (!keepMsg) toast('Anda sudah keluar');
+  location.hash = '#/admin';
+  route();
+}
+
+async function sha(s) {
+  try {
+    const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('eizin|' + s));
+    return Array.from(new Uint8Array(b), x => x.toString(16).padStart(2, '0')).join('');
+  } catch (e) { let x = 5381; for (const c of 'eizin|' + s) x = ((x << 5) + x + c.charCodeAt(0)) | 0; return 'f' + x; }
+}
+
+// ---------------------------------------------------------------- header & navigasi
+function pendingCount() { return ops.length + store.get('outbox', []).length; }
+function renderHeader() {
+  const n = pendingCount();
+  let mode;
+  if (DEMO) mode = '<button class="pill demo" id="pmode">Mode Demo</button>';
+  else if (syncing) mode = '<button class="pill" id="pmode">Menyinkron…</button>';
+  else if (online) mode = '<button class="pill" id="pmode">● Online</button>';
+  else mode = '<button class="pill off" id="pmode">● Offline</button>';
+  $('#hdr').innerHTML = `
+    <a class="brand" href="${homeHref('#/')}"><span class="logo">e</span><span><b>e-Izin</b><small>${h(cfg.namaMadrasah || 'MAN 2 Kota Pekanbaru')}</small></span></a>
+    ${n ? `<button class="pill off" id="ppend" title="Data belum terkirim ke server">⟳ ${n}<span class="w"> belum terkirim</span></button>` : ''}
+    ${mode}`;
+  const tap = () => { if (DEMO) toast('Mode demo: data hanya tersimpan di HP/browser ini. PIN admin demo: <b>123456</b>', 4500); else { flushOutbox(); if (admin) syncAdmin(); else refreshConfig().then(() => toast(online ? 'Terhubung ke server' : 'Belum terhubung ke server')); } };
+  $('#pmode').onclick = tap; if ($('#ppend')) $('#ppend').onclick = tap;
+  renderNav();
+}
+
+function curRoute() { return (location.hash || '#/').slice(2).split('/')[0]; }
+
+function renderNav() {
+  const nav = $('#nav');
+  const parts = (location.hash || '#/').slice(2).split('/');
+  if (!admin || location.search || !['admin', 'surat'].includes(parts[0])) { nav.hidden = true; return; }
+  const tab = parts[0] === 'surat' ? 'riwayat' : (parts[1] || 'menunggu');
+  const nPend = records.filter(r => r.status === 'Menunggu').length;
+  const items = [['menunggu', '⏳', 'Menunggu'], ['input', '➕', 'Input Langsung'], ['riwayat', '🗂️', 'Riwayat'], ['rekap', '📊', 'Rekap'], ['setelan', '⚙️', 'Setelan']];
+  nav.innerHTML = items.map(([k, ic, t]) => `<a href="#/admin/${k}" class="${tab === k ? 'on' : ''}"><span>${ic}</span>${t}${k === 'menunggu' && nPend ? `<i class="cnt">${nPend}</i>` : ''}</a>`).join('');
+  nav.hidden = false;
+}
+
+function route() {
+  window.scrollTo(0, 0);
+  const qs = new URLSearchParams(location.search);
+  renderHeader();
+  if (qs.get('cek')) return viewCek(qs.get('cek'), qs.get('k') || '');
+  const [a, b, c] = (location.hash || '#/').slice(2).split('/');
+  if (!a) return viewHome();
+  if (a === 'ajukan') return viewAjukan();
+  if (a === 'status') return viewStatus();
+  if (a === 'lihat') return viewLihat(decodeURIComponent(b || ''), decodeURIComponent(c || ''));
+  if (a === 'admin' || a === 'surat') {
+    if (!admin) return viewLogin();
+    if (a === 'surat') return viewSuratAdmin(decodeURIComponent(b || ''));
+    return viewAdmin(b || 'menunggu');
+  }
+  viewHome();
+}
+
+function refreshAdminView() {
+  const [a, b] = (location.hash || '#/').slice(2).split('/');
+  renderNav();
+  if (a !== 'admin' || !admin) return;
+  const tab = b || 'menunggu';
+  const ae = document.activeElement;
+  if (tab === 'input' || tab === 'setelan') return;
+  if (ae && ['TEXTAREA', 'INPUT', 'SELECT'].includes(ae.tagName) && $('#app').contains(ae) && ae.value) return;
+  viewAdmin(tab, true);
+}
+
+const app = () => $('#app');
+
+// ---------------------------------------------------------------- halaman: beranda
+function viewHome() {
+  app().innerHTML = `
+    ${DEMO ? `<div class="card note small"><b>Mode Demo.</b> Aplikasi belum terhubung ke Google Spreadsheet madrasah, jadi data hanya tersimpan di HP/browser ini. Silakan dicoba: ajukan izin, lalu masuk sebagai Waka dengan PIN <b>123456</b> untuk menyetujuinya.</div>` : ''}
+    <h1>Izin Siswa</h1>
+    <p class="mut">Ajukan izin keluar sekolah, pulang lebih awal, atau dispensasi lomba/kegiatan. Persetujuan dan surat izin dikirim secara elektronik.</p>
+    <div style="display:grid;gap:10px;margin:16px 0">
+      <a class="btn big" href="#/ajukan"><span class="ic">📝</span><span>Ajukan Izin<small>Untuk siswa, pembina, dan koordinator kelas program</small></span></a>
+      <a class="btn ghost big" href="#/status"><span class="ic">🔎</span><span>Cek Status & Surat Izin<small>Lihat apakah pengajuan sudah disetujui</small></span></a>
+    </div>
+    <div class="card small">
+      <h3>Alurnya</h3>
+      <p>1. Isi pengajuan → 2. Waka Kurikulum menyetujui → 3. Surat izin ber-QR muncul di menu <i>Cek Status</i> → 4. Tunjukkan ke guru piket/satpam saat keluar.</p>
+    </div>
+    <p style="text-align:center;margin-top:24px"><a href="#/admin" class="small">Masuk sebagai Waka (Admin)</a></p>
+    <p style="text-align:center" class="small mut">e-Izin v${APP_VERSI}</p>`;
+}
+
+// ---------------------------------------------------------------- form pengajuan (dipakai pemohon & admin)
+function blankForm(mode) {
+  return {
+    jenisPemohon: 'Siswa', namaPemohon: '', hpPemohon: '', jenisIzin: JENIS_IZIN[0], siswa: [],
+    tglMulai: today(), tglSelesai: '', jamKeluar: '', jamKembali: '', keperluan: '',
+    namaKegiatan: '', tempat: '', penyelenggara: '', pembina: '', lampiranData: ''
+  };
+}
+
+function mountForm(el, f, mode, onSubmit) {
+  const isAdmin = mode === 'admin';
+  const render = () => {
+    const ji = f.jenisIzin, lomba = ji === 'Mengikuti Lomba/Kegiatan';
+    const namaLabel = f.jenisPemohon === 'Siswa' ? 'Nama siswa yang mengajukan' : (f.jenisPemohon === 'Pembina' ? 'Nama pembina' : 'Nama koordinator kelas program');
+    const showKembali = ji === 'Keluar Sekolah Sementara' || ji === 'Lainnya';
+    const opt = ji === 'Lainnya' ? ' <span class="mut">(opsional)</span>' : '';
+    el.innerHTML = `
+      <div class="card">
+        <label>${isAdmin ? 'Yang mengajukan' : 'Saya mengajukan sebagai'}</label>
+        <div class="seg" data-seg="jenisPemohon">${JENIS_PEMOHON.map(j => `<button type="button" class="${f.jenisPemohon === j ? 'on' : ''}" data-v="${h(j)}">${h(j)}</button>`).join('')}</div>
+        <label for="f-nama">${namaLabel}</label>
+        <input id="f-nama" data-k="namaPemohon" value="${h(f.namaPemohon)}" autocomplete="off" placeholder="${f.jenisPemohon === 'Siswa' ? 'Terisi otomatis dari siswa pertama' : ''}">
+        ${isAdmin ? '' : `<label for="f-hp">Nomor HP/WhatsApp <span class="mut">(opsional, untuk menerima surat)</span></label>
+        <input id="f-hp" data-k="hpPemohon" inputmode="tel" value="${h(f.hpPemohon)}" placeholder="08xxxxxxxxxx">`}
+      </div>
+      <div class="card">
+        <label>Jenis izin</label>
+        <div class="seg" data-seg="jenisIzin">${JENIS_IZIN.map(j => `<button type="button" class="${ji === j ? 'on' : ''}" data-v="${h(j)}">${IKON_IZIN[j]} ${h(j)}</button>`).join('')}</div>
+        <label for="cari">Siswa yang izin <span class="mut">(bisa lebih dari satu)</span></label>
+        <div id="chips">${f.siswa.map((s, i) => `<span class="chip">${h(s.nama)}${s.kelas ? ' · ' + h(s.kelas) : ''}<button type="button" data-rm="${i}" aria-label="Hapus ${h(s.nama)}">×</button></span>`).join('')}</div>
+        <input id="cari" placeholder="Ketik nama, NIS, atau kelas…" autocomplete="off">
+        <div id="sugg" class="sugg"></div>
+        ${siswaList.length ? '' : '<p class="small mut" id="f-nosiswa">Daftar siswa belum termuat. Tulis manual dengan format: <b>Nama / Kelas</b>, lalu pilih "Tambah".</p>'}
+        <div class="row2">
+          <div><label for="f-t1">${lomba ? 'Tanggal mulai' : 'Tanggal'}</label><input type="date" id="f-t1" data-k="tglMulai" value="${h(f.tglMulai)}"></div>
+          ${lomba ? `<div><label for="f-t2">Tanggal selesai</label><input type="date" id="f-t2" data-k="tglSelesai" value="${h(f.tglSelesai)}"></div>` : ''}
+        </div>
+        ${lomba ? '' : `<div class="row2">
+          <div><label for="f-j1">Jam keluar${opt}</label><input type="time" id="f-j1" data-k="jamKeluar" value="${h(f.jamKeluar)}"></div>
+          ${showKembali ? `<div><label for="f-j2">Jam kembali${opt}</label><input type="time" id="f-j2" data-k="jamKembali" value="${h(f.jamKembali)}"></div>` : ''}
+        </div>`}
+        ${lomba ? `
+          <label for="f-keg">Nama lomba/kegiatan</label><input id="f-keg" data-k="namaKegiatan" value="${h(f.namaKegiatan)}" placeholder="Contoh: Olimpiade Ekonomi tingkat Provinsi">
+          <div class="row2">
+            <div><label for="f-tmp">Tempat</label><input id="f-tmp" data-k="tempat" value="${h(f.tempat)}"></div>
+            <div><label for="f-pny">Penyelenggara</label><input id="f-pny" data-k="penyelenggara" value="${h(f.penyelenggara)}"></div>
+          </div>
+          <label for="f-pmb">Pembina/guru pendamping</label><input id="f-pmb" data-k="pembina" value="${h(f.pembina)}">
+          ${isAdmin ? '' : `<label for="f-lamp">Foto surat undangan/tugas <span class="mut">(opsional)</span></label>
+          <input type="file" id="f-lamp" accept="image/*">
+          ${f.lampiranData ? `<img class="thumb" src="${f.lampiranData}" alt="Pratinjau lampiran"><button type="button" class="btn ghost sm" id="f-lamp-x" style="margin-top:6px">Hapus foto</button>` : ''}`}` : ''}
+        <label for="f-kep">Keperluan / alasan</label>
+        <textarea id="f-kep" data-k="keperluan" rows="3" placeholder="${lomba ? 'Contoh: Mewakili madrasah dalam lomba…' : 'Contoh: Mengambil berkas yang tertinggal di rumah'}">${h(f.keperluan)}</textarea>
+        ${!isAdmin && cfg.perluKode ? `<label for="f-kode">Kode akses madrasah</label><input id="f-kode" value="${h(store.get('kodeAkses', ''))}" autocomplete="off">` : ''}
+      </div>
+      <p class="small" id="f-err" style="color:var(--red)"></p>
+      <button class="btn block" id="f-submit" type="button">${isAdmin ? '✓ Setujui & buat surat' : 'Kirim pengajuan'}</button>`;
+    bind();
+  };
+
+  const addSiswa = s => {
+    if (f.siswa.some(x => (x.nis && x.nis === s.nis) || (!x.nis && x.nama.toLowerCase() === s.nama.toLowerCase() && x.kelas === s.kelas))) return;
+    f.siswa.push(s);
+    if (f.jenisPemohon === 'Siswa' && !f.namaPemohon) f.namaPemohon = s.nama;
+  };
+
+  const bind = () => {
+    $$('[data-k]', el).forEach(inp => inp.addEventListener('input', () => { f[inp.dataset.k] = inp.value; }));
+    $$('[data-seg] button', el).forEach(b => b.onclick = () => { f[b.parentNode.dataset.seg] = b.dataset.v; render(); });
+    $$('[data-rm]', el).forEach(b => b.onclick = () => { f.siswa.splice(Number(b.dataset.rm), 1); render(); $('#cari', el).focus(); });
+    const cari = $('#cari', el), sugg = $('#sugg', el);
+    cari.oninput = () => {
+      const q = cari.value.trim().toLowerCase();
+      if (q.length < 2) { sugg.innerHTML = ''; return; }
+      const terms = q.split(/\s+/);
+      const m = siswaList.filter(s => { const t = `${s.nama} ${s.nis} ${s.kelas}`.toLowerCase(); return terms.every(w => t.includes(w)); })
+        .filter(s => !f.siswa.some(x => x.nis && x.nis === s.nis)).slice(0, 8);
+      const kelas = siswaList.filter(s => s.kelas.toLowerCase() === q);
+      let html = m.map(s => `<button type="button" data-add="${h(s.nis)}"><b>${h(s.nama)}</b> <span class="mut small">· ${h(s.kelas)} · NIS ${h(s.nis)}</span></button>`).join('');
+      if (kelas.length) html += `<button type="button" data-kelas="${h(kelas[0].kelas)}">➕ Tambah semua siswa kelas <b>${h(kelas[0].kelas)}</b> (${kelas.length} siswa)</button>`;
+      if (!m.length && q.length >= 3) {
+        const [nm, kl] = cari.value.split('/').map(x => x.trim());
+        html += `<button type="button" data-manual="1">➕ Tambah manual: <b>${h(nm)}</b>${kl ? ' · ' + h(kl) : ' <span class="mut small">(tulis "Nama / Kelas" agar kelas tercatat)</span>'}</button>`;
+      }
+      sugg.innerHTML = html;
+      $$('[data-add]', sugg).forEach(b => b.onclick = () => { addSiswa(siswaList.find(s => s.nis === b.dataset.add)); render(); $('#cari', el).focus(); });
+      $$('[data-kelas]', sugg).forEach(b => b.onclick = () => { siswaList.filter(s => s.kelas === b.dataset.kelas).forEach(addSiswa); render(); });
+      $$('[data-manual]', sugg).forEach(b => b.onclick = () => {
+        const [nm, kl] = cari.value.split('/').map(x => x.trim());
+        if (nm) addSiswa({ nis: '', nama: nm.replace(/\s+/g, ' '), kelas: (kl || '').toUpperCase() });
+        render(); $('#cari', el).focus();
+      });
+    };
+    const lamp = $('#f-lamp', el);
+    if (lamp) lamp.onchange = async () => {
+      const file = lamp.files && lamp.files[0]; if (!file) return;
+      try { f.lampiranData = await compressImage(file, 1280, 0.72); render(); }
+      catch (e) { toast('Foto tidak dapat dibaca. Coba foto lain.'); }
+    };
+    const lx = $('#f-lamp-x', el); if (lx) lx.onclick = () => { f.lampiranData = ''; render(); };
+    const kd = $('#f-kode', el);
+    if (kd) kd.onchange = () => { store.set('kodeAkses', kd.value.trim()); loadSiswa(true).then(() => { const n = $('#f-nosiswa', el); if (n && siswaList.length) n.remove(); }); };
+    $('#f-submit', el).onclick = async () => {
+      const kodeInp = $('#f-kode', el); if (kodeInp) store.set('kodeAkses', kodeInp.value.trim());
+      const err = validate(f, mode);
+      $('#f-err', el).textContent = err || '';
+      if (err) { $('#f-err', el).scrollIntoView({ block: 'center', behavior: 'smooth' }); return; }
+      const btn = $('#f-submit', el); btn.disabled = true; btn.textContent = 'Memproses…';
+      try { await onSubmit(f); } finally { if (document.body.contains(btn)) { btn.disabled = false; btn.textContent = isAdmin ? '✓ Setujui & buat surat' : 'Kirim pengajuan'; } }
+    };
+  };
+  render();
+}
+
+function validate(f, mode) {
+  const ji = f.jenisIzin;
+  if (!f.namaPemohon.trim()) return 'Nama pemohon wajib diisi.';
+  if (!f.siswa.length) return 'Pilih minimal satu siswa yang izin.';
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(f.tglMulai)) return 'Tanggal wajib diisi.';
+  if (ji === 'Keluar Sekolah Sementara') {
+    if (!f.jamKeluar || !f.jamKembali) return 'Jam keluar dan jam kembali wajib diisi.';
+    if (f.jamKembali <= f.jamKeluar) return 'Jam kembali harus setelah jam keluar.';
+  }
+  if (ji === 'Pulang Lebih Awal' && !f.jamKeluar) return 'Jam keluar wajib diisi.';
+  if (ji === 'Lainnya' && f.jamKeluar && f.jamKembali && f.jamKembali <= f.jamKeluar) return 'Jam kembali harus setelah jam keluar.';
+  if (ji === 'Mengikuti Lomba/Kegiatan') {
+    if (!f.namaKegiatan.trim()) return 'Nama lomba/kegiatan wajib diisi.';
+    if (f.tglSelesai && f.tglSelesai < f.tglMulai) return 'Tanggal selesai tidak boleh sebelum tanggal mulai.';
+  }
+  if (f.keperluan.trim().length < 5) return 'Keperluan/alasan wajib diisi (minimal 5 huruf).';
+  if (mode !== 'admin' && cfg.perluKode && !store.get('kodeAkses', '')) return 'Kode akses madrasah wajib diisi.';
+  return '';
+}
+
+function cleanForm(f) {
+  const ji = f.jenisIzin, lomba = ji === 'Mengikuti Lomba/Kegiatan';
+  const o = {
+    jenisPemohon: f.jenisPemohon, namaPemohon: f.namaPemohon.trim(), hpPemohon: f.hpPemohon.trim(), jenisIzin: ji,
+    siswa: f.siswa.map(s => ({ nis: s.nis || '', nama: s.nama, kelas: s.kelas || '' })),
+    tglMulai: f.tglMulai, tglSelesai: lomba ? f.tglSelesai : '',
+    jamKeluar: lomba ? '' : f.jamKeluar, jamKembali: (ji === 'Keluar Sekolah Sementara' || ji === 'Lainnya') ? f.jamKembali : '',
+    keperluan: f.keperluan.trim(),
+    namaKegiatan: lomba ? f.namaKegiatan.trim() : '', tempat: lomba ? f.tempat.trim() : '',
+    penyelenggara: lomba ? f.penyelenggara.trim() : '', pembina: lomba ? f.pembina.trim() : ''
+  };
+  if (lomba && f.lampiranData) o.lampiranData = f.lampiranData;
+  return o;
+}
+
+function compressImage(file, max, q) {
+  return new Promise((res, rej) => {
+    const img = new Image(); const url = URL.createObjectURL(file);
+    img.onload = () => {
+      const sc = Math.min(1, max / Math.max(img.width, img.height));
+      const c = document.createElement('canvas'); c.width = Math.round(img.width * sc); c.height = Math.round(img.height * sc);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      URL.revokeObjectURL(url); res(c.toDataURL('image/jpeg', q));
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); rej(new Error('img')); };
+    img.src = url;
+  });
+}
+
+// ---------------------------------------------------------------- halaman: ajukan (pemohon)
+let formDraft = null;
+function viewAjukan() {
+  if (!formDraft) formDraft = blankForm('pemohon');
+  app().innerHTML = `<h1>Ajukan Izin</h1><p class="mut small">Isi dengan benar. Pengajuan akan diteruskan ke Waka Kurikulum untuk disetujui.</p><div id="frm"></div>`;
+  mountForm($('#frm'), formDraft, 'pemohon', submitPemohon);
+  const kosong = !siswaList.length;
+  loadSiswa().then(() => {
+    // daftar siswa baru termuat → pasang ulang form (isian tetap tersimpan di formDraft)
+    const frm = $('#frm');
+    if (!(kosong && siswaList.length && curRoute() === 'ajukan' && frm)) return;
+    if (!frm.contains(document.activeElement)) return mountForm(frm, formDraft, 'pemohon', submitPemohon);
+    const n = $('#f-nosiswa', frm); if (n) n.remove();
+    const c = $('#cari', frm); if (c && c.value) c.oninput();
+  });
+}
+
+async function submitPemohon(f) {
+  const izin = Object.assign(cleanForm(f), { id: newId(), kode: rand(6), dibuat: localISO() });
+  const kodeAkses = store.get('kodeAkses', '');
+  const entry = { id: izin.id, kode: izin.kode, jenisIzin: izin.jenisIzin, siswa: namaSiswa(izin), tgl: izin.tglMulai, dibuat: izin.dibuat };
+  let queued = false;
+  try {
+    if (!DEMO && !navigator.onLine) throw new NetErr();
+    const r = await api('ajukan', { izin, kodeAkses });
+    if (!r.ok) { $('#f-err').textContent = 'Gagal: ' + (r.error || 'server menolak pengajuan'); return; }
+  } catch (e) {
+    if (!(e instanceof NetErr)) throw e;
+    const ob = store.get('outbox', []); ob.push({ izin, kodeAkses }); store.set('outbox', ob); queued = true;
+  }
+  const mine = store.get('mine', []); mine.unshift(entry); store.set('mine', mine.slice(0, 50));
+  formDraft = null;
+  renderHeader();
+  viewTerkirim(izin, queued);
+}
+
+function viewTerkirim(izin, queued) {
+  const msg = `Assalamu'alaikum Pak, saya ${izin.namaPemohon} (${izin.jenisPemohon}) mengajukan izin "${izin.jenisIzin}" untuk ${namaSiswa(izin, 5)} pada ${rentang(izin)}. Keperluan: ${izin.keperluan}. Nomor pengajuan: ${izin.id}. Mohon persetujuannya. Terima kasih.`;
+  app().innerHTML = `
+    <div class="card ${queued ? 'note' : 'ok'}">
+      <h2>${queued ? '📥 Pengajuan tersimpan' : '✅ Pengajuan terkirim'}</h2>
+      <p>${queued ? 'HP sedang tidak terhubung internet. Pengajuan akan <b>terkirim otomatis</b> begitu ada sinyal (buka lagi aplikasi ini jika perlu).' : 'Pengajuan sudah masuk dan menunggu persetujuan Waka Kurikulum.'}</p>
+      <p class="small">Nomor pengajuan & kode (simpan/screenshot):</p>
+      <div class="idbox">${h(izin.id)} · ${h(izin.kode)}</div>
+    </div>
+    <div style="display:grid;gap:8px">
+      ${cfg.waAdmin ? `<a class="btn" target="_blank" rel="noopener" href="https://wa.me/${waNum(cfg.waAdmin)}?text=${encodeURIComponent(msg)}">💬 Kabari Waka via WhatsApp</a>` : ''}
+      <a class="btn ghost" href="#/status">🔎 Lihat status pengajuan</a>
+      <a class="btn ghost" href="#/ajukan">📝 Ajukan izin lain</a>
+    </div>`;
+}
+
+// ---------------------------------------------------------------- halaman: status (pemohon)
+async function viewStatus() {
+  const mine = store.get('mine', []);
+  const ob = store.get('outbox', []);
+  const obIds = new Set(ob.map(o => o.izin.id));
+  app().innerHTML = `
+    <div style="display:flex;align-items:center;gap:8px"><h1 style="flex:1">Status Pengajuan</h1><button class="btn ghost sm" id="s-ref">⟳ Perbarui</button></div>
+    <div id="mine">${mine.length ? '' : '<div class="empty">Belum ada pengajuan dari HP ini.</div>'}</div>
+    <div class="card">
+      <h3>Cek pengajuan lain</h3>
+      <p class="small mut">Masukkan nomor pengajuan dan kode 6 huruf (mis. dari HP lain).</p>
+      <div class="row2"><input id="c-id" placeholder="IZN-261030-XXXX" autocapitalize="characters"><input id="c-k" placeholder="Kode" autocapitalize="characters" maxlength="6"></div>
+      <button class="btn ghost block" id="c-go" style="margin-top:8px">Cek</button>
+    </div>`;
+  $('#s-ref').onclick = () => { flushOutbox(); viewStatus(); };
+  $('#c-go').onclick = () => {
+    const id = $('#c-id').value.trim().toUpperCase(), k = $('#c-k').value.trim().toUpperCase();
+    if (!id || !k) return toast('Isi nomor pengajuan dan kode');
+    location.hash = `#/lihat/${encodeURIComponent(id)}/${encodeURIComponent(k)}`;
+  };
+  const box = $('#mine');
+  const card = (m, st, extra = '') => `<a class="item" ${st === 'Disetujui' ? `href="#/lihat/${encodeURIComponent(m.id)}/${encodeURIComponent(m.kode)}"` : ''}>
+      <div class="meta"><span class="badge ${st ? 'st-' + st.split(' ')[0] : ''}">${h(st || 'Memeriksa…')}</span><span class="small mut">${h(m.id)}</span></div>
+      <div class="t">${IKON_IZIN[m.jenisIzin] || ''} ${h(m.jenisIzin)}</div>
+      <div class="small">${h(m.siswa)} · ${h(fmtTgl(m.tgl))}</div>${extra}
+      ${st === 'Disetujui' ? '<div class="small" style="margin-top:6px;font-weight:600;color:var(--g)">Lihat surat izin →</div>' : ''}</a>`;
+  if (!mine.length) return;
+  box.innerHTML = mine.map(m => obIds.has(m.id) ? card(m, 'Belum terkirim', `<div class="small" style="color:var(--amb)">${h((ob.find(o => o.izin.id === m.id) || {}).error || 'Menunggu koneksi internet')}</div>`) : card(m, '')).join('');
+  const results = await Promise.all(mine.map(async m => {
+    if (obIds.has(m.id)) return null;
+    try { const r = await api('cek', { id: m.id, k: m.kode }); return r.ok ? r.izin : { status: 'Tidak ditemukan', catatan: r.error }; }
+    catch (e) { return { status: 'Offline' }; }
+  }));
+  if (curRoute() !== 'status') return;
+  box.innerHTML = mine.map((m, i) => {
+    if (obIds.has(m.id)) return card(m, 'Belum terkirim', `<div class="small" style="color:var(--amb)">${h((ob.find(o => o.izin.id === m.id) || {}).error || 'Menunggu koneksi internet')}</div>`);
+    const r = results[i] || {};
+    const extra = r.status === 'Ditolak' && r.catatan ? `<div class="small" style="color:var(--red)">Catatan: ${h(r.catatan)}</div>` : (r.status === 'Offline' ? '<div class="small mut">Tidak dapat memeriksa — sedang offline</div>' : '');
+    return card(m, r.status, extra);
+  }).join('');
+}
+
+async function viewLihat(id, k) {
+  app().innerHTML = '<div class="empty">Memuat…</div>';
+  let r;
+  try { r = await api('cek', { id, k }); }
+  catch (e) { app().innerHTML = `<div class="card note">Tidak dapat terhubung ke server. Coba lagi saat ada internet.</div><a class="btn ghost block" href="#/status">← Kembali</a>`; return; }
+  if (!r.ok) { app().innerHTML = `<div class="card note">${h(r.error)}</div><a class="btn ghost block" href="#/status">← Kembali</a>`; return; }
+  const z = r.izin; const c = Object.assign({}, DEFAULT_CFG, r.config);
+  if (z.status !== 'Disetujui') {
+    app().innerHTML = `<div class="card"><div class="meta"><span class="badge st-${h(z.status)}">${h(z.status)}</span><span class="small mut">${h(z.id)}</span></div>
+      <h2>${h(z.jenisIzin)}</h2><p>${h(namaSiswa(z, 10))}</p>
+      ${z.status === 'Ditolak' ? `<p style="color:var(--red)"><b>Catatan Waka:</b> ${h(z.catatan || '-')}</p>` : '<p class="mut">Belum disetujui. Silakan cek lagi nanti.</p>'}</div>
+      <a class="btn ghost block" href="#/status">← Kembali</a>`;
+    return;
+  }
+  app().innerHTML = `<div class="toolbar no-print"><a class="btn ghost" href="#/status">← Kembali</a><button class="btn" id="b-print">🖨️ Cetak / Simpan PDF</button></div>${suratHTML(z, c)}`;
+  $('#b-print').onclick = () => window.print();
+}
+
+// ---------------------------------------------------------------- halaman: verifikasi QR
+async function viewCek(id, k) {
+  app().innerHTML = '<div class="empty">Memeriksa keaslian izin…</div>';
+  let z = null, c = cfg, err = '', lokal = false;
+  try {
+    const r = await api('cek', { id, k });
+    if (r.ok) { z = r.izin; c = Object.assign({}, DEFAULT_CFG, r.config); } else err = r.error;
+  } catch (e) {
+    const loc = records.find(x => x.id === id && x.kode === String(k).toUpperCase());
+    if (admin && loc) { z = loc; lokal = true; } else err = 'Tidak dapat terhubung ke server untuk memeriksa. Pastikan ada koneksi internet lalu muat ulang.';
+  }
+  let box;
+  if (!z) box = `<div class="verify v-bad"><div class="ic">✖</div><span class="vt">Tidak dapat diverifikasi</span><p>${h(err)}</p></div>`;
+  else if (z.status === 'Disetujui') {
+    const t = today(), akhir = z.tglSelesai || z.tglMulai;
+    const berlaku = z.tglMulai <= t && t <= akhir;
+    const jam = z.jamKeluar ? `<p>Keluar ${fmtJam(z.jamKeluar)}${z.jamKembali ? ', wajib kembali ' + fmtJam(z.jamKembali) : ''}</p>` : '';
+    box = `<div class="verify ${berlaku ? 'v-ok' : 'v-warn'}"><div class="ic">${berlaku ? '✔' : '!'}</div><span class="vt">IZIN SAH</span>
+      <p>${berlaku ? 'Berlaku <b>hari ini</b>' : (t < z.tglMulai ? 'Belum berlaku — untuk ' : 'Sudah lewat — berlaku ') + h(rentang(z))}</p>${jam}</div>`;
+  } else if (z.status === 'Menunggu') box = `<div class="verify v-warn"><div class="ic">⏳</div><span class="vt">BELUM DISETUJUI</span><p>Pengajuan masih menunggu persetujuan.</p></div>`;
+  else box = `<div class="verify v-bad"><div class="ic">✖</div><span class="vt">IZIN DITOLAK</span><p>${h(z.catatan || '')}</p></div>`;
+  app().innerHTML = `${box}
+    ${lokal ? '<div class="card note small">Diperiksa dari data di HP ini (offline).</div>' : ''}
+    ${z ? `<div class="card"><h3>${IKON_IZIN[z.jenisIzin] || ''} ${h(z.jenisIzin)}</h3>
+      <dl class="kv"><dt>Nomor</dt><dd>${h(z.id)}</dd><dt>Siswa</dt><dd>${(z.siswa || []).map(s => h(s.nama) + (s.kelas ? ' (' + h(s.kelas) + ')' : '')).join('<br>')}</dd>
+      <dt>Tanggal</dt><dd>${h(rentang(z))}</dd><dt>Keperluan</dt><dd>${h(z.keperluan)}</dd>
+      ${z.kembaliAktual ? `<dt>Sudah kembali</dt><dd>${h(fmtWaktu(z.kembaliAktual))}</dd>` : ''}</dl>
+      ${z.status === 'Disetujui' ? '<button class="btn ghost block" id="b-surat">Lihat surat lengkap</button>' : ''}</div><div id="sv"></div>` : ''}
+    <a class="btn ghost block no-print" href="${baseUrl()}#/">Ke beranda e-Izin</a>`;
+  const bs = $('#b-surat');
+  if (bs) bs.onclick = () => { $('#sv').innerHTML = suratHTML(z, c) + '<p></p>'; bs.remove(); };
+}
+
+// ---------------------------------------------------------------- surat izin
+function judulSurat(ji) {
+  return { 'Keluar Sekolah Sementara': 'SURAT IZIN KELUAR MADRASAH', 'Pulang Lebih Awal': 'SURAT IZIN PULANG', 'Mengikuti Lomba/Kegiatan': 'SURAT DISPENSASI' }[ji] || 'SURAT IZIN';
+}
+function qrSvg(text) {
+  try { const q = qrcode(0, 'M'); q.addData(text); q.make(); return q.createSvgTag({ cellSize: 4, margin: 8, scalable: true, alt: 'Kode QR verifikasi' }); }
+  catch (e) { return ''; }
+}
+function suratHTML(z, c) {
+  const lomba = z.jenisIzin === 'Mengikuti Lomba/Kegiatan';
+  const rows = [];
+  if (lomba) {
+    rows.push(['Kegiatan', z.namaKegiatan]);
+    if (z.penyelenggara) rows.push(['Penyelenggara', z.penyelenggara]);
+    if (z.tempat) rows.push(['Tempat', z.tempat]);
+    rows.push(['Hari/Tanggal', rentang(z)]);
+    if (z.pembina) rows.push(['Pendamping', z.pembina]);
+  } else {
+    rows.push(['Hari/Tanggal', rentang(z)]);
+    if (z.jamKeluar) rows.push(['Waktu', z.jenisIzin === 'Pulang Lebih Awal' ? 'Pulang pukul ' + fmtJam(z.jamKeluar) : 'Pukul ' + fmtJam(z.jamKeluar) + (z.jamKembali ? ' s.d. ' + fmtJam(z.jamKembali) : '')]);
+  }
+  rows.push(['Keperluan', z.keperluan]);
+  if (z.catatan) rows.push(['Catatan', z.catatan]);
+  const penutup = {
+    'Keluar Sekolah Sementara': 'Siswa yang bersangkutan wajib kembali ke madrasah sesuai waktu yang tercantum dan melapor kepada guru piket. Demikian surat izin ini diberikan untuk dipergunakan sebagaimana mestinya.',
+    'Mengikuti Lomba/Kegiatan': 'Sehubungan dengan kegiatan tersebut, siswa yang namanya tercantum di atas diberikan dispensasi dari kegiatan belajar mengajar selama waktu kegiatan berlangsung. Demikian surat dispensasi ini dibuat untuk dipergunakan sebagaimana mestinya.'
+  }[z.jenisIzin] || 'Demikian surat izin ini diberikan untuk dipergunakan sebagaimana mestinya.';
+  const tglTtd = (z.diputuskan || z.dibuat || today()).slice(0, 10);
+  return `<article class="paper" id="surat">
+    <div class="kop"><div class="k1">${h(c.kop1)}</div><div class="k2">${h(c.kop2)}</div><div class="k3">${h(c.kop3)}</div>${c.alamat ? `<div class="al">${h(c.alamat)}</div>` : ''}</div>
+    <hr class="kopline">
+    <div class="judul">${judulSurat(z.jenisIzin)}</div>
+    <div class="nomor">Nomor: ${h(z.id)}</div>
+    <p>Yang bertanda tangan di bawah ini, ${h(c.jabatan)} ${h(c.namaMadrasah)}, memberikan ${lomba ? 'dispensasi' : 'izin'} kepada:</p>
+    <table class="tbl"><thead><tr><th style="width:34px">No</th><th>Nama</th><th style="width:22%">NIS</th><th style="width:16%">Kelas</th></tr></thead>
+    <tbody>${(z.siswa || []).map((s, i) => `<tr><td>${i + 1}</td><td>${h(s.nama)}</td><td>${h(s.nis || '-')}</td><td>${h(s.kelas || '-')}</td></tr>`).join('')}</tbody></table>
+    <table class="det">${rows.map(([a, b]) => `<tr><td>${h(a)}</td><td>:</td><td>${h(b)}</td></tr>`).join('')}</table>
+    <p style="text-align:justify">${penutup}</p>
+    <div class="foot">
+      <div class="qr">${qrSvg(verifyUrl(z))}Pindai untuk cek keaslian<br>Kode: <b>${h(z.kode)}</b></div>
+      <div class="ttd">${h(c.kota)}, ${h(fmtTgl(tglTtd, false))}<br>${h(c.jabatan)},
+        ${c.ttd ? `<img src="${c.ttd}" alt="Tanda tangan">` : '<div class="blank"></div>'}
+        <b><u>${h(c.penandatangan)}</u></b>${c.nip ? `<br>NIP. ${h(c.nip)}` : ''}</div>
+    </div>
+    <div class="ket">Diajukan oleh ${h(z.namaPemohon)} (${h(z.jenisPemohon)}) · Disetujui secara elektronik melalui e-Izin pada ${h(fmtWaktu(z.diputuskan))}. Keaslian surat dapat diperiksa dengan memindai kode QR.</div>
+  </article>`;
+}
+
+// ---------------------------------------------------------------- admin: login
+function viewLogin() {
+  app().innerHTML = `
+    <div class="card" style="max-width:420px;margin:24px auto">
+      <h2>Masuk sebagai Waka</h2>
+      <p class="small mut">Gunakan PIN admin yang tertera di sheet <i>Pengaturan</i>.${DEMO ? ' Untuk demo: <b>123456</b>.' : ''}</p>
+      <label for="pin">PIN</label>
+      <input id="pin" type="password" inputmode="numeric" autocomplete="current-password">
+      <p class="small" id="l-err" style="color:var(--red)"></p>
+      <button class="btn block" id="l-go">Masuk</button>
+    </div>`;
+  const go = async () => {
+    const pin = $('#pin').value.trim(); if (!pin) return;
+    $('#l-go').disabled = true; $('#l-err').textContent = '';
+    try {
+      const r = await api('login', { pin });
+      if (!r.ok) { $('#l-err').textContent = r.error || 'PIN salah'; return; }
+      cfg = Object.assign({}, DEFAULT_CFG, r.config); pendingTtd(); store.set('cfg', cfg);
+      store.set('pinhash', await sha(pin));
+      admin = { pin }; store.set('admin', admin);
+      location.hash = '#/admin/menunggu'; route(); syncAdmin(true);
+    } catch (e) {
+      const hs = store.get('pinhash', '');
+      if (hs && hs === await sha(pin)) {
+        admin = { pin }; store.set('admin', admin);
+        toast('Masuk dalam mode offline'); location.hash = '#/admin/menunggu'; route();
+      } else $('#l-err').textContent = 'Tidak ada koneksi. Masuk offline hanya bisa di HP yang sebelumnya pernah login online.';
+    } finally { const b = $('#l-go'); if (b) b.disabled = false; }
+  };
+  $('#l-go').onclick = go;
+  $('#pin').onkeydown = e => { if (e.key === 'Enter') go(); };
+  setTimeout(() => $('#pin') && $('#pin').focus(), 50);
+}
+
+// ---------------------------------------------------------------- admin: kerangka
+function viewAdmin(tab, soft) {
+  renderNav();
+  if (!soft && Date.now() - store.get('lastsync', 0) > 30000) syncAdmin(true);
+  if (tab === 'menunggu') return adminMenunggu();
+  if (tab === 'input') return adminInput();
+  if (tab === 'riwayat') return adminRiwayat();
+  if (tab === 'rekap') return adminRekap();
+  if (tab === 'setelan') return adminSetelan();
+  adminMenunggu();
+}
+
+function detailHTML(z) {
+  return `<dl class="kv">
+    <dt>Siswa</dt><dd>${(z.siswa || []).map(s => `${h(s.nama)}${s.kelas ? ' <span class="mut">(' + h(s.kelas) + ')</span>' : ''}`).join('<br>')}</dd>
+    <dt>Pemohon</dt><dd>${h(z.namaPemohon)} <span class="mut">· ${h(z.jenisPemohon)}</span>${z.hpPemohon ? ` · <a href="https://wa.me/${waNum(z.hpPemohon)}" target="_blank" rel="noopener">${h(z.hpPemohon)}</a>` : ''}</dd>
+    <dt>Tanggal</dt><dd>${h(rentang(z))}</dd>
+    ${z.jamKeluar ? `<dt>Waktu</dt><dd>${fmtJam(z.jamKeluar)}${z.jamKembali ? ' – ' + fmtJam(z.jamKembali) : ''}</dd>` : ''}
+    ${z.namaKegiatan ? `<dt>Kegiatan</dt><dd>${h(z.namaKegiatan)}${z.tempat ? ' · ' + h(z.tempat) : ''}${z.penyelenggara ? ' · ' + h(z.penyelenggara) : ''}</dd>` : ''}
+    ${z.pembina ? `<dt>Pendamping</dt><dd>${h(z.pembina)}</dd>` : ''}
+    <dt>Keperluan</dt><dd>${h(z.keperluan)}</dd>
+    ${z.lampiran ? `<dt>Lampiran</dt><dd>${z.lampiran.startsWith('data:image/') ? `<img class="thumb" src="${z.lampiran}" alt="Lampiran">` : `<a href="${h(z.lampiran)}" target="_blank" rel="noopener">Buka foto lampiran</a>`}</dd>` : ''}
+    <dt>Diajukan</dt><dd>${h(fmtWaktu(z.dibuat))} <span class="mut">· ${h(z.sumber || '')}</span></dd>
+  </dl>`;
+}
+
+// ---------------------------------------------------------------- admin: menunggu
+function adminMenunggu() {
+  const list = records.filter(r => r.status === 'Menunggu').sort((a, b) => String(a.dibuat).localeCompare(String(b.dibuat)));
+  app().innerHTML = `
+    <h1>Menunggu Persetujuan</h1>
+    <p class="small mut">${list.length ? list.length + ' pengajuan perlu ditinjau.' : ''} ${store.get('lastsync', 0) ? 'Sinkron terakhir ' + fmtWaktu(localISO(new Date(store.get('lastsync')))) : ''}</p>
+    ${list.length ? list.map(z => `
+      <div class="card" data-id="${h(z.id)}">
+        <div class="meta"><span class="badge st-Menunggu">${IKON_IZIN[z.jenisIzin] || ''} ${h(z.jenisIzin)}</span><span class="small mut">${h(z.id)}</span></div>
+        ${detailHTML(z)}
+        <textarea rows="2" class="cat" placeholder="Catatan untuk pemohon (opsional, wajib jika menolak)"></textarea>
+        <div class="btns" style="margin-top:8px">
+          <button class="btn red ghost" data-act="Ditolak">Tolak</button>
+          <button class="btn" data-act="Disetujui">✓ Setujui</button>
+        </div>
+      </div>`).join('') : `<div class="empty">Tidak ada pengajuan yang menunggu 👍<br><button class="btn ghost sm" id="b-sync" style="margin-top:12px">⟳ Periksa pengajuan baru</button></div>`}`;
+  const bs = $('#b-sync'); if (bs) bs.onclick = () => syncAdmin();
+  $$('[data-act]').forEach(b => b.onclick = () => {
+    const cardEl = b.closest('[data-id]'); const id = cardEl.dataset.id; const cat = $('.cat', cardEl).value.trim();
+    if (b.dataset.act === 'Ditolak' && !cat) { $('.cat', cardEl).focus(); return toast('Tulis alasan penolakan di kolom catatan'); }
+    pushOp({ type: 'putus', id, status: b.dataset.act, catatan: cat, waktu: localISO() });
+    if (b.dataset.act === 'Disetujui') toast(`Disetujui ✓ <a href="#/surat/${encodeURIComponent(id)}">Lihat surat</a>`, 4500);
+    else toast('Pengajuan ditolak');
+    adminMenunggu(); renderNav();
+  });
+}
+
+// ---------------------------------------------------------------- admin: input langsung
+let adminDraft = null;
+function adminInput() {
+  if (!adminDraft) adminDraft = blankForm('admin');
+  app().innerHTML = `<h1>Input Izin Langsung</h1><p class="small mut">Untuk siswa yang datang langsung. Bisa dipakai <b>tanpa internet</b> — surat langsung terbit dan data dikirim ke spreadsheet saat online.</p><div id="frm"></div>`;
+  mountForm($('#frm'), adminDraft, 'admin', async f => {
+    const now = localISO();
+    const izin = Object.assign(cleanForm(f), { id: newId(), kode: rand(6), dibuat: now, sumber: 'Langsung', status: 'Disetujui', diputuskan: now, catatan: '', kembaliAktual: '', lampiran: '' });
+    pushOp({ type: 'upsert', izin });
+    adminDraft = null;
+    location.hash = '#/surat/' + encodeURIComponent(izin.id);
+  });
+}
+
+// ---------------------------------------------------------------- admin: surat
+function viewSuratAdmin(id) {
+  renderNav();
+  const z = records.find(r => r.id === id);
+  if (!z) { app().innerHTML = '<div class="empty">Data izin tidak ditemukan di HP ini.</div><a class="btn ghost block" href="#/admin/riwayat">← Riwayat</a>'; return; }
+  const belum = ops.some(o => o.id === id || (o.izin && o.izin.id === id));
+  const kirimTxt = `Surat ${judulSurat(z.jenisIzin).toLowerCase()} untuk ${namaSiswa(z, 5)} (${rentang(z)}) telah disetujui. Lihat/cek surat: ${verifyUrl(z)}`;
+  const bisaKembali = z.status === 'Disetujui' && z.jenisIzin === 'Keluar Sekolah Sementara' && !z.kembaliAktual;
+  app().innerHTML = `
+    <div class="toolbar no-print">
+      <a class="btn ghost" href="#/admin/riwayat">← Riwayat</a>
+      ${z.status === 'Disetujui' ? `<button class="btn" id="b-print">🖨️ Cetak</button>
+      <a class="btn ghost" target="_blank" rel="noopener" href="https://wa.me/${z.hpPemohon ? waNum(z.hpPemohon) : ''}?text=${encodeURIComponent(kirimTxt)}">💬 Kirim WA</a>` : ''}
+    </div>
+    ${belum ? '<div class="card note small no-print">⟳ Belum terkirim ke server. Surat tetap sah ditunjukkan dari HP ini; pemindaian QR oleh orang lain baru berfungsi setelah sinkron.</div>' : ''}
+    ${bisaKembali ? '<button class="btn ghost block no-print" id="b-kembali" style="margin-bottom:12px">↩︎ Catat siswa sudah kembali</button>' : ''}
+    ${z.kembaliAktual ? `<div class="card ok small no-print">Siswa tercatat kembali: <b>${h(fmtWaktu(z.kembaliAktual))}</b></div>` : ''}
+    ${z.status === 'Disetujui' ? suratHTML(z, cfg) : `<div class="card"><div class="meta"><span class="badge st-${h(z.status)}">${h(z.status)}</span><span class="small mut">${h(z.id)}</span></div><h2>${h(z.jenisIzin)}</h2>${detailHTML(z)}${z.catatan ? `<p><b>Catatan:</b> ${h(z.catatan)}</p>` : ''}</div>`}`;
+  const bp = $('#b-print'); if (bp) bp.onclick = () => window.print();
+  const bk = $('#b-kembali'); if (bk) bk.onclick = () => { pushOp({ type: 'kembali', id, waktu: localISO() }); toast('Waktu kembali dicatat'); viewSuratAdmin(id); };
+}
+
+// ---------------------------------------------------------------- admin: riwayat
+let riwayatF = { q: '', status: '', jenis: '', n: 60 };
+function adminRiwayat() {
+  const F = riwayatF;
+  const q = F.q.toLowerCase();
+  const list = records.filter(r => (!F.status || r.status === F.status) && (!F.jenis || r.jenisIzin === F.jenis) &&
+    (!q || `${r.id} ${r.namaPemohon} ${r.keperluan} ${r.namaKegiatan} ${(r.siswa || []).map(s => s.nama + ' ' + s.kelas + ' ' + s.nis).join(' ')}`.toLowerCase().includes(q)))
+    .sort((a, b) => String(b.dibuat).localeCompare(String(a.dibuat)));
+  const pend = new Set(ops.map(o => o.id || (o.izin && o.izin.id)));
+  app().innerHTML = `
+    <h1>Riwayat Izin</h1>
+    <div class="filters">
+      <input id="r-q" placeholder="Cari nama siswa, kelas, pemohon…" value="${h(F.q)}" style="flex-basis:100%">
+      <select id="r-s"><option value="">Semua status</option>${['Menunggu', 'Disetujui', 'Ditolak'].map(s => `<option ${F.status === s ? 'selected' : ''}>${s}</option>`).join('')}</select>
+      <select id="r-j"><option value="">Semua jenis</option>${JENIS_IZIN.map(s => `<option ${F.jenis === s ? 'selected' : ''}>${s}</option>`).join('')}</select>
+    </div>
+    <p class="small mut">${list.length} data</p>
+    <div id="r-list">${list.slice(0, F.n).map(z => `<a class="item" href="#/surat/${encodeURIComponent(z.id)}">
+      <div class="meta"><span class="badge st-${h(z.status)}">${h(z.status)}</span><span class="small mut">${h(fmtTgl(z.tglMulai))}</span>${pend.has(z.id) ? '<span class="badge st-Menunggu">⟳ belum terkirim</span>' : ''}${z.kembaliAktual ? '<span class="badge">↩︎ kembali</span>' : ''}</div>
+      <div class="t">${IKON_IZIN[z.jenisIzin] || ''} ${h(namaSiswa(z))}</div>
+      <div class="small mut">${h(z.jenisIzin)} · oleh ${h(z.namaPemohon)} (${h(z.jenisPemohon)})</div></a>`).join('') || '<div class="empty">Tidak ada data.</div>'}</div>
+    ${list.length > F.n ? '<button class="btn ghost block" id="r-more">Tampilkan lebih banyak</button>' : ''}`;
+  let t;
+  $('#r-q').oninput = e => { clearTimeout(t); t = setTimeout(() => { F.q = e.target.value; F.n = 60; adminRiwayat(); const i = $('#r-q'); i.focus(); i.setSelectionRange(i.value.length, i.value.length); }, 250); };
+  $('#r-s').onchange = e => { F.status = e.target.value; adminRiwayat(); };
+  $('#r-j').onchange = e => { F.jenis = e.target.value; adminRiwayat(); };
+  const m = $('#r-more'); if (m) m.onclick = () => { F.n += 60; adminRiwayat(); };
+}
+
+// ---------------------------------------------------------------- admin: rekap
+let rekapBulan = '';
+function rekapData(bulan) {
+  const recs = records.filter(r => !bulan || String(r.tglMulai).slice(0, 7) === bulan);
+  const ok = recs.filter(r => r.status === 'Disetujui');
+  const det = []; ok.forEach(r => (r.siswa || []).forEach(s => det.push({ r, s })));
+  const count = (arr, key) => { const m = new Map(); arr.forEach(x => { const k = key(x); m.set(k, (m.get(k) || 0) + 1); }); return Array.from(m, ([k, v]) => [k, v]).sort((a, b) => b[1] - a[1]); };
+  const perSiswa = new Map();
+  det.forEach(({ r, s }) => {
+    const k = (s.nis || '') + '|' + s.nama.toLowerCase();
+    const o = perSiswa.get(k) || { nama: s.nama, nis: s.nis, kelas: s.kelas, total: 0, keluar: 0, lomba: 0, lain: 0 };
+    o.total++;
+    if (r.jenisIzin === 'Mengikuti Lomba/Kegiatan') o.lomba++; else if (r.jenisIzin === 'Lainnya') o.lain++; else o.keluar++;
+    perSiswa.set(k, o);
+  });
+  return {
+    recs, ok, det,
+    st: { total: recs.length, ok: ok.length, tolak: recs.filter(r => r.status === 'Ditolak').length, tunggu: recs.filter(r => r.status === 'Menunggu').length },
+    jenis: JENIS_IZIN.map(j => [j, det.filter(d => d.r.jenisIzin === j).length]),
+    pemohon: count(recs, r => r.jenisPemohon),
+    kelas: count(det, d => d.s.kelas || '(tanpa kelas)'),
+    siswa: Array.from(perSiswa.values()).sort((a, b) => b.total - a.total || a.nama.localeCompare(b.nama))
+  };
+}
+function bars(rows, unit) {
+  const max = Math.max(1, ...rows.map(r => r[1]));
+  return `<div class="bars">${rows.map(([k, v]) => `<div class="brow" title="${h(k)}: ${v} ${unit}"><span class="nm">${h(k)}</span><div class="btrack"><div class="bfill${v ? '' : ' z'}" style="width:${(v / max * 100).toFixed(1)}%"></div></div><span class="v">${v}</span></div>`).join('')}</div>`;
+}
+function adminRekap() {
+  const bulanSet = Array.from(new Set(records.map(r => String(r.tglMulai).slice(0, 7)).filter(x => /^\d{4}-\d{2}$/.test(x)))).sort().reverse();
+  if (rekapBulan && !bulanSet.includes(rekapBulan)) rekapBulan = '';
+  const D = rekapData(rekapBulan);
+  const lbl = b => { const [y, m] = b.split('-'); return BULAN[Number(m) - 1] + ' ' + y; };
+  app().innerHTML = `
+    <h1>Rekap Izin</h1>
+    <div class="filters"><select id="k-b"><option value="">Semua bulan</option>${bulanSet.map(b => `<option value="${b}" ${b === rekapBulan ? 'selected' : ''}>${lbl(b)}</option>`).join('')}</select>
+      <button class="btn" id="k-x">⬇︎ Unduh Excel</button></div>
+    <div class="tiles">
+      <div class="tile"><b>${D.st.total}</b><span>Pengajuan</span></div>
+      <div class="tile"><b>${D.st.ok}</b><span>Disetujui</span></div>
+      <div class="tile"><b>${D.st.tolak}</b><span>Ditolak</span></div>
+      <div class="tile"><b>${D.st.tunggu}</b><span>Menunggu</span></div>
+      <div class="tile"><b>${D.siswa.length}</b><span>Siswa berizin</span></div>
+    </div>
+    ${D.st.total ? `
+    <div class="card"><h3>Siswa diizinkan per jenis izin</h3><p class="small mut">Dihitung per siswa, hanya izin yang disetujui.</p>${bars(D.jenis, 'siswa')}</div>
+    <div class="card"><h3>Pengajuan per jenis pemohon</h3>${bars(D.pemohon, 'pengajuan')}</div>
+    <div class="card"><h3>Per kelas</h3><p class="small mut">Jumlah siswa diizinkan (disetujui).</p>${D.kelas.length ? bars(D.kelas.slice(0, 15), 'siswa') : '<p class="mut small">Belum ada data.</p>'}</div>
+    <div class="card"><h3>Siswa paling sering izin</h3><p class="small mut">Bahan pembinaan bersama wali kelas & BK.</p>
+      ${D.siswa.length ? `<table class="tbl" style="font-family:inherit"><thead><tr><th>Nama</th><th>Kelas</th><th title="Total">Total</th><th title="Keluar/Pulang">Keluar/ Pulang</th><th title="Lomba/Kegiatan">Lomba</th></tr></thead><tbody>
+      ${D.siswa.slice(0, 10).map(s => `<tr><td>${h(s.nama)}</td><td>${h(s.kelas)}</td><td><b>${s.total}</b></td><td>${s.keluar}</td><td>${s.lomba}</td></tr>`).join('')}</tbody></table>` : '<p class="mut small">Belum ada data.</p>'}</div>` : '<div class="empty">Belum ada data izin pada periode ini.</div>'}`;
+  $('#k-b').onchange = e => { rekapBulan = e.target.value; adminRekap(); };
+  $('#k-x').onclick = () => exportExcel(D, rekapBulan ? lbl(rekapBulan) : 'Semua');
+}
+
+// ---------------------------------------------------------------- ekspor Excel (.xlsx tanpa pustaka luar)
+const CRC_T = (() => { const t = new Uint32Array(256); for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
+function crc32(b) { let c = 0xFFFFFFFF; for (let i = 0; i < b.length; i++) c = CRC_T[(c ^ b[i]) & 255] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; }
+function zipStore(files) {
+  const enc = new TextEncoder(); const parts = [], central = []; let off = 0;
+  for (const f of files) {
+    const nm = enc.encode(f.name), data = typeof f.data === 'string' ? enc.encode(f.data) : f.data, crc = crc32(data);
+    const lh = new DataView(new ArrayBuffer(30));
+    lh.setUint32(0, 0x04034b50, true); lh.setUint16(4, 20, true); lh.setUint16(6, 0x0800, true); lh.setUint16(8, 0, true);
+    lh.setUint16(10, 0, true); lh.setUint16(12, 0x21, true); lh.setUint32(14, crc, true); lh.setUint32(18, data.length, true);
+    lh.setUint32(22, data.length, true); lh.setUint16(26, nm.length, true); lh.setUint16(28, 0, true);
+    parts.push(new Uint8Array(lh.buffer), nm, data);
+    const ch = new DataView(new ArrayBuffer(46));
+    ch.setUint32(0, 0x02014b50, true); ch.setUint16(4, 20, true); ch.setUint16(6, 20, true); ch.setUint16(8, 0x0800, true);
+    ch.setUint16(10, 0, true); ch.setUint16(12, 0, true); ch.setUint16(14, 0x21, true); ch.setUint32(16, crc, true);
+    ch.setUint32(20, data.length, true); ch.setUint32(24, data.length, true); ch.setUint16(28, nm.length, true);
+    ch.setUint32(42, off, true);
+    central.push(new Uint8Array(ch.buffer), nm);
+    off += 30 + nm.length + data.length;
+  }
+  const cdSize = central.reduce((a, b) => a + b.length, 0);
+  const end = new DataView(new ArrayBuffer(22));
+  end.setUint32(0, 0x06054b50, true); end.setUint16(8, files.length, true); end.setUint16(10, files.length, true);
+  end.setUint32(12, cdSize, true); end.setUint32(16, off, true);
+  return new Blob([...parts, ...central, new Uint8Array(end.buffer)], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+}
+function xmlEsc(s) { return String(s).replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+function colName(i) { let s = ''; i++; while (i > 0) { const m = (i - 1) % 26; s = String.fromCharCode(65 + m) + s; i = Math.floor((i - 1) / 26); } return s; }
+function makeXlsx(sheets) {
+  const NS = 'http://schemas.openxmlformats.org/spreadsheetml/2006/main', RNS = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships';
+  const head = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
+  const files = [];
+  files.push({ name: '[Content_Types].xml', data: head + '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>' + sheets.map((_, i) => `<Override PartName="/xl/worksheets/sheet${i + 1}.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>`).join('') + '</Types>' });
+  files.push({ name: '_rels/.rels', data: head + '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>' });
+  files.push({ name: 'xl/workbook.xml', data: head + `<workbook xmlns="${NS}" xmlns:r="${RNS}"><sheets>` + sheets.map((s, i) => `<sheet name="${xmlEsc(s.name.slice(0, 31))}" sheetId="${i + 1}" r:id="rId${i + 1}"/>`).join('') + '</sheets></workbook>' });
+  files.push({ name: 'xl/_rels/workbook.xml.rels', data: head + '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">' + sheets.map((_, i) => `<Relationship Id="rId${i + 1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet${i + 1}.xml"/>`).join('') + `<Relationship Id="rId${sheets.length + 1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>` });
+  files.push({ name: 'xl/styles.xml', data: head + `<styleSheet xmlns="${NS}"><fonts count="2"><font><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="11"/><name val="Calibri"/></font></fonts><fills count="3"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FFE6F2EA"/><bgColor indexed="64"/></patternFill></fill></fills><borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="2"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="2" borderId="0" xfId="0" applyFont="1" applyFill="1"/></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>` });
+  sheets.forEach((s, si) => {
+    let x = head + `<worksheet xmlns="${NS}"><sheetViews><sheetView workbookViewId="0"><pane ySplit="1" topLeftCell="A2" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews>`;
+    if (s.widths) x += '<cols>' + s.widths.map((w, i) => `<col min="${i + 1}" max="${i + 1}" width="${w}" customWidth="1"/>`).join('') + '</cols>';
+    x += '<sheetData>';
+    s.rows.forEach((r, ri) => {
+      x += `<row r="${ri + 1}">`;
+      r.forEach((v, ci) => {
+        const ref = colName(ci) + (ri + 1), st = ri === 0 ? ' s="1"' : '';
+        if (typeof v === 'number' && isFinite(v)) x += `<c r="${ref}"${st}><v>${v}</v></c>`;
+        else if (v !== '' && v !== null && v !== undefined) x += `<c r="${ref}" t="inlineStr"${st}><is><t xml:space="preserve">${xmlEsc(v)}</t></is></c>`;
+      });
+      x += '</row>';
+    });
+    x += '</sheetData>';
+    if (s.rows.length > 1) x += `<autoFilter ref="A1:${colName(s.rows[0].length - 1)}${s.rows.length}"/>`;
+    x += '</worksheet>';
+    files.push({ name: `xl/worksheets/sheet${si + 1}.xml`, data: x });
+  });
+  return zipStore(files);
+}
+function exportExcel(D, label) {
+  const recs = D.recs.slice().sort((a, b) => String(a.tglMulai).localeCompare(String(b.tglMulai)));
+  const data = [['ID', 'Status', 'Jenis Izin', 'Tanggal Mulai', 'Tanggal Selesai', 'Jam Keluar', 'Jam Kembali', 'Daftar Siswa', 'Jumlah Siswa', 'Jenis Pemohon', 'Nama Pemohon', 'HP Pemohon', 'Keperluan', 'Kegiatan/Lomba', 'Tempat', 'Penyelenggara', 'Pendamping', 'Sumber', 'Diajukan', 'Diputuskan', 'Catatan Waka', 'Kembali Aktual']];
+  recs.forEach(r => data.push([r.id, r.status, r.jenisIzin, r.tglMulai, r.tglSelesai, r.jamKeluar, r.jamKembali, (r.siswa || []).map(s => `${s.nama} (${s.kelas || '-'})`).join('; '), (r.siswa || []).length, r.jenisPemohon, r.namaPemohon, r.hpPemohon, r.keperluan, r.namaKegiatan, r.tempat, r.penyelenggara, r.pembina, r.sumber, String(r.dibuat || '').replace('T', ' '), String(r.diputuskan || '').replace('T', ' '), r.catatan, String(r.kembaliAktual || '').replace('T', ' ')]));
+  const per = [['ID', 'Tanggal', 'NIS', 'Nama', 'Kelas', 'Jenis Izin', 'Jenis Pemohon', 'Status']];
+  recs.forEach(r => (r.siswa || []).forEach(s => per.push([r.id, r.tglMulai, s.nis, s.nama, s.kelas, r.jenisIzin, r.jenisPemohon, r.status])));
+  const rek = [['Nama', 'NIS', 'Kelas', 'Total Disetujui', 'Keluar/Pulang', 'Lomba/Kegiatan', 'Lainnya']];
+  D.siswa.forEach(s => rek.push([s.nama, s.nis, s.kelas, s.total, s.keluar, s.lomba, s.lain]));
+  const blob = makeXlsx([
+    { name: 'Data Izin', rows: data, widths: [18, 11, 24, 12, 12, 9, 9, 40, 8, 22, 24, 15, 40, 26, 20, 20, 22, 10, 18, 18, 24, 18] },
+    { name: 'Per Siswa', rows: per, widths: [18, 12, 12, 28, 10, 24, 22, 11] },
+    { name: 'Rekap Siswa', rows: rek, widths: [28, 12, 10, 14, 13, 14, 9] }
+  ]);
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `Rekap Izin Siswa - ${label}.xlsx`;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+  toast('File Excel diunduh');
+}
+
+// ---------------------------------------------------------------- admin: setelan
+function adminSetelan() {
+  const ls = store.get('lastsync', 0);
+  app().innerHTML = `
+    <h1>Setelan</h1>
+    <div class="card">
+      <h3>Tanda tangan digital</h3>
+      <p class="small mut">Digambar sekali, otomatis menempel di setiap surat yang Bapak setujui.</p>
+      ${cfg.ttd ? `<p class="small">Tanda tangan saat ini:</p><img class="sigprev" src="${cfg.ttd}" alt="Tanda tangan saat ini">` : '<p class="small" style="color:var(--amb)">Belum ada tanda tangan.</p>'}
+      <canvas class="sig" id="sig" aria-label="Area tanda tangan"></canvas>
+      <div class="btns" style="margin-top:8px"><button class="btn ghost" id="s-clr">Hapus coretan</button><button class="btn" id="s-save">Simpan tanda tangan</button></div>
+    </div>
+    <div class="card">
+      <h3>Sinkronisasi</h3>
+      <p class="small">${DEMO ? 'Mode demo — belum terhubung ke spreadsheet.' : (online ? 'Terhubung ke server.' : 'Sedang offline.')}<br>
+      Perubahan belum terkirim: <b>${ops.length}</b><br>Sinkron terakhir: ${ls ? h(fmtWaktu(localISO(new Date(ls)))) : '-'}<br>
+      Data siswa di HP ini: <b>${siswaList.length}</b> siswa</p>
+      <button class="btn ghost block" id="s-sync">⟳ Sinkronkan sekarang</button>
+    </div>
+    <div class="card small">
+      <h3>Identitas surat</h3>
+      <dl class="kv"><dt>Madrasah</dt><dd>${h(cfg.kop3)}</dd><dt>Alamat</dt><dd>${h(cfg.alamat || '-')}</dd><dt>Penanda tangan</dt><dd>${h(cfg.penandatangan)}</dd><dt>NIP</dt><dd>${h(cfg.nip || '-')}</dd><dt>Jabatan</dt><dd>${h(cfg.jabatan)}</dd><dt>WA admin</dt><dd>${h(cfg.waAdmin || '-')}</dd></dl>
+      <p class="mut">Ubah di sheet <b>Pengaturan</b> pada Google Spreadsheet, lalu tekan Sinkronkan.</p>
+    </div>
+    <div class="card small">
+      <h3>Pasang di layar utama HP</h3>
+      <p>Agar bisa dibuka tanpa internet: buka menu browser (⋮) → <b>Tambahkan ke layar utama</b> / <b>Instal aplikasi</b>. Di iPhone: tombol Bagikan → <b>Tambah ke Layar Utama</b>.</p>
+      ${installPrompt ? '<button class="btn block" id="s-inst">📲 Pasang aplikasi sekarang</button>' : ''}
+    </div>
+    ${DEMO ? '<button class="btn red ghost block" id="s-reset" style="margin-bottom:10px">Hapus semua data demo</button>' : ''}
+    <button class="btn ghost block" id="s-out">Keluar dari akun admin</button>`;
+  sigPad($('#sig'));
+  $('#s-sync').onclick = () => syncAdmin();
+  $('#s-out').onclick = () => { if (ops.length && !confirm(`Masih ada ${ops.length} perubahan yang belum terkirim. Perubahan tetap disimpan di HP ini dan terkirim saat Anda masuk lagi. Keluar sekarang?`)) return; logout(); };
+  const r = $('#s-reset'); if (r) r.onclick = () => { if (!confirm('Hapus semua data demo di HP ini?')) return; ['demo_db', 'records', 'ops', 'mine', 'outbox', 'lastsync', 'cfg', 'siswa', 'siswa_t'].forEach(k => store.del(k)); location.reload(); };
+  const ins = $('#s-inst'); if (ins) ins.onclick = async () => { installPrompt.prompt(); installPrompt = null; adminSetelan(); };
+}
+
+function sigPad(cv) {
+  const ctx = cv.getContext('2d'); let drawing = false, dirty = false, last = null;
+  const fit = () => { const r = cv.getBoundingClientRect(), d = window.devicePixelRatio || 1; cv.width = r.width * d; cv.height = r.height * d; ctx.scale(d, d); ctx.lineWidth = 2.6; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#0b1a5c'; };
+  fit();
+  const pt = e => { const r = cv.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; };
+  cv.onpointerdown = e => { drawing = true; last = pt(e); cv.setPointerCapture(e.pointerId); ctx.beginPath(); ctx.arc(last.x, last.y, 1.2, 0, 7); ctx.fillStyle = ctx.strokeStyle; ctx.fill(); dirty = true; };
+  cv.onpointermove = e => { if (!drawing) return; const p = pt(e); ctx.beginPath(); ctx.moveTo(last.x, last.y); ctx.lineTo(p.x, p.y); ctx.stroke(); last = p; dirty = true; };
+  cv.onpointerup = cv.onpointercancel = () => { drawing = false; };
+  $('#s-clr').onclick = () => { ctx.clearRect(0, 0, cv.width, cv.height); dirty = false; };
+  $('#s-save').onclick = () => {
+    if (!dirty) return toast('Silakan tanda tangan di kotak terlebih dahulu');
+    const data = trimSignature(cv);
+    if (!data) return toast('Tanda tangan terlalu rumit, coba lebih sederhana');
+    pushOp({ type: 'ttd', dataUrl: data });
+    toast('Tanda tangan disimpan ✓'); adminSetelan();
+  };
+}
+
+function trimSignature(cv) {
+  const ctx = cv.getContext('2d'); const { width: w, height: hh } = cv;
+  const px = ctx.getImageData(0, 0, w, hh).data;
+  let x0 = w, y0 = hh, x1 = -1, y1 = -1;
+  for (let y = 0; y < hh; y++) for (let x = 0; x < w; x++) if (px[(y * w + x) * 4 + 3] > 10) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+  if (x1 < 0) return '';
+  const m = 6 * (window.devicePixelRatio || 1); x0 = Math.max(0, x0 - m); y0 = Math.max(0, y0 - m); x1 = Math.min(w - 1, x1 + m); y1 = Math.min(hh - 1, y1 + m);
+  for (const H of [140, 110, 90, 70]) {
+    const sc = Math.min(1, H / (y1 - y0 + 1));
+    const o = document.createElement('canvas'); o.width = Math.max(1, Math.round((x1 - x0 + 1) * sc)); o.height = Math.max(1, Math.round((y1 - y0 + 1) * sc));
+    o.getContext('2d').drawImage(cv, x0, y0, x1 - x0 + 1, y1 - y0 + 1, 0, 0, o.width, o.height);
+    const d = o.toDataURL('image/png');
+    if (d.length < 45000) return d;
+  }
+  return '';
+}
+
+// ---------------------------------------------------------------- mulai
+window.addEventListener('hashchange', route);
+window.addEventListener('online', () => { online = true; renderHeader(); onReconnect(); });
+window.addEventListener('offline', () => { online = false; renderHeader(); });
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); installPrompt = e; });
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState !== 'visible' || !(DEMO || navigator.onLine)) return;
+  onReconnect();
+  if (curRoute() === 'status' && !location.search) viewStatus();
+});
+setInterval(() => { if (admin && document.visibilityState === 'visible' && (location.hash || '').startsWith('#/admin')) syncAdmin(true); }, 60000);
+if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+  navigator.serviceWorker.register('sw.js').catch(() => { });
+}
+route();
+if (DEMO || navigator.onLine) { refreshConfig().then(() => { renderHeader(); loadSiswa(); }); flushOutbox(); }
+</script>
+</body>
+</html>
