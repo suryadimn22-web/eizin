@@ -1,9 +1,9 @@
 /* e-Izin service worker — membuat aplikasi tetap terbuka tanpa internet */
-const CACHE = 'eizin-v2';
+const CACHE = 'eizin-v3';
 const ASSETS = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './kop.png'];
 
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS.map(u => new Request(u, { cache: 'reload' })))).then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', e => {
@@ -19,7 +19,7 @@ self.addEventListener('fetch', e => {
     e.respondWith((async () => {
       const cache = await caches.open(CACHE);
       try {
-        const net = await Promise.race([fetch(req), new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 4000))]);
+        const net = await Promise.race([fetch(new Request(req.url, { cache: 'no-cache', credentials: 'same-origin' })), new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 4000))]);
         if (net && net.ok) cache.put('./index.html', net.clone());
         return net;
       } catch (err) {
