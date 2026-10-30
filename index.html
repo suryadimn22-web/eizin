@@ -41,7 +41,7 @@ p{margin:6px 0}
 .card.ok{background:var(--gl);border-color:#bfe0cb}
 label{display:block;font-weight:600;font-size:13.5px;margin:14px 0 6px}
 label:first-child{margin-top:0}
-input,select,textarea{width:100%;padding:11px 12px;border:1px solid #c9d4ce;border-radius:10px;font:inherit;background:#fff;color:inherit;min-height:44px}
+input,select,textarea{width:100%;padding:11px 12px;border:1px solid #c9d4ce;border-radius:10px;font:inherit;font-size:16px;background:#fff;color:inherit;min-height:44px}
 textarea{resize:vertical}
 input:focus,select:focus,textarea:focus{outline:2px solid var(--g2);outline-offset:0;border-color:var(--g2)}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -2472,7 +2472,7 @@ var qrcode = function() {
 const API_URL = 'https://script.google.com/macros/s/AKfycby3USSiWgvvo4aS6pMbx-Sm_i_YNXMJlaY_37x8_nHShn5Xtqcgqqp2SME_YDLq9oQ/exec';
 /* ===================================================================== */
 
-const APP_VERSI = '1.2';
+const APP_VERSI = '1.3';
 const KOP_IMG = 'kop.png'; // gambar kop resmi madrasah (kosongkan '' untuk kop teks)
 const SERVER = (localStorage.getItem('eizin_api') || API_URL).trim();
 const DEMO = !SERVER;
@@ -2800,6 +2800,7 @@ function route() {
 function refreshAdminView() {
   const [a, b] = (location.hash || '#/').slice(2).split('/');
   renderNav();
+  if (a === 'surat' && admin && !location.search) return viewSuratAdmin(decodeURIComponent(b || ''));
   if (a !== 'admin' || !admin) return;
   const tab = b || 'menunggu';
   const ae = document.activeElement;

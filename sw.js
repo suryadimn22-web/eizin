@@ -1,5 +1,5 @@
 /* e-Izin service worker — membuat aplikasi tetap terbuka tanpa internet */
-const CACHE = 'eizin-v4';
+const CACHE = 'eizin-v5';
 const ASSETS = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './kop.png'];
 
 self.addEventListener('install', e => {
