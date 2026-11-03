@@ -46,6 +46,8 @@ textarea{resize:vertical}
 input:focus,select:focus,textarea:focus{outline:2px solid var(--g2);outline-offset:0;border-color:var(--g2)}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .row2>div>label{margin-top:14px}
+.row2>div{min-width:0}
+input[type=date],input[type=time]{min-width:0;max-width:100%;-webkit-appearance:none;appearance:none}
 .seg{display:flex;flex-wrap:wrap;gap:6px}
 .seg button{flex:1 1 auto;padding:10px 12px;border:1px solid #c9d4ce;background:#fff;border-radius:10px;font:inherit;font-size:14px;cursor:pointer;color:inherit;min-height:44px}
 .seg button.on{background:var(--g);border-color:var(--g);color:#fff;font-weight:600}
@@ -2472,11 +2474,13 @@ var qrcode = function() {
 const API_URL = 'https://script.google.com/macros/s/AKfycby3USSiWgvvo4aS6pMbx-Sm_i_YNXMJlaY_37x8_nHShn5Xtqcgqqp2SME_YDLq9oQ/exec';
 /* ===================================================================== */
 
-const APP_VERSI = '1.3';
+const APP_VERSI = '1.4';
 const KOP_IMG = 'kop.png'; // gambar kop resmi madrasah (kosongkan '' untuk kop teks)
 const SERVER = (localStorage.getItem('eizin_api') || API_URL).trim();
 const DEMO = !SERVER;
-const JENIS_PEMOHON = ['Siswa', 'Pembina', 'Koordinator Kelas Program'];
+const JENIS_PEMOHON = ['Wali Kelas', 'Pembina', 'Koordinator Kelas Program'];
+const PEMOHON_LANGSUNG = 'Langsung (Waka)'; // hanya di Input Langsung admin: siswa datang sendiri ke Waka
+const LABEL_PEMOHON = { 'Langsung (Waka)': 'Siswa datang langsung' };
 const JENIS_IZIN = ['Keluar Sekolah Sementara', 'Pulang Lebih Awal', 'Mengikuti Lomba/Kegiatan', 'Lainnya'];
 const IKON_IZIN = { 'Keluar Sekolah Sementara': '🚶', 'Pulang Lebih Awal': '🏠', 'Mengikuti Lomba/Kegiatan': '🏆', 'Lainnya': '📄' };
 const ALPHA = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
@@ -2599,9 +2603,9 @@ function seedDemo() {
   return {
     cfg: {}, siswa,
     izin: [
-      mk({ jenisPemohon: 'Pembina', namaPemohon: 'Bpk. Pembina Debat (contoh)', jenisIzin: 'Mengikuti Lomba/Kegiatan', siswa: [siswa[5], siswa[7], siswa[9]], tglMulai: t, tglSelesai: t, keperluan: 'Mengikuti Lomba Debat Ekonomi tingkat Kota', namaKegiatan: 'Lomba Debat Ekonomi', tempat: 'Aula Kampus (contoh)', penyelenggara: 'Panitia (contoh)', pembina: 'Bpk. Pembina Debat (contoh)', status: 'Menunggu' }),
-      mk({ jenisPemohon: 'Siswa', namaPemohon: 'Rizky Ramadhan', jenisIzin: 'Keluar Sekolah Sementara', siswa: [siswa[2]], tglMulai: y, jamKeluar: '10:00', jamKembali: '11:00', keperluan: 'Mengambil berkas di rumah (contoh)', status: 'Disetujui', diputuskan: y + 'T09:50:00', kembaliAktual: y + 'T10:55:00' }),
-      mk({ jenisPemohon: 'Koordinator Kelas Program', namaPemohon: 'Ibu Koordinator (contoh)', jenisIzin: 'Pulang Lebih Awal', siswa: [siswa[4]], tglMulai: y, jamKeluar: '13:00', keperluan: 'Sakit, dijemput orang tua (contoh)', status: 'Disetujui', diputuskan: y + 'T12:40:00' })
+      mk({ jenisPemohon: 'Pembina', namaPemohon: 'Bpk. Pembina Debat (contoh)', jenisIzin: 'Mengikuti Lomba/Kegiatan', siswa: [siswa[5], siswa[7], siswa[9]], tglMulai: t, tglSelesai: t, jamKeluar: '07:30', jamKembali: '16:00', keperluan: 'Mengikuti Lomba Debat Ekonomi tingkat Kota', namaKegiatan: 'Lomba Debat Ekonomi', tempat: 'Aula Kampus (contoh)', penyelenggara: 'Panitia (contoh)', pembina: 'Bpk. Pembina Debat (contoh)', status: 'Menunggu' }),
+      mk({ jenisPemohon: 'Wali Kelas', namaPemohon: 'Ibu Wali Kelas (contoh)', jenisIzin: 'Keluar Sekolah Sementara', siswa: [siswa[2]], tglMulai: y, jamKeluar: '10:00', jamKembali: '11:00', keperluan: 'Mengambil berkas di rumah (contoh)', status: 'Disetujui', diputuskan: y + 'T09:50:00', kembaliAktual: y + 'T10:55:00' }),
+      mk({ jenisPemohon: 'Koordinator Kelas Program', namaPemohon: 'Ibu Koordinator (contoh)', jenisIzin: 'Pulang Lebih Awal', siswa: [siswa[4]], tglMulai: y, jamKeluar: '13:00', jamKembali: '15:00', keperluan: 'Sakit, dijemput orang tua (contoh)', status: 'Disetujui', diputuskan: y + 'T12:40:00' })
     ]
   };
 }
@@ -2818,7 +2822,7 @@ function viewHome() {
     <h1>Izin Siswa</h1>
     <p class="mut">Ajukan izin keluar sekolah, pulang lebih awal, atau dispensasi lomba/kegiatan. Persetujuan dan surat izin dikirim secara elektronik.</p>
     <div style="display:grid;gap:10px;margin:16px 0">
-      <a class="btn big" href="#/ajukan"><span class="ic">📝</span><span>Ajukan Izin<small>Untuk siswa, pembina, dan koordinator kelas program</small></span></a>
+      <a class="btn big" href="#/ajukan"><span class="ic">📝</span><span>Ajukan Izin<small>Untuk wali kelas, pembina, dan koordinator kelas program</small></span></a>
       <a class="btn ghost big" href="#/status"><span class="ic">🔎</span><span>Cek Status & Surat Izin<small>Lihat apakah pengajuan sudah disetujui</small></span></a>
     </div>
     <div class="card small">
@@ -2832,7 +2836,7 @@ function viewHome() {
 // ---------------------------------------------------------------- form pengajuan (dipakai pemohon & admin)
 function blankForm(mode) {
   return {
-    jenisPemohon: 'Siswa', namaPemohon: '', hpPemohon: '', jenisIzin: JENIS_IZIN[0], siswa: [],
+    jenisPemohon: mode === 'admin' ? PEMOHON_LANGSUNG : 'Wali Kelas', namaPemohon: '', hpPemohon: '', jenisIzin: JENIS_IZIN[0], siswa: [],
     tglMulai: today(), tglSelesai: '', jamKeluar: '', jamKembali: '', keperluan: '',
     namaKegiatan: '', tempat: '', penyelenggara: '', pembina: '', lampiranData: ''
   };
@@ -2842,9 +2846,8 @@ function mountForm(el, f, mode, onSubmit) {
   const isAdmin = mode === 'admin';
   const render = () => {
     const ji = f.jenisIzin, lomba = ji === 'Mengikuti Lomba/Kegiatan';
-    const namaLabel = f.jenisPemohon === 'Siswa' ? 'Nama siswa yang mengajukan' : (f.jenisPemohon === 'Pembina' ? 'Nama pembina' : 'Nama koordinator kelas program');
-    const showKembali = ji === 'Keluar Sekolah Sementara' || ji === 'Lainnya';
-    const opt = ji === 'Lainnya' ? ' <span class="mut">(opsional)</span>' : '';
+    const namaLabel = { 'Wali Kelas': 'Nama wali kelas', 'Pembina': 'Nama pembina', 'Koordinator Kelas Program': 'Nama koordinator kelas program', 'Langsung (Waka)': 'Nama siswa yang datang' }[f.jenisPemohon] || 'Nama pemohon';
+    const pilihanPemohon = isAdmin ? [...JENIS_PEMOHON, PEMOHON_LANGSUNG] : JENIS_PEMOHON;
     const perluKodeKartu = !isAdmin && cfg.perluKode;
     el.innerHTML = `
       ${perluKodeKartu ? (siswaList.length
@@ -2855,9 +2858,9 @@ function mountForm(el, f, mode, onSubmit) {
             <p class="small" id="kode-msg" style="margin-bottom:0"></p></div>`) : ''}
       <div class="card">
         <label>${isAdmin ? 'Yang mengajukan' : 'Saya mengajukan sebagai'}</label>
-        <div class="seg" data-seg="jenisPemohon">${JENIS_PEMOHON.map(j => `<button type="button" class="${f.jenisPemohon === j ? 'on' : ''}" data-v="${h(j)}">${h(j)}</button>`).join('')}</div>
+        <div class="seg" data-seg="jenisPemohon">${pilihanPemohon.map(j => `<button type="button" class="${f.jenisPemohon === j ? 'on' : ''}" data-v="${h(j)}">${h(LABEL_PEMOHON[j] || j)}</button>`).join('')}</div>
         <label for="f-nama">${namaLabel}</label>
-        <input id="f-nama" data-k="namaPemohon" value="${h(f.namaPemohon)}" autocomplete="off" placeholder="${f.jenisPemohon === 'Siswa' ? 'Terisi otomatis dari siswa pertama' : ''}">
+        <input id="f-nama" data-k="namaPemohon" value="${h(f.namaPemohon)}" autocomplete="off" placeholder="${f.jenisPemohon === PEMOHON_LANGSUNG ? 'Terisi otomatis dari siswa pertama' : ''}">
         ${isAdmin ? '' : `<label for="f-hp">Nomor HP/WhatsApp <span class="mut">(opsional, untuk menerima surat)</span></label>
         <input id="f-hp" data-k="hpPemohon" inputmode="tel" value="${h(f.hpPemohon)}" placeholder="08xxxxxxxxxx">`}
       </div>
@@ -2873,10 +2876,11 @@ function mountForm(el, f, mode, onSubmit) {
           <div><label for="f-t1">${lomba ? 'Tanggal mulai' : 'Tanggal'}</label><input type="date" id="f-t1" data-k="tglMulai" value="${h(f.tglMulai)}"></div>
           ${lomba ? `<div><label for="f-t2">Tanggal selesai</label><input type="date" id="f-t2" data-k="tglSelesai" value="${h(f.tglSelesai)}"></div>` : ''}
         </div>
-        ${lomba ? '' : `<div class="row2">
-          <div><label for="f-j1">Jam keluar${opt}</label><input type="time" id="f-j1" data-k="jamKeluar" value="${h(f.jamKeluar)}"></div>
-          ${showKembali ? `<div><label for="f-j2">Jam kembali${opt}</label><input type="time" id="f-j2" data-k="jamKembali" value="${h(f.jamKembali)}"></div>` : ''}
-        </div>`}
+        <div class="row2">
+          <div><label for="f-j1">Jam keluar</label><input type="time" id="f-j1" data-k="jamKeluar" value="${h(f.jamKeluar)}"></div>
+          <div><label for="f-j2">Jam kembali</label><input type="time" id="f-j2" data-k="jamKembali" value="${h(f.jamKembali)}"></div>
+        </div>
+        ${lomba ? '<p class="small mut" style="margin:6px 0 0">Untuk kegiatan lebih dari satu hari: jam keluar pada tanggal mulai, jam kembali pada tanggal selesai.</p>' : ''}
         ${lomba ? `
           <label for="f-keg">Nama lomba/kegiatan</label><input id="f-keg" data-k="namaKegiatan" value="${h(f.namaKegiatan)}" placeholder="Contoh: Olimpiade Ekonomi tingkat Provinsi">
           <div class="row2">
@@ -2898,7 +2902,7 @@ function mountForm(el, f, mode, onSubmit) {
   const addSiswa = s => {
     if (f.siswa.some(x => (x.nis && x.nis === s.nis) || (!x.nis && x.nama.toLowerCase() === s.nama.toLowerCase() && x.kelas === s.kelas))) return;
     f.siswa.push(s);
-    if (f.jenisPemohon === 'Siswa' && !f.namaPemohon) f.namaPemohon = s.nama;
+    if (f.jenisPemohon === PEMOHON_LANGSUNG && !f.namaPemohon) f.namaPemohon = s.nama;
   };
 
   const bind = () => {
@@ -2972,12 +2976,9 @@ function validate(f, mode) {
   if (!f.namaPemohon.trim()) return 'Nama pemohon wajib diisi.';
   if (!f.siswa.length) return 'Pilih minimal satu siswa yang izin.';
   if (!/^\d{4}-\d{2}-\d{2}$/.test(f.tglMulai)) return 'Tanggal wajib diisi.';
-  if (ji === 'Keluar Sekolah Sementara') {
-    if (!f.jamKeluar || !f.jamKembali) return 'Jam keluar dan jam kembali wajib diisi.';
-    if (f.jamKembali <= f.jamKeluar) return 'Jam kembali harus setelah jam keluar.';
-  }
-  if (ji === 'Pulang Lebih Awal' && !f.jamKeluar) return 'Jam keluar wajib diisi.';
-  if (ji === 'Lainnya' && f.jamKeluar && f.jamKembali && f.jamKembali <= f.jamKeluar) return 'Jam kembali harus setelah jam keluar.';
+  if (!f.jamKeluar || !f.jamKembali) return 'Jam keluar dan jam kembali wajib diisi.';
+  const satuHari = !(ji === 'Mengikuti Lomba/Kegiatan' && f.tglSelesai && f.tglSelesai !== f.tglMulai);
+  if (satuHari && f.jamKembali <= f.jamKeluar) return 'Jam kembali harus setelah jam keluar.';
   if (ji === 'Mengikuti Lomba/Kegiatan') {
     if (!f.namaKegiatan.trim()) return 'Nama lomba/kegiatan wajib diisi.';
     if (f.tglSelesai && f.tglSelesai < f.tglMulai) return 'Tanggal selesai tidak boleh sebelum tanggal mulai.';
@@ -2993,7 +2994,7 @@ function cleanForm(f) {
     jenisPemohon: f.jenisPemohon, namaPemohon: f.namaPemohon.trim(), hpPemohon: f.hpPemohon.trim(), jenisIzin: ji,
     siswa: f.siswa.map(s => ({ nis: s.nis || '', nama: s.nama, kelas: s.kelas || '' })),
     tglMulai: f.tglMulai, tglSelesai: lomba ? f.tglSelesai : '',
-    jamKeluar: lomba ? '' : f.jamKeluar, jamKembali: (ji === 'Keluar Sekolah Sementara' || ji === 'Lainnya') ? f.jamKembali : '',
+    jamKeluar: f.jamKeluar, jamKembali: f.jamKembali,
     keperluan: f.keperluan.trim(),
     namaKegiatan: lomba ? f.namaKegiatan.trim() : '', tempat: lomba ? f.tempat.trim() : '',
     penyelenggara: lomba ? f.penyelenggara.trim() : '', pembina: lomba ? f.pembina.trim() : ''
@@ -3176,6 +3177,11 @@ async function viewCek(id, k) {
 }
 
 // ---------------------------------------------------------------- surat izin
+function waktuIzin(z) {
+  if (!z.jamKeluar) return '';
+  if (z.tglSelesai && z.tglSelesai !== z.tglMulai) return `Keluar ${fmtTgl(z.tglMulai, false)} pukul ${fmtJam(z.jamKeluar)}` + (z.jamKembali ? `, kembali ${fmtTgl(z.tglSelesai, false)} pukul ${fmtJam(z.jamKembali)}` : '');
+  return 'Pukul ' + fmtJam(z.jamKeluar) + (z.jamKembali ? ' s.d. ' + fmtJam(z.jamKembali) : '');
+}
 function judulSurat(ji) {
   return { 'Keluar Sekolah Sementara': 'SURAT IZIN KELUAR MADRASAH', 'Pulang Lebih Awal': 'SURAT IZIN PULANG', 'Mengikuti Lomba/Kegiatan': 'SURAT DISPENSASI' }[ji] || 'SURAT IZIN';
 }
@@ -3191,10 +3197,11 @@ function suratHTML(z, c) {
     if (z.penyelenggara) rows.push(['Penyelenggara', z.penyelenggara]);
     if (z.tempat) rows.push(['Tempat', z.tempat]);
     rows.push(['Hari/Tanggal', rentang(z)]);
+    if (waktuIzin(z)) rows.push(['Waktu', waktuIzin(z)]);
     if (z.pembina) rows.push(['Pendamping', z.pembina]);
   } else {
     rows.push(['Hari/Tanggal', rentang(z)]);
-    if (z.jamKeluar) rows.push(['Waktu', z.jenisIzin === 'Pulang Lebih Awal' ? 'Pulang pukul ' + fmtJam(z.jamKeluar) : 'Pukul ' + fmtJam(z.jamKeluar) + (z.jamKembali ? ' s.d. ' + fmtJam(z.jamKembali) : '')]);
+    if (waktuIzin(z)) rows.push(['Waktu', waktuIzin(z)]);
   }
   rows.push(['Keperluan', z.keperluan]);
   if (z.catatan) rows.push(['Catatan', z.catatan]);
@@ -3216,11 +3223,11 @@ function suratHTML(z, c) {
     <p style="text-align:justify">${penutup}</p>
     <div class="foot">
       <div class="qr">${qrSvg(verifyUrl(z))}Pindai untuk cek keaslian<br>Kode: <b>${h(z.kode)}</b></div>
-      <div class="ttd">${h(c.kota)}, ${h(fmtTgl(tglTtd, false))}<br>${h(c.jabatan)},
+      <div class="ttd">${h(c.kota)}, ${h(fmtTgl(tglTtd, false))}<br>an. Kepala Madrasah<br>${h(c.jabatan)},
         ${c.ttd ? `<img src="${c.ttd}" alt="Tanda tangan">` : '<div class="blank"></div>'}
         <b><u>${h(c.penandatangan)}</u></b>${c.nip ? `<br>NIP. ${h(c.nip)}` : ''}</div>
     </div>
-    <div class="ket">Diajukan oleh ${h(z.namaPemohon)} (${h(z.jenisPemohon)}) · Disetujui secara elektronik melalui e-Izin pada ${h(fmtWaktu(z.diputuskan))}. Keaslian surat dapat diperiksa dengan memindai kode QR.</div>
+    <div class="ket">Diajukan oleh ${h(z.namaPemohon)} (${h(LABEL_PEMOHON[z.jenisPemohon] || z.jenisPemohon)}) · Disetujui secara elektronik melalui e-Izin pada ${h(fmtWaktu(z.diputuskan))}. Keaslian surat dapat diperiksa dengan memindai kode QR.</div>
   </article>`;
 }
 
@@ -3273,7 +3280,7 @@ function viewAdmin(tab, soft) {
 function detailHTML(z) {
   return `<dl class="kv">
     <dt>Siswa</dt><dd>${(z.siswa || []).map(s => `${h(s.nama)}${s.kelas ? ' <span class="mut">(' + h(s.kelas) + ')</span>' : ''}`).join('<br>')}</dd>
-    <dt>Pemohon</dt><dd>${h(z.namaPemohon)} <span class="mut">· ${h(z.jenisPemohon)}</span>${z.hpPemohon ? ` · <a href="https://wa.me/${waNum(z.hpPemohon)}" target="_blank" rel="noopener">${h(z.hpPemohon)}</a>` : ''}</dd>
+    <dt>Pemohon</dt><dd>${h(z.namaPemohon)} <span class="mut">· ${h(LABEL_PEMOHON[z.jenisPemohon] || z.jenisPemohon)}</span>${z.hpPemohon ? ` · <a href="https://wa.me/${waNum(z.hpPemohon)}" target="_blank" rel="noopener">${h(z.hpPemohon)}</a>` : ''}</dd>
     <dt>Tanggal</dt><dd>${h(rentang(z))}</dd>
     ${z.jamKeluar ? `<dt>Waktu</dt><dd>${fmtJam(z.jamKeluar)}${z.jamKembali ? ' – ' + fmtJam(z.jamKembali) : ''}</dd>` : ''}
     ${z.namaKegiatan ? `<dt>Kegiatan</dt><dd>${h(z.namaKegiatan)}${z.tempat ? ' · ' + h(z.tempat) : ''}${z.penyelenggara ? ' · ' + h(z.penyelenggara) : ''}</dd>` : ''}
@@ -3332,7 +3339,7 @@ function viewSuratAdmin(id) {
   if (!z) { app().innerHTML = '<div class="empty">Data izin tidak ditemukan di HP ini.</div><a class="btn ghost block" href="#/admin/riwayat">← Riwayat</a>'; return; }
   const belum = ops.some(o => o.id === id || (o.izin && o.izin.id === id));
   const kirimTxt = `Surat ${judulSurat(z.jenisIzin).toLowerCase()} untuk ${namaSiswa(z, 5)} (${rentang(z)}) telah disetujui. Lihat/cek surat: ${verifyUrl(z)}`;
-  const bisaKembali = z.status === 'Disetujui' && z.jenisIzin === 'Keluar Sekolah Sementara' && !z.kembaliAktual;
+  const bisaKembali = z.status === 'Disetujui' && !!z.jamKembali && !z.kembaliAktual;
   app().innerHTML = `
     <div class="toolbar no-print">
       <a class="btn ghost" href="#/admin/riwayat">← Riwayat</a>
@@ -3367,7 +3374,7 @@ function adminRiwayat() {
     <div id="r-list">${list.slice(0, F.n).map(z => `<a class="item" href="#/surat/${encodeURIComponent(z.id)}">
       <div class="meta"><span class="badge st-${h(z.status)}">${h(z.status)}</span><span class="small mut">${h(fmtTgl(z.tglMulai))}</span>${pend.has(z.id) ? '<span class="badge st-Menunggu">⟳ belum terkirim</span>' : ''}${z.kembaliAktual ? '<span class="badge">↩︎ kembali</span>' : ''}</div>
       <div class="t">${IKON_IZIN[z.jenisIzin] || ''} ${h(namaSiswa(z))}</div>
-      <div class="small mut">${h(z.jenisIzin)} · oleh ${h(z.namaPemohon)} (${h(z.jenisPemohon)})</div></a>`).join('') || '<div class="empty">Tidak ada data.</div>'}</div>
+      <div class="small mut">${h(z.jenisIzin)} · oleh ${h(z.namaPemohon)} (${h(LABEL_PEMOHON[z.jenisPemohon] || z.jenisPemohon)})</div></a>`).join('') || '<div class="empty">Tidak ada data.</div>'}</div>
     ${list.length > F.n ? '<button class="btn ghost block" id="r-more">Tampilkan lebih banyak</button>' : ''}`;
   let t;
   $('#r-q').oninput = e => { clearTimeout(t); t = setTimeout(() => { F.q = e.target.value; F.n = 60; adminRiwayat(); const i = $('#r-q'); i.focus(); i.setSelectionRange(i.value.length, i.value.length); }, 250); };

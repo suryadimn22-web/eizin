@@ -257,7 +257,7 @@ function str_(v, max) {
   return v.length > max ? v.substring(0, max) : v;
 }
 
-var JENIS_PEMOHON = ['Siswa', 'Pembina', 'Koordinator Kelas Program', 'Langsung (Waka)'];
+var JENIS_PEMOHON = ['Wali Kelas', 'Pembina', 'Koordinator Kelas Program', 'Langsung (Waka)', 'Siswa'];
 var JENIS_IZIN = ['Keluar Sekolah Sementara', 'Pulang Lebih Awal', 'Mengikuti Lomba/Kegiatan', 'Lainnya'];
 var STATUS = ['Menunggu', 'Disetujui', 'Ditolak'];
 
@@ -271,7 +271,7 @@ function sanitize_(r, fromAdmin) {
     kode: /^[A-Z0-9]{6}$/.test(String(r.kode || '')) ? String(r.kode) : rand_(6),
     dibuat: str_(r.dibuat, 25) || now_(),
     sumber: fromAdmin ? (str_(r.sumber, 30) || 'Langsung') : 'Online',
-    jenisPemohon: JENIS_PEMOHON.indexOf(r.jenisPemohon) >= 0 ? r.jenisPemohon : 'Siswa',
+    jenisPemohon: JENIS_PEMOHON.indexOf(r.jenisPemohon) >= 0 ? r.jenisPemohon : 'Wali Kelas',
     namaPemohon: str_(r.namaPemohon, 100),
     hpPemohon: str_(r.hpPemohon, 20),
     jenisIzin: JENIS_IZIN.indexOf(r.jenisIzin) >= 0 ? r.jenisIzin : 'Lainnya',
@@ -294,6 +294,9 @@ function sanitize_(r, fromAdmin) {
   if (!out.namaPemohon) throw new Error('Nama pemohon wajib diisi');
   if (!out.siswa.length) throw new Error('Minimal satu siswa harus dipilih');
   if (!/^\d{4}-\d{2}-\d{2}$/.test(out.tglMulai)) throw new Error('Tanggal mulai tidak valid');
+  if (!fromAdmin && (!/^\d{2}:\d{2}$/.test(out.jamKeluar) || !/^\d{2}:\d{2}$/.test(out.jamKembali))) {
+    throw new Error('Jam keluar dan jam kembali wajib diisi');
+  }
   return out;
 }
 
